@@ -1,5 +1,8 @@
 const client = require("./client");
+const { createUser, getUserById, updateUser } = require("./users");
+
 const {createNewProduct} = require("./index-db");
+
 async function dropTables() {
     console.log("Dropping All Tables...");
     try {
@@ -75,7 +78,21 @@ async function createTables() {
     {
         console.log(error);
     }
-}
+};
+
+data = {
+  username: "albert123",
+  password: "hello",
+  firstName: "Albert",
+  lastName: "Sons",
+  phone: 1234567891,
+  email: "albert@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
+};
+
+
 
 async function createInitialUsers() {
   console.log("Creating New USers");
@@ -146,10 +163,22 @@ async function createInitialProducts(){
             client.connect();
             await dropTables();
             await createTables();
+
+            
+//             console.log("Creating user...");
+//             console.log(await createUser(data));
+
+//             console.log("Getting user by Id...");
+//             console.log(await getUserById(1));
+
+//             console.log("Updating users...");
+//             console.log(await updateUser(1, {username: "NEWUSERNAME"}));
             await createInitialUsers();
             await createInitialCategories();
             await createInitialProducts();
+
         } catch (error) {
+
             console.log("Error during rebuildDB");
             throw error;
       }

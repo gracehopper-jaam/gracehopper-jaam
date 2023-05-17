@@ -1,1 +1,6 @@
-module.exports ={...require("./products")}
+
+module.exports = {
+    ...require('./client'),
+    ...require('./users'),
+    ...require("./products")
+}
