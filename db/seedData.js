@@ -1,5 +1,5 @@
 const client = require("./client");
-
+const {createNewProduct} = require("./index-db");
 async function dropTables() {
     console.log("Dropping All Tables...");
     try {
@@ -10,6 +10,7 @@ async function dropTables() {
       DROP TABLE IF EXISTS categories;
       DROP TABLE IF EXISTS users;
       `);
+
     } catch (error) {
       throw error; // we pass the error up to the function that calls dropTables
     }
@@ -35,9 +36,10 @@ async function createTables() {
 
           CREATE TABLE categories(
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) UNIQUE NOT NULL,
+            name VARCHAR(255) NOT NULL,
             description TEXT NOT NULL,
-            subcategory VARCHAR(255) NOT NULL
+            subcategory VARCHAR(255) NOT NULL,
+            UNIQUE(name, subcategory)
          );
 
          CREATE TABLE products (
@@ -75,15 +77,82 @@ async function createTables() {
     }
 }
 
+async function createInitialUsers() {
+  console.log("Creating New USers");
+  try {
+    await client.query(
+      `
+            INSERT INTO "public"."users"("id","username","password","firstname","lastname","phone","email","addressline1","addressline2","isRegistered")
+            VALUES
+            (1,'user1@gmail.com','12345678','Albert','Bertie',1234567891,'user1@gmail.com','123 walker road va',NULL,FALSE),
+            (2,'user20@gmail.com','12345678','Snadra','Bullocks',987654321,'user20@gmail.com','123 king street road va',NULL,FALSE);
+    `
+    );
+
+    console.log("Done creating new users");
+  } catch (error) {
+    throw error;
+  }
+  console.log(" Finished Creating New Users");
+}
+
+async function createInitialCategories () {
+  console.log("Creating New CAtegories");
+  try {
+    await client.query(
+        `
+        INSERT INTO "public"."categories"("id","name","description","subcategory")
+        VALUES
+        (1,'Headphones','Headphones','Over the ear'),
+        (2,'Headphones','Headphones','in the ear'),
+        (3,'Speakers','speakers','desktop'),
+        (4,'Speakers','speakers','outdoor'),
+        (5,'Headphones','Headphones','wireless');
+        `);
+        } catch (error) {
+            throw error;
+        }
+        console.log("Done creating new categories");
+}
+
+async function createInitialProducts(){
+    console.log("Creating New Products");
+    try{
+
+        const productsToCreate = [
+            {
+            name :"HeadPhone By Beats", 
+            price: 30,
+            description: "different types of headphones",
+            categoryId : 1, 
+            qtyAvailable : 20, 
+            qtyOnOrder :1, 
+            rating :3
+            },
+
+        ]
+        const products = await Promise.all(productsToCreate.map(createNewProduct));
+        console.log("Done creating new products");
+    }
+    catch(error)
+    {
+        throw error;
+    }
+    console.log(" Finished Creating New Products");
+}
+
     async function rebuildDB() {
-        try {
+      try {
             client.connect();
             await dropTables();
             await createTables();
-          } catch (error) {
+            await createInitialUsers();
+            await createInitialCategories();
+            await createInitialProducts();
+        } catch (error) {
             console.log("Error during rebuildDB");
             throw error;
-          }
+      }
     }
 
     module.exports = {
