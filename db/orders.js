@@ -28,20 +28,20 @@ async function getOrderById(id) {
 }
 
 async function getAllOrders() {
-    try {
-      const { rows } = await client.query(
-          ` SELECT orders.*, users.username AS "buyerName"
+  try {
+    const { rows } = await client.query(
+      ` SELECT orders.*, users.username AS "buyerName"
             FROM orders
             JOIN users ON orders."userId" = users.id
           `
-      );
-      //TODO : Attach all the order_items to this order
-      
-      return rows;
-    } catch (error) {
-      throw error;
-    }
+    );
+    //TODO : Attach all the order_items to this order
+
+    return rows;
+  } catch (error) {
+    throw error;
   }
+}
 
 async function getOrdersByUser({ username }) {
   try {
@@ -53,17 +53,16 @@ async function getOrdersByUser({ username }) {
   }
 }
 
-
 async function getAllOrdersWithItems() {
   try {
     const { rows } = await client.query(
-        ` SELECT orders.*, users.username AS "buyerName"
+      ` SELECT orders.*, users.username AS "buyerName"
           FROM orders
           JOIN users ON orders."userId" = users.id
         `
     );
     //TODO : Attach all the order_items to this order
-    
+
     return rows;
   } catch (error) {
     throw error;
@@ -93,4 +92,11 @@ async function attachItemsToOrder(id) {
   }
 }
 
-module.exports = { createNewOrder, getOrderById, getOrdersByUser,getAllOrders, getAllOrdersWithItems,attachItemsToOrder};
+module.exports = {
+  createNewOrder,
+  getOrderById,
+  getOrdersByUser,
+  getAllOrders,
+  getAllOrdersWithItems,
+  attachItemsToOrder,
+};
