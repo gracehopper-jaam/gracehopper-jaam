@@ -73,7 +73,7 @@ async function updateUser(id, fields = {}) {
 
 async function getUserByUsername(username) {
     try {
-        const { rows: [user] } = await client.query(`
+        const { rows: [user]  } = await client.query(`
         SELECT * FROM users
         WHERE username = $1;
         `, [username]);
