@@ -1,98 +1,119 @@
-// const express = require("express");
-// const { requireUser } = require("./utils");
-// const router = express.Router();
-// const { UnauthorizedUpdateError,UnauthorizedDeleteError,DuplicateRoutineActivityError} = require("../errors");
-// const { getAllOrdersWithItems, createNewOrder } = require("../db/orders");
-// const {createNewOrderItem} =  require("../db/order_items");
+const express = require("express");
+const { requireUser } = require("./utils");
+const router = express.Router();
 
-// // GET /api/orders
-// router.get("/", async (req, res, next) => {
-//   try {
-//     const allOrders = await getAllOrdersWithItems();
-//     res.send(allOrders);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+const {
+  getAllOrdersWithItems,
+  createNewOrder,
+  updateOrderTotalAmount,
+  getOrderById,
+} = require("../db/orders");
+const { createNewOrderItem } = require("../db/order_items");
 
-// //ADDS A ROW TO ORDERS TABLES
-// // POST /api/orders
-// router.post("/", requireUser, async (req, res, next) => {
-//   const { totalamount,orderdate,isProcessed } = req.body;
+// GET /api/orders
+router.get("/", async (req, res, next) => {
+  try {
+    const allOrders = await getAllOrdersWithItems();
+    console.log(allOrders);
+    res.send(allOrders);
+  } catch (error) {
+    next(error);
+  }
+});
 
-//   try {
-//     if (req.user) {
-//       const userId = req.user.id;
-//       const newOrder= await createNewOrder({
-//         userId,
-//         totalamount,
-//         orderdate,
-//         isProcessed,
-//       });
-//       res.send(newOrder);
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+//ADDS A ROW TO ORDERS TABLES
+// POST /api/orders
+router.post("/", requireUser, async (req, res, next) => {
+  const { totalamount, orderdate, isProcessed } = req.body;
 
+  try {
+    if (req.user) {
+      const userId = req.user.id;
+      const newOrder = await createNewOrder({
+        userId,
+        totalamount,
+        orderdate,
+        isProcessed,
+      });
+      res.send(newOrder);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 
-// //ADDS A NEW ROW TO ORDER_ITEMS
-// // POST /api/orders/:ordersId/orderItem
-// router.post("/:ordersId/orderItems", requireUser, async (req, res, next) => {
-//   const ordersId = +req.params.ordersId;
+//ADDS A NEW ROW TO ORDER_ITEMS
+// POST /api/orders/:ordersId/orderItem
+router.post("/:ordersId/orderItems", requireUser, async (req, res, next) => {
+  const ordersId = +req.params.ordersId;
 
-//   const { productId, priceperunit, qty } = req.body;
+  const { productId, priceperunit, qty } = req.body;
 
-//   try {
-//     const newOrderItem = await createNewOrderItem({
-//       productId,
-//       priceperunit,
-//       qty,
-//       ordersId,
-//     });
+  try {
+    const newOrderItem = await createNewOrderItem({
+      productId,
+      priceperunit,
+      qty,
+      ordersId,
+    });
 
-//     res.send(newOrderItem);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+    res.send(newOrderItem);
+  } catch (error) {
+    next(error);
+  }
+});
 
-// //ADDS MULTIPLE ROWS TO ORDER_ITEMS
-// // POST /api/orders/:ordersId/orderItem
-// router.post("/:ordersId/orderItems", requireUser, async (req, res, next) => {
-//   const ordersId = +req.params.ordersId;
+//ADDS MULTIPLE ROWS TO ORDER_ITEMS
+// POST /api/orders/:ordersId/orderItemsList
+router.post(
+  "/:ordersId/orderItemsList",
+  requireUser,
+  async (req, res, next) => {
+    const ordersId = +req.params.ordersId;
 
-//   const  [items]  = req.body; //??/
+    const [items] = req.body; //??/
 
-//   try {
-//    let newOrdersToReturn = [];
-//    map.items(async ({ productId, priceperunit, qty, ordersId }) => {
-//      let newOrderItem = await createNewOrderItem({
-//        productId,
-//        priceperunit,
-//        qty,
-//        ordersId,
-//      });
-//      newOrdersToReturn.push(newOrderItem);
-//    });
-//     res.send(newOrdersToReturn);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+    try {
+      let newOrdersToReturn = [];
+      map.items(async ({ productId, priceperunit, qty, ordersId }) => {
+        let newOrderItem = await createNewOrderItem({
+          productId,
+          priceperunit,
+          qty,
+          ordersId,
+        });
+        newOrdersToReturn.push(newOrderItem);
+      });
+      res.send(newOrdersToReturn);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
+// PATCH /api/orders/:orderId
+router.patch("/:orderId", requireUser, async (req, res, next) => {
+  const id = +req.params.orderId;
 
-// // const response = await fetch(`${BASE}/orders/${ordersId}/orderItem`, {
-// //   method:"POST",
-// //   headers:{
-// //     'Content-Type': 'application/json',
-// //     "Authorization": `Bearer ${token}`
-// //   },
-// //   body: JSON.stringify({productId:productId,priceperunit:priceperunit,qty:qty,ordersId:ordersId})
-// // })
+  const { totalamount } = req.body;
 
-// //can i do this
-// // body: JSON.stringify([{productId:productId,priceperunit:priceperunit,qty:qty,ordersId:ordersId},
-// // {productId:productId,priceperunit:priceperunit,qty:qty,ordersId:ordersId},
-// // {productId:productId,priceperunit:priceperunit,qty:qty,ordersId:ordersId}])
+  try {
+    const order = await getOrderById(id);
+    if (order.buyerName === req.user.username) {
+      const updatedOrder = await updateOrderTotalAmount(+totalamount);
+      res.send(updatedOrder);
+    } else {
+      res.status(403);
+      next({
+        error: "403",
+        message: "UnauthorizedUpdate",
+        name: "403",
+      });
+    }
+  } catch (error) {
+    console.log("updateorder error", error);
+    next(error);
+  }
+});
+
+module.exports = router;

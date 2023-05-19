@@ -1,7 +1,7 @@
 const client = require("./client");
 const { createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest } = require("./users");
-
-const {createNewProduct} = require("./index-db");
+const { createNewCategory, getAllCategories } = require("./categories");
+const {createNewProduct} = require("./index");
 
 async function dropTables() {
     console.log("Dropping All Tables...");
@@ -79,6 +79,26 @@ async function createTables() {
         console.log(error);
     }
 };
+
+
+data = {
+  username: "albert123",
+  password: "hello",
+  firstName: "Albert",
+  lastName: "Sons",
+  phone: 1234567891,
+  email: "albert@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
+};
+
+
+categoryData = {
+  name: "Hoolee",
+  description: "I am a tabby cat",
+  subcategory: "cat"
+}
 
 
 async function createInitialUsers() {
@@ -193,9 +213,7 @@ guestData = {
             console.log("Creating guest user...");
             console.log(await createGuest(guestData))
 
-            // await createInitialUsers();
-            // await createInitialCategories();
-            // await createInitialProducts();
+
 
         } catch (error) {
 
