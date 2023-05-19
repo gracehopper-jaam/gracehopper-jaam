@@ -1,5 +1,37 @@
 const client = require("./client");
 
+async function productfindByName(name) {
+  try {
+    const { rows } = await client.query(
+      `
+       SELECT * 
+       FROM products
+       WHERE name = $1;
+      `,
+      [name]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function productfindById(id) {
+  try {
+    const { rows } = await client.query(
+      `
+       SELECT * 
+       FROM products
+       WHERE id = $1;
+      `,
+      [id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function createNewProduct({
   name,
   price,
@@ -50,7 +82,6 @@ async function getProductsByCategory(categoryId) {
       `,
       [categoryId]
     );
-    console.log("getProductsByCategory", rows);
     return rows;
   } catch (error) {
     throw error;
@@ -68,7 +99,6 @@ async function getProductsBySubCategory(subCategoryName) {
       [subCategoryName]
     );
 
-    console.log(rows);
     return rows;
   } catch (error) {
     throw error;
@@ -77,14 +107,18 @@ async function getProductsBySubCategory(subCategoryName) {
 
 async function updateProductQty(id, qty) {
   try {
-    const { product } = await client.query(
-      `UPDATE products
-       SET "qtyAvailable" = "qtyAvailable" - $2,"qtyOnOrder" = "qtyOnOrder" + $2
-       WHERE id= $1
-       RETURNING *;
-      `,
-      [id, qty]
-    );
+    const query = {
+      text: `UPDATE products
+             SET "qtyAvailable" = "qtyAvailable" - $2, "qtyOnOrder" = "qtyOnOrder" + $2
+             WHERE id = $1
+             RETURNING *;`,
+      values: [id, qty],
+    };
+
+    const { rows } = await client.query(query);
+    const product = rows[0]; // Assuming only one row is returned
+    return product;
+    // Continue with further operations or return the product if needed
   } catch (error) {
     console.log(error);
   }
@@ -98,20 +132,18 @@ async function updateProduct({ id, ...fields }) {
   if (setString.length === 0) {
     return;
   }
-
   try {
+    const query = `
+      UPDATE products
+      SET ${setString}
+      WHERE id = $${Object.keys(fields).length + 1}
+      RETURNING *;
+    `;
+
+    const values = [...Object.values(fields), id];
     const {
       rows: [product],
-    } = await client.query(
-      `
-        UPDATE products
-        SET ${setString}
-        WHERE id=${id}
-        RETURNING *;
-      `,
-      Object.values(fields)
-    );
-
+    } = await client.query(query, values);
     return product;
   } catch (error) {
     throw error;
@@ -132,11 +164,13 @@ async function deleteProduct(id) {
 }
 
 module.exports = {
+  productfindByName,
+  productfindById,
   createNewProduct,
   getAllProducts,
   getProductsByCategory,
   getProductsBySubCategory,
   updateProductQty,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 };
