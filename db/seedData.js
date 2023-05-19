@@ -1,7 +1,7 @@
 const client = require("./client");
-const { createUser, getUserById, updateUser } = require("./users");
+const { createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest } = require("./users");
 const { createNewCategory, getAllCategories } = require("./categories");
-const {createNewProduct} = require("./index-db");
+const {createNewProduct} = require("./index");
 
 async function dropTables() {
     console.log("Dropping All Tables...");
@@ -80,6 +80,7 @@ async function createTables() {
     }
 };
 
+
 data = {
   username: "albert123",
   password: "hello",
@@ -101,7 +102,7 @@ categoryData = {
 
 
 async function createInitialUsers() {
-  console.log("Creating New USers");
+  console.log("Creating New Users");
   try {
     await client.query(
       `
@@ -162,7 +163,31 @@ async function createInitialProducts(){
         throw error;
     }
     console.log(" Finished Creating New Products");
+};
+
+data = {
+  username: "albert123",
+  password: "hello",
+  firstName: "Albert",
+  lastName: "Sons",
+  phone: 1234567891,
+  email: "albert@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
+};
+
+guestData = {
+  password: "hello",
+  firstName: "Guessy",
+  lastName: "Sons",
+  phone: 1234567891,
+  email: "guessy@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
 }
+
 
     async function rebuildDB() {
       try {
@@ -170,22 +195,25 @@ async function createInitialProducts(){
             await dropTables();
             await createTables();
 
+            console.log("Creating user...");
+            console.log(await createUser(data));
             
-//             console.log("Creating user...");
-//             console.log(await createUser(data));
+            console.log("Getting user by Id...");
+            console.log(await getUserById(1));
 
-//             console.log("Getting user by Id...");
-//             console.log(await getUserById(1));
+            console.log("Getting user by username & password...");
+            console.log(await getUser( {username: "albert123", password: "hello"} ));
 
-//             console.log("Updating users...");
-//             console.log(await updateUser(1, {username: "NEWUSERNAME"}));
+            console.log("Updating users...");
+            console.log(await updateUser(1, {username: "newUserName", isRegistered: true}));
 
-                console.log(await createNewCategory(categoryData));
-                console.log(await getAllCategories());
+            console.log("Getting user by first & last name...");
+            console.log(await getUserByFirstAndLastName({firstName: "Albert", lastName: "Sons"}));
 
-          await createInitialUsers();
-          await createInitialProducts();
-          // await createInitialCategories();
+            console.log("Creating guest user...");
+            console.log(await createGuest(guestData))
+
+
 
         } catch (error) {
 
