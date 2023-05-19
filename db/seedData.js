@@ -1,7 +1,7 @@
 const client = require("./client");
 const { createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest } = require("./users");
 
-const {createNewProduct} = require("./index-db");
+const {createNewProduct} = require("./index");
 
 async function dropTables() {
     console.log("Dropping All Tables...");

@@ -40,9 +40,9 @@ router.get("/health", async (req, res, next) => {
   res.send({ message: "it is healthy", status: 200 });
 });
 
-// // ROUTER: /api/users
-// const usersRouter = require("./users");
-// router.use("/users", usersRouter);
+// ROUTER: /api/users
+const usersRouter = require("./users");
+router.use("/users", usersRouter);
 
 // // ROUTER: /api/products
 // const productsRouter = require("./products");
