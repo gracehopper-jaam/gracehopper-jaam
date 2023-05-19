@@ -77,7 +77,9 @@ async function getProductsBySubCategory(subCategoryName) {
 
 async function updateProductQty(id, qty) {
   try {
-    const { product } = await client.query(
+    const {
+      rows: [product],
+    } = await client.query(
       `UPDATE products
        SET "qtyAvailable" = "qtyAvailable" - $2,"qtyOnOrder" = "qtyOnOrder" + $2
        WHERE id= $1
@@ -85,6 +87,7 @@ async function updateProductQty(id, qty) {
       `,
       [id, qty]
     );
+    return product;
   } catch (error) {
     console.log(error);
   }
