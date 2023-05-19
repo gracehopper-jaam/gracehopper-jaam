@@ -1,6 +1,6 @@
 const client = require("./client");
 const { createUser, getUserById, updateUser } = require("./users");
-
+const { createNewCategory, getAllCategories } = require("./categories");
 const {createNewProduct} = require("./index-db");
 
 async function dropTables() {
@@ -93,6 +93,12 @@ data = {
 };
 
 
+categoryData = {
+  name: "Hoolee",
+  description: "I am a tabby cat",
+  subcategory: "cat"
+}
+
 
 async function createInitialUsers() {
   console.log("Creating New USers");
@@ -173,9 +179,13 @@ async function createInitialProducts(){
 
 //             console.log("Updating users...");
 //             console.log(await updateUser(1, {username: "NEWUSERNAME"}));
-            await createInitialUsers();
-            await createInitialCategories();
-            await createInitialProducts();
+
+                console.log(await createNewCategory(categoryData));
+                console.log(await getAllCategories());
+
+          await createInitialUsers();
+          await createInitialProducts();
+          // await createInitialCategories();
 
         } catch (error) {
 
