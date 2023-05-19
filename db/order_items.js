@@ -51,6 +51,52 @@ async function getOrderItemsByOrder(id) {
   }
 }
 
+async function deleteOrderItem(id) {
+  try {
+    await client.query(
+      ` DELETE FROM order_items
+        WHERE id = $1;
+      `,
+      [id]
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+async function updateItemQty(id, qty) {
+  try {
+    const  {rows: [item]} = await client.query(
+      `UPDATE order_items
+       SET qty = $2
+       WHERE id= $1
+       RETURNING *;
+      `,
+      [id, qty]
+    );
+  return item;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-module.exports = { createNewOrderItem,getOrderItemsByOrder,getOrderItemById };
+async function canEditOrderItem(orderItemId, userId) {
+  try {
+    const {
+      rows: [field],
+    } = await client.query(
+      `SELECT * FROM
+        order_items
+        JOIN orders
+        ON order_items."ordersId" = orders.id
+        WHERE order_items.id = $1`,
+      [orderItemId]
+    );
+
+    return field.userId === userId;
+  } catch (error) {
+    throw error;
+  }
+}
+
+module.exports = { createNewOrderItem,getOrderItemsByOrder,getOrderItemById,deleteOrderItem,updateItemQty,canEditOrderItem};
