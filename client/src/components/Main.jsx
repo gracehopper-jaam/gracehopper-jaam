@@ -1,10 +1,7 @@
-
-import React from 'react';
-import { Header, Home, Products, About,Cart } from './index';
+import React, { useState, useEffect } from 'react';
+import { Header, Home, Products, About, Cart, Checkout } from './index';
 import { Routes, Route } from 'react-router-dom';
-
-import React, {useState,useEffect} from 'react';
-import {getMe, getAllOrders} from "../api-client"
+import { getMe, getAllOrders } from "../api-client";
 
 
 const Main = () => {
@@ -74,11 +71,12 @@ const Main = () => {
     <div>
       <Header />
       <Routes>
-        <Route path="/Home"/>
-        <Route path="/Shop"/>
-        <Route path="/About"/>
+        <Route path="/" element={<Home />}/>
+        <Route path="/Shop" element={<Products />}/>
+        <Route path="/About" element={<About />}/>
         <Route path="/Register"/>
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart}/>} />
+        <Route path="/Checkout" element={<Checkout />} />
       </Routes>
 
     </div>

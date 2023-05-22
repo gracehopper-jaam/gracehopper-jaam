@@ -7,12 +7,13 @@ const Header = () => {
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
-
         <NavLink style={styles.link} to='/'>HOME</NavLink>
         <NavLink style={styles.link} to='/products'>SHOP</NavLink>
         <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
+        <NavLink style={styles.cartLink} to="/">
+          <i className="fa-solid fa-cart-shopping"></i>
+        </NavLink>
       </nav>
-      <i className="fa-solid fa-cart-shopping"></i>
     </header>
 
   );
@@ -23,10 +24,11 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '1rem',
+    padding: '.1rem',
     backgroundColor: '#f2f2f2',
     fontFamily: 'Arial',
-    width: '100vw',
+    width: '100%',
+    overflowX: 'auto',
   },
   logo: {
     fontSize: '2rem',
@@ -37,13 +39,15 @@ const styles = {
   nav: {
     display: 'flex',
     gap: '1rem',
+    overflowX: 'auto',
   },
   link: {
     color: '#555',
     textDecoration: 'none',
     fontSize: '1.2rem',
+    whiteSpace: 'nowrap',
   },
-  i: {
+  cartLink: {
     marginRight: '35px',
   },
 };
