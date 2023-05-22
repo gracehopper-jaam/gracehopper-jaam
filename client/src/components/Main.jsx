@@ -15,6 +15,7 @@ const Main = () => {
   const [cart, setCart] = useState({});
   
   
+  
   // useEffect(() => {
   //   const getInitialData = async () => {
   //     try {

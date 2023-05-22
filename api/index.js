@@ -52,13 +52,17 @@ router.use("/users", usersRouter);
 const ordersRouter = require("./orders");
 router.use("/orders", ordersRouter);
 
-// // ROUTER: /api/order_items
+// ROUTER: /api/order_items
 const orderItemsRouter = require("./orderItems");
 router.use("/order_items", orderItemsRouter);
 
-// // ROUTER: /api/categories
-// const categoriesRouter = require("./categories");
-// router.use("/categories", categoriesRouter);
+// ROUTER: /api/categories
+const categoriesRouter = require("./categories");
+router.use("/categories", categoriesRouter);
+
+// ROUTER: /api/about
+const aboutRouter = require("./about");
+router.use("/about", aboutRouter); 
 
 // ROUTER: /api/
 router.use("/", (req, res, next) =>{
