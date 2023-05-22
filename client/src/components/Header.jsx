@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 
 
 const Header = () => {
@@ -6,11 +8,11 @@ const Header = () => {
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
-        <a style={styles.link}>HOME</a>
-        <a style={styles.link}>SHOP</a>
-        <a style={styles.link}>ABOUT</a>
+        <NavLink style={styles.link} to='/'>HOME</NavLink>
+        <NavLink style={styles.link} to='/products'>SHOP</NavLink>
+        <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
       </nav>
-      <i class="fa-solid fa-magnifying-glass fa-bounce fa-lg"></i>
+      <i className="fa-solid fa-cart-shopping"></i>
     </header>
   );
 };
@@ -23,6 +25,7 @@ const styles = {
     padding: '1rem',
     backgroundColor: '#f2f2f2',
     fontFamily: 'Arial',
+    width: '100vw',
   },
   logo: {
     fontSize: '2rem',
@@ -38,6 +41,9 @@ const styles = {
     color: '#555',
     textDecoration: 'none',
     fontSize: '1.2rem',
+  },
+  i: {
+    marginRight: '35px',
   },
 };
 
