@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login } from './index';
 import { Routes, Route } from 'react-router-dom';
 import { getMe, getAllOrders } from "../api-client";
 
@@ -77,6 +77,7 @@ const Main = () => {
         <Route path="/Register"/>
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart}/>} />
         <Route path="/Checkout" element={<Checkout />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
 
     </div>

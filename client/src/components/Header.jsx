@@ -11,7 +11,7 @@ const Header = () => {
         <NavLink style={styles.link} to='/products'>SHOP</NavLink>
         <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
         <NavLink style={styles.cartLink} to="/">
-          <i className="fa-solid fa-cart-shopping"></i>
+          <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
       </nav>
     </header>
@@ -35,6 +35,7 @@ const styles = {
     fontWeight: 'bold',
     color: '#333',
     textDecoration: 'none',
+    textShadow: '1px 1px 5px #889aa0'
   },
   nav: {
     display: 'flex',
@@ -49,6 +50,7 @@ const styles = {
   },
   cartLink: {
     marginRight: '35px',
+    color: '#889aa0',
   },
 };
 
