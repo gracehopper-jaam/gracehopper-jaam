@@ -11,6 +11,7 @@ const Header = () => {
         <NavLink style={styles.link} to='/'>HOME</NavLink>
         <NavLink style={styles.link} to='/products'>SHOP</NavLink>
         <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
+        <NavLink style={styles.link} to='/cart'>CART</NavLink>
       </nav>
       <i className="fa-solid fa-cart-shopping"></i>
     </header>

@@ -75,6 +75,7 @@ router.post(
 
     try {
       let newOrdersToReturn = [];
+      ///UPDATE SYNTAX POTENTIALLY
       map.items(async ({ productId, priceperunit, qty, ordersId }) => {
         let newOrderItem = await createNewOrderItem({
           productId,
