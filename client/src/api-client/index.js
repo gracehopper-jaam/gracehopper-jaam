@@ -1,5 +1,6 @@
 const BASE = "http://localhost:3000/api";
 
+/**************************aparna***********************/
 export async function getAllOrders() {
   try {
     const response = await fetch(`${BASE}/orders`);
@@ -27,3 +28,26 @@ export const getMe = async (token) => {
       console.error(err);
     }
   };
+
+  //// GET /api/users/:username/orders
+
+  export const getOrdersByUser = async (token, username) => {
+    try {
+      const response = await fetch(`${BASE}/users/${username}/orders`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const result = await response.json();
+      return result;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+/***************************jason******************************/
+
+/***************************maisha******************************/
+
+/**************************aubrey********************************/
