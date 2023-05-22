@@ -40,21 +40,21 @@ router.get("/health", async (req, res, next) => {
   res.send({ message: "it is healthy", status: 200 });
 });
 
-// // ROUTER: /api/users
-// const usersRouter = require("./users");
-// router.use("/users", usersRouter);
+// ROUTER: /api/users
+const usersRouter = require("./users");
+router.use("/users", usersRouter);
 
 // // ROUTER: /api/products
 // const productsRouter = require("./products");
 // router.use("/products", productsRouter);
 
-// // ROUTER: /api/orders
-// const ordersRouter = require("./orders");
-// router.use("/orders", ordersRouter);
+// ROUTER: /api/orders
+const ordersRouter = require("./orders");
+router.use("/orders", ordersRouter);
 
 // // ROUTER: /api/order_items
-// const orderItemsRouter = require("./orderItems");
-// router.use("/order_items", orderItemsRouter);
+const orderItemsRouter = require("./orderItems");
+router.use("/order_items", orderItemsRouter);
 
 // // ROUTER: /api/categories
 // const categoriesRouter = require("./categories");
