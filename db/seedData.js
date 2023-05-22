@@ -1,10 +1,6 @@
 const client = require("./client");
 const { createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest } = require("./users");
-<<<<<<< HEAD
-
-=======
 const { createNewCategory, getAllCategories } = require("./categories");
->>>>>>> main
 const {createNewProduct} = require("./index");
 
 async function dropTables() {
@@ -195,7 +191,7 @@ guestData = {
 
     async function rebuildDB() {
       try {
-            client.connect();
+            
             await dropTables();
             await createTables();
 
@@ -225,7 +221,7 @@ guestData = {
             throw error;
       }
     }
-
+   
     module.exports = {
         rebuildDB,
         dropTables,

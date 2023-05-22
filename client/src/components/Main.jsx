@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Header, Home, Products, About,Cart } from './index';
 import { Routes, Route } from 'react-router-dom';
 
