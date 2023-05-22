@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import Header from './Header';
-import {getMe} from "../api-client"
+import {Cart} from './index'
+import {getMe, getAllOrders} from "../api-client"
 import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
@@ -8,53 +9,63 @@ const Main = () => {
   const [currentUser, setCurrentUser] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [cart, setCart] = useState(localStorage.getItem("currentCart"));
+  const [cart, setCart] = useState({});
   
   
-  useEffect(() => {
-    const getInitialData = async () => {
-      try {
-         
-        if (token) {
-          setIsLoggedIn(true);
-        }
-        if(cart !== null)
-        {
-          setCart(localStorage.getItem("currentCart"));
-          console.log("Existing Cart",cart );
-        }
-        else{
-          //create  a new cart object
-          const cartObject = {
-            items:[],
-            username: null,
-            persistedCart : false,
-          }
-          setCart(cartObject);
-          console.log("New Cart created",cart );
-        }
+  // useEffect(() => {
+  //   const getInitialData = async () => {
+  //     try {
+  //        console.log("TOKEN", token);
+  //       if (token) {
+  //         setIsLoggedIn(true);
+  //       }
 
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getInitialData();
-  }, []);
+  //       if(cart)
+  //       {
+  //         setCart(localStorage.getItem("currentCart"));
+  //         console.log("Existing Cart",cart );
+  //       }
+  //       else{
+  //         ////TODO
+  //         if(isLoggedIn)
+  //         {
+  //          //maybe get the users cart???
+  //         }
+  //         else
+  //         {
+  //             //create  a new cart object
+  //         const cartObject = {
+  //           items:[],
+  //           username: null,
+  //           persistedCart : false,
+  //         }
+  //         setCart(cartObject);
+  //         console.log("New Cart created",cart );
+  //         }
+        
+  //       }
+
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   getInitialData();
+  // }, []);
 
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        if (token) {
-          const fetchedUser = await getMe(token);
-          setCurrentUser(fetchedUser.username);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUser();
-  }, [token]);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       if (token) {
+  //         const fetchedUser = await getMe(token);
+  //         setCurrentUser(fetchedUser.username);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, [token]);
   return (
     <div>
       <Header />
@@ -63,7 +74,7 @@ const Main = () => {
         <Route path="/Shop"/>
         <Route path="/About"/>
         <Route path="/Register"/>
-        <Route path="/Cart"/>
+        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart}/>} />
       </Routes>
 
     </div>
