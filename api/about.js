@@ -16,15 +16,15 @@ aboutRouter.use((req, res, next) => {
     });
     
 
-// POST /api/ about
+// POST/api/ about
 aboutRouter.post('/:about', async (req, res, next) => {
     const { about } = req.params;
     
     try {
-        const about = await getCategoriesByName(about);
+        const about = await aboutRouter(about);
     
     if(about) {
-    console.log(`Here are the categorties!: ${about}:`);
+    console.log(`Here is the about section: ${about}:`);
         res.send({
             about
          });
