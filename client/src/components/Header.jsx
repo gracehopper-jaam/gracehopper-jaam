@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink} from "react-router-dom";
 
 
 const Header = () => {
@@ -8,12 +7,14 @@ const Header = () => {
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
+
         <NavLink style={styles.link} to='/'>HOME</NavLink>
         <NavLink style={styles.link} to='/products'>SHOP</NavLink>
         <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
       </nav>
       <i className="fa-solid fa-cart-shopping"></i>
     </header>
+
   );
 };
 
@@ -48,3 +49,4 @@ const styles = {
 };
 
 export default Header;
+

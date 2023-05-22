@@ -48,13 +48,13 @@ router.use("/users", usersRouter);
 // const productsRouter = require("./products");
 // router.use("/products", productsRouter);
 
-// // ROUTER: /api/orders
-// const ordersRouter = require("./orders");
-// router.use("/orders", ordersRouter);
+// ROUTER: /api/orders
+const ordersRouter = require("./orders");
+router.use("/orders", ordersRouter);
 
 // // ROUTER: /api/order_items
-// const orderItemsRouter = require("./orderItems");
-// router.use("/order_items", orderItemsRouter);
+const orderItemsRouter = require("./orderItems");
+router.use("/order_items", orderItemsRouter);
 
 // // ROUTER: /api/categories
 // const categoriesRouter = require("./categories");
