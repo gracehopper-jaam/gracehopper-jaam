@@ -1,7 +1,9 @@
 const client = require("./client");
-const { createUser, getUserById, updateUser } = require("./users");
+
 
 const {
+  createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest,
+  createNewCategory, getAllCategories,
   createNewProduct,
   getProductsBySubCategory,
   getProductsByCategory,
@@ -28,6 +30,36 @@ const prodObj = {
   qtyOnOrder: 40,
   rating: 5,
 };
+
+data = {
+  username: "albert123",
+  password: "hello",
+  firstName: "Albert",
+  lastName: "Sons",
+  phone: 1234567891,
+  email: "albert@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
+};
+guestData = {
+  password: "hello",
+  firstname: "Guessy",
+  lastname: "Sons",
+  phone: 1234567891,
+  email: "guessy@gmail.com",
+  addressline1: "123 Main St",
+  addressline2: "New Orleans, LA",
+  isRegistered: false,
+}
+
+categoryData = {
+  name: "Hoolee",
+  description: "I am a tabby cat",
+  subcategory: "cat"
+}
+
+
 
 async function dropTables() {
   console.log("Dropping All Tables...");
@@ -103,35 +135,73 @@ async function createTables() {
   }
 }
 
-data = {
-  username: "albert123",
-  password: "hello",
-  firstName: "Albert",
-  lastName: "Sons",
-  phone: 1234567891,
-  email: "albert@gmail.com",
-  addressline1: "123 Main St",
-  addressline2: "New Orleans, LA",
-  isRegistered: false,
-};
+
+// async function createInitialUsers() {
+//   console.log("Creating New USers");
+//   try {
+//     await client.query(
+//       `
+//             INSERT INTO "public"."users"("id","username","password","firstname","lastname","phone","email","addressline1","addressline2","isRegistered")
+//             VALUES
+//             (1,'user1@gmail.com','12345678','Albert','Bertie',1234567891,'user1@gmail.com','123 walker road va',NULL,FALSE),
+//             (2,'user20@gmail.com','12345678','Snadra','Bullocks',987654321,'user20@gmail.com','123 king street road va',NULL,FALSE);
+//     `
+//     );
+
+//     console.log("Done creating new users");
+//   } catch (error) {
+//     throw error;
+//   }
+//   console.log(" Finished Creating New Users");
+// }
 
 async function createInitialUsers() {
   console.log("Creating New USers");
-  try {
-    await client.query(
-      `
-            INSERT INTO "public"."users"("id","username","password","firstname","lastname","phone","email","addressline1","addressline2","isRegistered")
-            VALUES
-            (1,'user1@gmail.com','12345678','Albert','Bertie',1234567891,'user1@gmail.com','123 walker road va',NULL,FALSE),
-            (2,'user20@gmail.com','12345678','Snadra','Bullocks',987654321,'user20@gmail.com','123 king street road va',NULL,FALSE);
-    `
-    );
+  try{
+    const usersToCreate =[
+      {
+        username: "user1@gmail.com",
+        password: '12345678',
+        firstname:"Albert",
+        lastname:"Bertie",
+        phone: 1234567891,
+        email:"user1@gmail.com",
+        addressline1:'123 walker road va',
+        addressline2:null,
+        isRegistered:false
+      },
+      {
+        username: 'user20@gmail.com',
+        password: '12345678',
+        firstname:'Snadra',
+        lastname:'Bullocks',
+        phone:987654321,
+        email:'user20@gmail.com',
+        addressline1:'123 king street road va',
+        addressline2:null,
+        isRegistered:false,
+      },
+      {
+        username: "albert@gmail.com",
+        password: 'hello',
+        firstname:'Albert',
+        lastname:'Sons',
+        phone:1234567891,
+        email:"albert@gmail.com",
+        addressline1:"123 Main St",
+        addressline2:"New Orleans, LA",
+        isRegistered:false
+      }
+    ];
 
-    console.log("Done creating new users");
-  } catch (error) {
+    const users = await Promise.all(usersToCreate.map(createUser));
+    console.log("Done creating new users", users);
+
+  }catch(error)
+  {
     throw error;
   }
-  console.log(" Finished Creating New Users");
+
 }
 
 async function createInitialCategories() {
@@ -272,7 +342,6 @@ async function createProductsForTestingGetAllOrdersWithItems() {
 
 async function rebuildDB() {
   try {
-    client.connect();
     await dropTables();
     await createTables();
     await createInitialUsers();
@@ -304,12 +373,31 @@ async function rebuildDB() {
       "Get Orders By Username : ",
       await getOrdersByUser("user20@gmail.com")
     );
-
     const allorders = await getAllOrdersWithItems();
     console.log(" Get all orders with items attcahed", allorders[1]);
     console.log("orderitem qty updated",await  updateItemQty(1,3));
     console.log(await canEditOrderItem(1,1)); //should return true
     console.log(await canEditOrderItem(1,2)); //should return false
+ 
+
+    console.log("Getting user by Id...");
+    console.log(await getUserById(1));
+
+    console.log("Getting user by username & password...");
+    console.log(await getUser({ username: "albert@gmail.com", password: "hello" }));
+
+    console.log("Updating users...");
+    console.log(
+      await updateUser(3, { username: "newUserName", isRegistered: true })
+    );
+
+    console.log("Getting user by first & last name...");
+    console.log(
+      await getUserByFirstAndLastName({ firstname: "Albert", lastname: "Sons" })
+    );
+
+    console.log("Creating guest user...");
+    console.log(await createGuest(guestData));
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
@@ -317,7 +405,9 @@ async function rebuildDB() {
 }
 
 module.exports = {
-  rebuildDB,
-  dropTables,
-  createTables,
-};
+        rebuildDB,
+        dropTables,
+        createTables,
+      };
+      
+
