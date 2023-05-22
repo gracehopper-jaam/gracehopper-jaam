@@ -1,10 +1,6 @@
 const client = require("./client");
 const { createUser, getUserById, updateUser, getUser, getUserByFirstAndLastName, createGuest } = require("./users");
-<<<<<<< HEAD
-
-=======
 const { createNewCategory, getAllCategories } = require("./categories");
->>>>>>> main
 const {createNewProduct} = require("./index");
 
 async function dropTables() {
