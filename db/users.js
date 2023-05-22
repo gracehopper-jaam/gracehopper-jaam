@@ -157,7 +157,7 @@ async function createGuest({
         SELECT id, $5 AS username, password
         FROM new_user;
         `, [password, firstName, lastName, phone, email, addressline1, addressline2, isRegistered]);
-
+        
         return {
             id: user.id,
             username: user.username,

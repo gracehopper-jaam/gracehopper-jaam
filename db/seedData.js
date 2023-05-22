@@ -191,7 +191,7 @@ guestData = {
 
     async function rebuildDB() {
       try {
-            client.connect();
+            
             await dropTables();
             await createTables();
 
@@ -221,7 +221,7 @@ guestData = {
             throw error;
       }
     }
-
+   
     module.exports = {
         rebuildDB,
         dropTables,
