@@ -7,24 +7,34 @@ const saltRounds = 10;
 async function createUser({ 
     username, 
     password,
-    firstName,
-    lastName,
+    firstname,
+    lastname,
     phone,
     email,
     addressline1,
     addressline2,
     isRegistered }) 
     {
+    console.log("USER ",  
+        username, 
+        password,
+        firstname,
+        lastname,
+        phone,
+        email,
+        addressline1,
+        addressline2,
+        isRegistered );
     try {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const { rows: [user] } = await client.query(`
-        INSERT INTO users(username, password, firstName, lastName, phone, email, addressline1, addressline2, "isRegistered")
+        INSERT INTO users(username, password, firstname, lastname, phone, email, addressline1, addressline2, "isRegistered")
         VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
         ON CONFLICT (username) DO NOTHING
         RETURNING *;
 
-        `, [username, hashedPassword, firstName, lastName, phone, email, addressline1, addressline2, isRegistered]);
+        `, [username, hashedPassword, firstname, lastname, phone, email, addressline1, addressline2, isRegistered]);
 
         return {
             id: user.id,
@@ -109,12 +119,12 @@ async function getUser({ username, password }) {
     };
 };
 
-async function getUserByFirstAndLastName({ firstName, lastName }) {
+async function getUserByFirstAndLastName({ firstname, lastname }) {
     try {
         const { rows: [user] } = await client.query(`
         SELECT * FROM users
-        WHERE firstName = $1 AND lastName = $2
-        `, [firstName, lastName]); 
+        WHERE firstname = $1 AND lastname = $2
+        `, [firstname, lastname]); 
 
         return user;
     } catch (error) {
@@ -138,8 +148,8 @@ async function getUserByOrderId(orderId) {
 
 async function createGuest({ 
     password,
-    firstName,
-    lastName,
+    firstname,
+    lastname,
     phone,
     email,
     addressline1,
@@ -149,14 +159,14 @@ async function createGuest({
     try {
         const { rows: [user] } = await client.query(`
         WITH new_user AS (
-            INSERT INTO users(username, password, firstName, lastName, phone, email, addressline1, addressline2, "isRegistered")
+            INSERT INTO users(username, password, firstname, lastname, phone, email, addressline1, addressline2, "isRegistered")
             VALUES ($5, $1, $2, $3, $4, $5, $6, $7, $8)
             ON CONFLICT (username) DO NOTHING
             RETURNING *
         )
         SELECT id, $5 AS username, password
         FROM new_user;
-        `, [password, firstName, lastName, phone, email, addressline1, addressline2, isRegistered]);
+        `, [password, firstname, lastname, phone, email, addressline1, addressline2, isRegistered]);
         
         return {
             id: user.id,
