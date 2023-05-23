@@ -54,9 +54,26 @@ async function getAllOrders() {
 
 async function getOrdersByUser(username ) {
   try {
-    const orders = await getAllOrders();
+    const orders = await getAllOrdersWithItems();
     const ordersByUser = orders.filter((order) => order.buyerName === username);
     return ordersByUser;
+  } catch (error) {
+    throw error;
+  }
+}
+async function getCartByUser(username ) {
+  try {
+    const orders = await getOrdersByUser(username);
+    const notProcessedOrders = orders.filter((order) => order.isProcessed === false);
+    let tempArr = [...notProcessedOrders];
+    tempArr.map(order => {
+      return {...order, date: new Date(order.orderdate)};
+    });
+    const sortedDesc = tempArr.sort(
+      (objA, objB) => Number(objB.date) - Number(objA.date),
+    );
+
+    return sortedDesc;
   } catch (error) {
     throw error;
   }
@@ -127,6 +144,6 @@ async function updateOrderTotalAmount(id, totalamount) {
   }
 }
 
-module.exports = { createNewOrder, getOrderById, getOrdersByUser,getAllOrders, getAllOrdersWithItems,attachItemsToOrder,updateOrderTotalAmount};
+module.exports = { createNewOrder, getOrderById, getOrdersByUser,getAllOrders, getAllOrdersWithItems,attachItemsToOrder,updateOrderTotalAmount,getCartByUser};
 
  

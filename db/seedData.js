@@ -18,7 +18,8 @@ const {
   getOrdersByUser,
   getAllOrdersWithItems,
   updateItemQty,
-  canEditOrderItem
+  canEditOrderItem,
+  getCartByUser
 } = require(".");
 
 const prodObj = {
@@ -279,7 +280,8 @@ async function createInitialOrderData() {
       `INSERT INTO "public"."orders"("id","userId","totalamount","orderdate","isProcessed")
       VALUES
       (1,1,70,'2023-05-17',FALSE),
-      (2,2,220,'2023-05-17',FALSE);
+      (2,2,220,'2023-05-17',FALSE),
+      (3,1,120,'2023-05-19',FALSE);
       `
     );
   } catch (error) {
@@ -313,6 +315,18 @@ async function createInitialOrderItemsData() {
       qty: 1,
       ordersId: 2,
     },
+    {
+      productId: 1,
+      priceperunit: 30,
+      qty: 1,
+      ordersId: 3,
+    },
+    {
+      productId: 2,
+      priceperunit: 90,
+      qty: 1,
+      ordersId: 3,
+    }
   ];
   try {
     const orderItems = await Promise.all(
@@ -371,10 +385,12 @@ async function rebuildDB() {
     console.log("Get A single order item by ID", await getOrderItemById(2));
     console.log(
       "Get Orders By Username : ",
-      await getOrdersByUser("user20@gmail.com")
+      await getOrdersByUser('user1@gmail.com')
     );
     const allorders = await getAllOrdersWithItems();
-    console.log(" Get all orders with items attcahed", allorders[1]);
+    console.log(" Get all orders with items attcahed 0", allorders[0]);
+    console.log(" Get all orders with items attcahed 1", allorders[1]);
+    console.log(" Get all orders with items attcahed 2", allorders[2]);
     console.log("orderitem qty updated",await  updateItemQty(1,3));
     console.log(await canEditOrderItem(1,1)); //should return true
     console.log(await canEditOrderItem(1,2)); //should return false
@@ -398,6 +414,8 @@ async function rebuildDB() {
 
     console.log("Creating guest user...");
     console.log(await createGuest(guestData));
+
+    console.log( "getCartByUser", await getCartByUser('user20@gmail.com'))
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
