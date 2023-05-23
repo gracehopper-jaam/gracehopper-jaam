@@ -1,4 +1,4 @@
-const BASE = "http://localhost:3000/api";
+const BASE = "http://localhost:8080/api";
 
 /**************************aparna***********************/
 export async function getAllOrders() {
@@ -11,7 +11,6 @@ export async function getAllOrders() {
     throw error;
   }
 }
-
 // GET /api/users/me
 export const getMe = async (token) => {
     try {

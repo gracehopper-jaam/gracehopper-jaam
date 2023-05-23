@@ -8,6 +8,7 @@ client.connect();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 app.use((req, res, next) => {
   next();
 });
