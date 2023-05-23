@@ -11,7 +11,6 @@ export async function getAllOrders() {
     throw error;
   }
 }
-
 // GET /api/users/me
 export const getMe = async (token) => {
     try {
