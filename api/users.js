@@ -15,8 +15,8 @@ usersRouter.post('/register', async (req, res, next) => {
     const { 
         username, 
         password,
-        firstName,
-        lastName,
+        firstname,
+        lastname,
         phone,
         email,
         addressline1,
@@ -47,8 +47,8 @@ usersRouter.post('/register', async (req, res, next) => {
         const newUser = await createUser({ 
             username, 
             password,
-            firstName,
-            lastName,
+            firstname,
+            lastname,
             phone,
             email,
             addressline1,
