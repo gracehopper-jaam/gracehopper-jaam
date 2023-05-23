@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getAllCategories, createNewCategory } = require('');
+const { getAllCategories, createNewCategory } = require('../db/categories');
 
-categoriesRouter.use((req, res, next) => {
+router.use((req, res, next) => {
 
     next();
     });
 
 // GET /api/categories
-categoriesRouter.get('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const categories = await getAllCategories();
         res.send(categories);
@@ -18,7 +18,7 @@ categoriesRouter.get('/', async (req, res, next) => {
 })
 
 // POST /api/categories
-categoriesRouter.get('/:category', async (req, res, next) => {
+router.get('/:category', async (req, res, next) => {
     const { category } = req.params;
     
     try {

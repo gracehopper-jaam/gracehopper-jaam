@@ -60,9 +60,7 @@ router.use("/order_items", orderItemsRouter);
 const categoriesRouter = require("./categories");
 router.use("/categories", categoriesRouter);
 
-// ROUTER: /api/about
-const aboutRouter = require("./about");
-router.use("/about", aboutRouter); 
+
 
 // ROUTER: /api/
 router.use("/", (req, res, next) =>{

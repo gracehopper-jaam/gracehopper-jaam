@@ -38,12 +38,12 @@ const Main = () => {
           ////TODO NEED TO COMPLETE LOGIC ...right now getting multiple order????
           if(isLoggedIn) 
           {
-            const {userOrders: [userCart] }  = await getOrdersByUser(currentUser);//need to change to user.username
+            const {userOrders: [userCart] }  = await getOrdersByUser(user.username);//need to change to user.username
             console.log("Entering at Line 38");
             const cartObject = {
               totalamount: userCart.totalamount,
               items:[...userCart.items],   
-              username: currentUser,
+              username: user.username,
               persistedCart : true,
             }
             localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
@@ -103,8 +103,8 @@ const Main = () => {
         <Route path="/Shop" element={<Products />}/>
         <Route path="/About" element={<About />}/>
         <Route path="/Register" element={<Register />}/>
-        <Route path="/CartWithAccountView" element = {<CartWithAccountView isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart} /> }/>
-        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart} setCart = {setCart}/>} />
+        <Route path="/CartWithAccountView" element = {<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart = {cart} /> }/>
+        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart = {cart} setCart = {setCart}/>} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route path='/login' element={
                     <Login 
