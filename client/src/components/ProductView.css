@@ -1,0 +1,40 @@
+.product-view-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .image-preview {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .large-item-view {
+    flex: 1;
+  }
+  
+  .image-preview img,
+  .large-item-view img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  button,
+  span {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+  span {
+    margin: 0 10px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
