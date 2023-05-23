@@ -3,15 +3,15 @@ import { NavLink} from "react-router-dom";
 
 
 const Header = () => {
- return (
+  return (
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
-        <NavLink style={styles.link} to=‘/’>HOME</NavLink>
-        <NavLink style={styles.link} to=‘/Shop’>SHOP</NavLink>
-        <NavLink style={styles.link} to=‘/About’>ABOUT</NavLink>
-        <NavLink style={styles.cartLink} to=“/Cart”>
-          <i className=“fa-solid fa-cart-shopping fa-lg”></i>
+        <NavLink style={styles.link} to='/'>HOME</NavLink>
+        <NavLink style={styles.link} to='/Shop'>SHOP</NavLink>
+        <NavLink style={styles.link} to='/About'>ABOUT</NavLink>
+        <NavLink style={styles.cartLink} to="/Cart">
+          <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
       </nav>
     </header>
@@ -55,4 +55,3 @@ const styles = {
 };
 
 export default Header;
-
