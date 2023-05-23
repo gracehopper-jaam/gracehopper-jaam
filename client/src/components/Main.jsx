@@ -98,7 +98,6 @@ const Main = () => {
       setIsLoggedIn={setIsLoggedIn}
       setUser={setUser} />
       <Routes>
-
         <Route path="/" element={<Home />}/>
         <Route path="/Shop" element={<Products />}/>
         <Route path="/About" element={<About />}/>
