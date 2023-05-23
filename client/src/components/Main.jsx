@@ -84,8 +84,8 @@ const Main = () => {
     <div>
       <Header />
       <Routes>
-        <Route path="/Home" path="/" element={<Home />} />
-        <Route path="/Products" element={<Products />} />
+      <Route path="/Home" path="/" element={<Home />} />
+        <Route path="/Products" element={<Products />}/>
         <Route path="/About"/>
         <Route path="/Register"/>
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart}/>} />
