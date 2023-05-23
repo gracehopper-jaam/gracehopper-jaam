@@ -1,0 +1,31 @@
+#cartheader {
+    display: flex;
+    width: 350px;
+    height: 60px;
+    justify-content: space-between; 
+    text-align: center;
+    background-color: whitesmoke; 
+    color: lightslategrey;
+    /* -webkit-text-stroke: 6px, black; */
+    font-family: Georgia, Helvetica;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-items: center;
+    box-shadow: 4px, 4px, 10px black; 
+    border: .2px solid lavender;
+    }
+    
+    #cartbody {
+        color: lightslategray;
+        font-family: Georgia, Helvetica;   
+        font-size: 18px;
+        padding-left: 30px;
+        padding-right: 30px;
+        }
+    
+    /* #cartbodysecond {
+        color: lightslategray;
+        font-family: Georgia, Helvetica;
+        font-size: 30px;
+    } */

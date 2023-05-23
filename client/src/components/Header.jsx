@@ -8,7 +8,7 @@ const Header = () => {
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
 
-        <NavLink style={styles.link} to='/'>HOME</NavLink>
+        <NavLink style={styles.link} to='/'></NavLink>
         <NavLink style={styles.link} to='/products'>SHOP</NavLink>
         <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
         <NavLink style={styles.link} to='/cart'>CART</NavLink>
