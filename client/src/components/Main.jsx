@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register } from './index';
 import { Routes, Route } from 'react-router-dom';
-import { getMe, getAllOrders } from "../api-client";
-
-import React, {useState,useEffect} from 'react';
-import {getMe, getAllOrders,getOrdersByUser} from "../api-client"
+import {getAllOrders,getOrdersByUser} from "../api-client"
+import { getMe } from '../api-client/auth';
 import { fakeOrderItems } from './fakeData';
 
 
 const Main = () => {
 
-  const [currentUser, setCurrentUser] = useState("");
+  const [user, setUser] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState(localStorage.getItem("currentCart"));
   
+  useEffect(() => {
+    const fetchUser = async () => {
+      if(token) {
+        const fetchedUser = await getMe(token);
+        if (fetchedUser) {
+          setUser(fetchedUser);
+          setIsLoggedIn(true);
+        }
+      }
+    };
+    fetchUser();
+  }, [token]);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   
   // useEffect(() => {
   //   const getInitialData = async () => {
@@ -66,32 +80,27 @@ const Main = () => {
   //   getInitialData();
   // }, []);
 
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       if (token) {
-  //         const fetchedUser = await getMe(token);
-  //         setCurrentUser(fetchedUser.username);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchUser();
-  // }, [token]);
-
   return (
     <div>
-      <Header />
+      <Header 
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}
+      setUser={setUser} />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Shop" element={<Products />}/>
         <Route path="/About" element={<About />}/>
-        <Route path="/Register"/>
-        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} currentUser={currentUser} cart = {cart}/>} />
+        <Route path="/Register" element={<Register />}/>
+        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart = {cart}/>} />
         <Route path="/Checkout" element={<Checkout />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path='/login' element={
+                    <Login 
+                        token={token} 
+                        setToken={setToken} 
+                        user={user} 
+                        setUser={setUser} 
+                        isLoggedIn={isLoggedIn} 
+                        setIsLoggedIn={setIsLoggedIn}/>}/>
       </Routes>
 
     </div>

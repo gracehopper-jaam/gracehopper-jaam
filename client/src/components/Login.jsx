@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import './Login.css';
+import { loginUser } from '../api-client/auth';
 
 const Login = ({ setIsLoggedIn, setToken, setUser }) => {
     const [username, setUsername] = useState('');
@@ -8,19 +9,19 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const userToAuth = { username: username, password: password };
-        // const data = await loginUser(usertoAuth);
+      event.preventDefault();
+      const userToAuth = { username: username, password: password };
+      const data = await loginUser(userToAuth);
 
-        // if (data.token) {
-        //     setIsLoggedIn(true);
-        //     setUsername('');
-        //     setPassword('');
-        //     setUser(data.user);
-        //     setToken(data.token);
-        //     navigate('/');
-        // }
-    };
+      if (data.token) {
+          setIsLoggedIn(true);
+          setUsername('');
+          setPassword('');
+          setUser(data.user)
+          setToken(data.token)
+          navigate("/")
+      }
+  }
 
 
   return (
@@ -31,7 +32,7 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
           <div>
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               id="username"
               value={username}
               required

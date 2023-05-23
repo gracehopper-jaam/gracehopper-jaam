@@ -87,7 +87,7 @@ async function createTables() {
             password VARCHAR(255),
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
-            phone INTEGER NOT NULL,
+            phone VARCHAR(10) NOT NULL,
             email VARCHAR(255) NOT NULL,
             addressline1 VARCHAR(255) NOT NULL,
             addressline2  VARCHAR(255),

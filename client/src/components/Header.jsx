@@ -8,9 +8,9 @@ const Header = () => {
       <h1 style={styles.logo}>JAAM</h1>
       <nav style={styles.nav}>
         <NavLink style={styles.link} to='/'>HOME</NavLink>
-        <NavLink style={styles.link} to='/products'>SHOP</NavLink>
-        <NavLink style={styles.link} to='/about'>ABOUT</NavLink>
-        <NavLink style={styles.cartLink} to="/">
+        <NavLink style={styles.link} to='/Shop'>SHOP</NavLink>
+        <NavLink style={styles.link} to='/About'>ABOUT</NavLink>
+        <NavLink style={styles.cartLink} to="/Cart">
           <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
       </nav>
