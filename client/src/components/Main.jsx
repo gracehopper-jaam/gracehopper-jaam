@@ -94,8 +94,12 @@ const Main = () => {
         <Route path="/" element={<Home />}/>
         <Route path="/Shop" element={<Products />}/>
         <Route path="/About" element={<About />}/>
-        <Route path="/Register" element={<Register />}/>
+
+     
         <Route path="/CartWithAccountView" element = {<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart = {cart} token = {token} setCart = {setCart}/> }/>
+
+        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} />}/>
+
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart = {cart} setCart = {setCart}/>} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route path='/login' element={

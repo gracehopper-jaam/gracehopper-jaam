@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Logout } from './'
 
 
-const Header = () => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setUser }) => {
   return (
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
@@ -13,7 +14,15 @@ const Header = () => {
         <NavLink style={styles.cartLink} to="/Cart">
           <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
+        
       </nav>
+      <div className='loginLogoutButtons'>
+                {isLoggedIn ? (
+                    <Logout setUser={setUser} setIsLoggedIn={setIsLoggedIn} />
+                ) : (
+                    <NavLink to="/login" className="authButton">LOGIN</NavLink>
+                )}
+            </div>
     </header>
 
   );
@@ -49,7 +58,6 @@ const styles = {
     whiteSpace: 'nowrap',
   },
   cartLink: {
-    marginRight: '35px',
     color: '#889aa0',
   },
 };

@@ -52,7 +52,7 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <button type="submit" id="loginButt">Login</button>
+          <button type="submit" id="loginButt">LOGIN</button>
         </form>
         <p>
           Don't have an account? <a href="/register">Register</a>
