@@ -29,6 +29,8 @@
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .login-container #loginButt {
@@ -40,6 +42,8 @@
     border-radius: 5px;
     cursor: pointer;
     text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .login-container #loginButt:hover {
@@ -58,4 +62,19 @@
 
 .login-container a:hover {
     text-decoration: underline;
+}
+
+.authButton {
+    color: #657276;
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 0px;
+
+}
+
+.authButton:hover {
+    color: #586366;
+    text-decoration: none;
+    font-size: 22px;
 }

@@ -15,7 +15,7 @@ div #cart-container {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
@@ -84,7 +84,7 @@ input[type='number']{
     border-top:1px solid gray;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     margin:20px;
     padding-bottom:20px;
