@@ -119,7 +119,8 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         totalamount INTEGER  NOT NULL,
         orderdate DATE NOT NULL DEFAULT CURRENT_DATE,
-        "isProcessed" BOOLEAN DEFAULT false      
+        "isProcessed" BOOLEAN DEFAULT false,
+        UNIQUE(id, "isProcessed",orderdate)      
         );
         
         CREATE TABLE order_items (
@@ -274,14 +275,15 @@ async function createInitialProducts() {
   console.log(" Finished Creating New Products");
 }
 
+
 async function createInitialOrderData() {
   try {
     await client.query(
-      `INSERT INTO "public"."orders"("id","userId","totalamount","orderdate","isProcessed")
+      `INSERT INTO "public"."orders"("userId","totalamount","orderdate","isProcessed")
       VALUES
-      (1,1,70,'2023-05-17',FALSE),
-      (2,2,220,'2023-05-17',FALSE),
-      (3,1,120,'2023-05-19',FALSE);
+      (1,70,'2023-05-17',FALSE),
+      (2,220,'2023-05-17',FALSE),
+      (1,120,'2023-05-19',TRUE);
       `
     );
   } catch (error) {
@@ -412,8 +414,8 @@ async function rebuildDB() {
       await getUserByFirstAndLastName({ firstname: "Albert", lastname: "Sons" })
     );
 
-    console.log("Creating guest user...");
-    console.log(await createGuest(guestData));
+    // console.log("Creating guest user...");
+    // console.log(await createGuest(guestData));
 
     console.log( "getCartByUser", await getCartByUser('user20@gmail.com'))
   } catch (error) {

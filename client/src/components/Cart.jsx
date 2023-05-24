@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
 import "./Cart.css";
+import {useNavigate} from "react-router-dom";
 
 const Cart = (props) => {
   const { isLoggedIn, currentUser, cart, setCart } = props;
-
+  const navigate = useNavigate();
   console.log("INSIDE CART", cart);
+  console.log("ISLOGGED IN", isLoggedIn);
 
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    navigate('/CartWithAccountView');
   };
   return (
     <>
