@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const SECRET = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt');
-const { getUserByUsername, createUser,getOrdersByUser,getCartByUser} = require('../db');
+const { getUserByUsername, createUser } = require('../db');
 const {  requireUser } = require('./utils');
 
 
@@ -15,8 +15,8 @@ usersRouter.post('/register', async (req, res, next) => {
     const { 
         username, 
         password,
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         phone,
         email,
         addressline1,
@@ -47,8 +47,8 @@ usersRouter.post('/register', async (req, res, next) => {
         const newUser = await createUser({ 
             username, 
             password,
-            firstname,
-            lastname,
+            firstName,
+            lastName,
             phone,
             email,
             addressline1,
@@ -113,26 +113,18 @@ usersRouter.post('/login', async (req, res, next) => {
     }
 });
 
-// // GET /api/users/me
-// usersRouter.get('/me', requireUser, async (req, res, next) => {
-//     try {
-//         const { id, username } = req.user;
-//         res.status(200).json({
-//             id: id,
-//             username: username,
-//         });
-//     } catch (error) {
-//         next(error);
-//     }
-// });
-
-usersRouter.get("/me", requireUser, async (req, res, next) => {
+// GET /api/users/me
+usersRouter.get('/me', requireUser, async (req, res, next) => {
     try {
-      res.send(req.user);
+        const { id, username } = req.user;
+        res.status(200).json({
+            id: id,
+            username: username,
+        });
     } catch (error) {
-      next(error);
+        next(error);
     }
-  });
+});
 
 // GET /api/users/:username/orders
 usersRouter.get('/:username/orders', requireUser, async (req, res, next) => {
@@ -155,49 +147,6 @@ usersRouter.get('/:username/orders', requireUser, async (req, res, next) => {
     }
 });
 
-// GET /api/users/:username/cart
-usersRouter.get('/:username/cart', requireUser, async (req, res, next) => {
-    try {
-        const { username } = req.params;
-        const user = await getUserByUsername(username);
-
-        if (!user) {
-            return res.status(404).json({
-                error: 'UserNotFoundError',
-                message: `User ${username} not found!`,
-            });
-        };
-
-        const cart = req.user.username === username ? await getCartByUser(username) : null;
-
-        res.status(200).json(cart);
-    } catch (error) {
-        next(error);
-    }
-});
-
-
 
 
 module.exports = usersRouter;
-
-// usersRouter.get('/:username/orders', requireUser, async (req, res, next) => {
-//     const { username } = req.params;
-//     try {
-        
-//         const user = await getUserByUsername(username);
-//         if (req.user.username === username) {
-//           const orders = await getOrdersByUser(username);
-//           res.send(orders);
-//         } else {
-//           res.status(403);
-//           next({
-//             error: "404",
-//             message: "User Not Found",
-//             name: "404",
-//           });
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// });

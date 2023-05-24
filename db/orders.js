@@ -6,13 +6,13 @@ async function createNewOrder({userId,totalamount,orderdate,isProcessed}) {
       rows: [order],
     } = await client.query(
       `
-    INSERT INTO orders("userId",totalamount,orderdate,"isProcessed")
+    INSERT INTO order("userId",totalamount,orderdate,"isProcessed")
     VALUES ($1,$2,$3,$4)
     RETURNING *;
   `,
       [userId,totalamount,orderdate,isProcessed]
     );
-      return order;
+
   } catch (error) {
     throw error;
   }
@@ -52,34 +52,33 @@ async function getAllOrders() {
     }
   }
 
-
-async function getCartByUser(username ) {
-  try {
-    const orders = await getOrdersByUser(username);
-    const notProcessedOrder = orders.filter((order) => order.isProcessed === false);
-    return notProcessedOrder;
-  } catch (error) {
-    throw error;
-  }
-}
-
 async function getOrdersByUser(username ) {
   try {
-    const { rows: orders } = await client.query(
-      ` SELECT orders.*, users.username AS "buyerName"
-        FROM orders
-        JOIN users ON orders."userId" = users.id
-        WHERE users.username = $1
-      `,[username]
-  );
-    console.log("ORDERS AT LINE 84", orders);
-    const ordersByUser = await attachItemsToOrder(orders);
-    console.log("ORDERS AT LINE 86 ordersByUser", ordersByUser);
+    const orders = await getAllOrdersWithItems();
+    const ordersByUser = orders.filter((order) => order.buyerName === username);
     return ordersByUser;
   } catch (error) {
     throw error;
   }
 }
+async function getCartByUser(username ) {
+  try {
+    const orders = await getOrdersByUser(username);
+    const notProcessedOrders = orders.filter((order) => order.isProcessed === false);
+    let tempArr = [...notProcessedOrders];
+    tempArr.map(order => {
+      return {...order, date: new Date(order.orderdate)};
+    });
+    const sortedDesc = tempArr.sort(
+      (objA, objB) => Number(objB.date) - Number(objA.date),
+    );
+
+    return sortedDesc;
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 async function getAllOrdersWithItems() {
   try {

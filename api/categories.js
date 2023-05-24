@@ -1,46 +1,71 @@
-const express = require('express');
-const router = express.Router();
-const { getAllCategories, createNewCategory } = require('../db/categories');
+/*
+    Here, we are going to list all categories apis.
+*/
 
-router.use((req, res, next) => {
+const express = require("express");
+const categoriesRouter = express.Router();
 
-    next();
+const {
+  createNewCategory,
+  getAllCategories,
+  categoryfindByName,
+} = require("../db/categories");
+
+/*
+    Get All categories
+*/
+categoriesRouter.get("/getAllCategories", async (req, res, next) => {
+  try {
+    // collects all categories from database.
+    const findAllCategories = await getAllCategories();
+    res.send({
+      message: "All categories have been successfully found.",
+      code: "SUCCESS",
+      categories: findAllCategories,
     });
+  } catch (error) {
+    res.send({
+      message: "Something went wrong.",
+      error: "ERROR",
+    });
+  }
+});
 
-// GET /api/categories
-router.get('/', async (req, res, next) => {
-    try {
-        const categories = await getAllCategories();
-        res.send(categories);
-    } catch (error) {
-        next(error);
-    }
-})
-
-// POST /api/categories
-router.get('/:category', async (req, res, next) => {
-    const { category } = req.params;
-    
-    try {
-        const category = await getCategoriesByName(category);
-    
-    if(category) {
-    console.log(`Here are the categorties!: ${category}:`);
-        res.send({
-            category
-         });
-
+/*
+      Create A New Category
+  */
+categoriesRouter.post("/createNewCategory", async (req, res, next) => {
+  try {
+    const { name } = req.body;
+    const isNameExist = await categoryfindByName(name);
+    console.log(isNameExist, "isNameExist");
+    if (isNameExist.length !== 0) {
+      res.send({
+        message: "Name is already exist.",
+        code: "Error",
+      });
     } else {
-        next({
-        name: "Error creating category",
-        message: "Not able to create new category"
-  })
-}
-    } catch (error) {
-        next(error);
+      const addNewCategory = await createNewCategory(req.body);
+      if (addNewCategory) {
+        res.send({
+          message: "A new category has been successfully created.",
+          code: "SUCCESS",
+          category: addNewCategory,
+        });
+      } else {
+        res.send({
+          message: "Something went wrong.",
+          error: "ERROR",
+        });
+      }
     }
-  });
+  } catch (error) {
+    console.log(error, "error");
+    res.send({
+      message: "Something went wrong.",
+      error: "ERROR",
+    });
+  }
+});
 
-  // PATCH 
-
-  module.exports = router; 
+module.exports = categoriesRouter;

@@ -45,8 +45,8 @@ const usersRouter = require("./users");
 router.use("/users", usersRouter);
 
 // // ROUTER: /api/products
-// const productsRouter = require("./products");
-// router.use("/products", productsRouter);
+const productsRouter = require("./products");
+router.use("/products", productsRouter);
 
 // ROUTER: /api/orders
 const ordersRouter = require("./orders");
@@ -60,10 +60,8 @@ router.use("/order_items", orderItemsRouter);
 const categoriesRouter = require("./categories");
 router.use("/categories", categoriesRouter);
 
-
-
 // ROUTER: /api/
-router.use("/", (req, res, next) =>{
+router.use("/", (req, res, next) => {
   res.status(404);
   res.send(
     next({

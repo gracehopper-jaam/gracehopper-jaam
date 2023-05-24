@@ -1,5 +1,37 @@
 const client = require("./client");
 
+async function productfindByName(name) {
+  try {
+    const { rows } = await client.query(
+      `
+       SELECT * 
+       FROM products
+       WHERE name = $1;
+      `,
+      [name]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function productfindById(id) {
+  try {
+    const { rows } = await client.query(
+      `
+       SELECT * 
+       FROM products
+       WHERE id = $1;
+      `,
+      [id]
+    );
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function createNewProduct({
   name,
   price,
@@ -141,5 +173,7 @@ module.exports = {
   getProductsBySubCategory,
   updateProductQty,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  productfindByName,
+  productfindById,
 };

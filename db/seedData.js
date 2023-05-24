@@ -18,8 +18,7 @@ const {
   getOrdersByUser,
   getAllOrdersWithItems,
   updateItemQty,
-  canEditOrderItem,
-  getCartByUser
+  canEditOrderItem
 } = require(".");
 
 const prodObj = {
@@ -88,7 +87,7 @@ async function createTables() {
             password VARCHAR(255),
             firstname VARCHAR(255) NOT NULL,
             lastname VARCHAR(255) NOT NULL,
-            phone VARCHAR(10) NOT NULL,
+            phone INTEGER NOT NULL,
             email VARCHAR(255) NOT NULL,
             addressline1 VARCHAR(255) NOT NULL,
             addressline2  VARCHAR(255),
@@ -119,8 +118,7 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         totalamount INTEGER  NOT NULL,
         orderdate DATE NOT NULL DEFAULT CURRENT_DATE,
-        "isProcessed" BOOLEAN DEFAULT false,
-        UNIQUE(id, "isProcessed",orderdate)      
+        "isProcessed" BOOLEAN DEFAULT false      
         );
         
         CREATE TABLE order_items (
@@ -275,15 +273,13 @@ async function createInitialProducts() {
   console.log(" Finished Creating New Products");
 }
 
-
 async function createInitialOrderData() {
   try {
     await client.query(
-      `INSERT INTO "public"."orders"("userId","totalamount","orderdate","isProcessed")
+      `INSERT INTO "public"."orders"("id","userId","totalamount","orderdate","isProcessed")
       VALUES
-      (1,70,'2023-05-17',FALSE),
-      (2,220,'2023-05-17',FALSE),
-      (1,120,'2023-05-19',TRUE);
+      (1,1,70,'2023-05-17',FALSE),
+      (2,2,220,'2023-05-17',FALSE);
       `
     );
   } catch (error) {
@@ -317,18 +313,6 @@ async function createInitialOrderItemsData() {
       qty: 1,
       ordersId: 2,
     },
-    {
-      productId: 1,
-      priceperunit: 30,
-      qty: 1,
-      ordersId: 3,
-    },
-    {
-      productId: 2,
-      priceperunit: 90,
-      qty: 1,
-      ordersId: 3,
-    }
   ];
   try {
     const orderItems = await Promise.all(
@@ -387,12 +371,10 @@ async function rebuildDB() {
     console.log("Get A single order item by ID", await getOrderItemById(2));
     console.log(
       "Get Orders By Username : ",
-      await getOrdersByUser('user1@gmail.com')
+      await getOrdersByUser("user20@gmail.com")
     );
     const allorders = await getAllOrdersWithItems();
-    console.log(" Get all orders with items attcahed 0", allorders[0]);
-    console.log(" Get all orders with items attcahed 1", allorders[1]);
-    console.log(" Get all orders with items attcahed 2", allorders[2]);
+    console.log(" Get all orders with items attcahed", allorders[1]);
     console.log("orderitem qty updated",await  updateItemQty(1,3));
     console.log(await canEditOrderItem(1,1)); //should return true
     console.log(await canEditOrderItem(1,2)); //should return false
@@ -414,10 +396,8 @@ async function rebuildDB() {
       await getUserByFirstAndLastName({ firstname: "Albert", lastname: "Sons" })
     );
 
-    // console.log("Creating guest user...");
-    // console.log(await createGuest(guestData));
-
-    console.log( "getCartByUser", await getCartByUser('user20@gmail.com'))
+    console.log("Creating guest user...");
+    console.log(await createGuest(guestData));
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
@@ -430,3 +410,4 @@ module.exports = {
         createTables,
       };
       
+

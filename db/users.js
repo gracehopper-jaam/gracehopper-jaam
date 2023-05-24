@@ -49,7 +49,7 @@ async function createUser({
 async function getUserById(userId) {
     try {
         const { rows: [user] } = await client.query(`
-        SELECT id, username,firstname,lastname,phone,email,addressline1,addressline2 FROM users
+        SELECT id, username FROM users
         WHERE id = $1;
         `, [userId]);
 
