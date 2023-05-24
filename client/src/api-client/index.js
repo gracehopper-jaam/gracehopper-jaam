@@ -59,7 +59,7 @@ export const getProductsByCategory = async (id) => {
 
 export async function getAllCategories() {
   try {
-    const response = await fetch(`${BASE}/categories/getAllCategories`);
+    const response = await fetch(`${BASE}/categories`);
     const getCategories = await response.json();
     return getCategories;
   } catch (error) {
@@ -70,6 +70,7 @@ export async function getAllCategories() {
 
 // GET /api/users/me
 export const getMe = async (token) => {
+  
     try {
       const response = await fetch(`${BASE}/users/me`, {
         method: "GET",

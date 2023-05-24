@@ -79,7 +79,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/Shop" element={<Products />} />
+        <Route path="/Shop" element={<Products setCart ={setCart}/>} />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
 
