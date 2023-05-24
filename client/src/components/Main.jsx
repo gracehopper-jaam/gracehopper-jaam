@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login, Register } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register,Logout } from './index';
 import { Routes, Route } from 'react-router-dom';
 import {getCartByUser} from "../api-client"
 import { getMe } from '../api-client/auth';
-import { fakeOrderItems } from './fakeData';
 import CartWithAccountView from './CartWithAccountView';
 
 
@@ -23,19 +22,22 @@ const Main = () => {
           setIsLoggedIn(true);
         }
 
-        const [userCart]  = await getCartByUser(token, localStorage.getItem("currentUser"));
+        // const [userCart]  = await getCartByUser(token, localStorage.getItem("currentUser"));
            
-            console.log("Entering at Line 38", userCart);
+        //     console.log("Entering at Line 38", userCart);
+        //     if(userCart!== null && userCart.items.length > 0)
+        //     {
+        //       const cartObject = {
+        //       username: userCart.buyerName,
+        //       orderdate:userCart.orderdate, 
+        //       totalamount: userCart.totalamount,
+        //       items:[...userCart.items], 
+        //       persistedCart : true,
+        //     }
+        //     localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
+        //     setCart(cartObject);
+        //     }
             
-            const cartObject = {
-              username: userCart.buyerName,
-              orderdate:userCart.orderdate, 
-              totalamount: userCart.totalamount,
-              items:[...userCart.items], 
-              persistedCart : true,
-            }
-            localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
-            setCart(cartObject);
       }
 
     };
@@ -52,22 +54,22 @@ const Main = () => {
           setIsLoggedIn(true);
         }       
            
-          // if(token) 
-          // {
-          //   const [userCart]  = await getCartByUser(token, localStorage.getItem("currentUser"));
+          if(token) 
+          {
+            const [userCart]  = await getCartByUser(token, localStorage.getItem("currentUser"));
            
-          //   console.log("Entering at Line 38", userCart);
+            console.log("Entering at Line 38", userCart);
             
-          //   const cartObject = {
-          //     username: userCart.buyerName,
-          //     orderdate:userCart.orderdate, 
-          //     totalamount: userCart.totalamount,
-          //     items:[...userCart.items], 
-          //     persistedCart : true,
-          //   }
-          //   localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
-          //   setCart(cartObject);
-          // }
+            const cartObject = {
+              username: userCart.buyerName,
+              orderdate:userCart.orderdate, 
+              totalamount: userCart.totalamount,
+              items:[...userCart.items], 
+              persistedCart : true,
+            }
+            localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
+            setCart(cartObject);
+          }
         
 
       } catch (error) {
@@ -89,7 +91,7 @@ const Main = () => {
       <Header 
       isLoggedIn={isLoggedIn}
       setIsLoggedIn={setIsLoggedIn}
-      setUser={setUser} />
+      setUser={setUser} setToken ={setToken} setCart={setCart} />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Shop" element={<Products />}/>
@@ -110,6 +112,7 @@ const Main = () => {
                         setUser={setUser} 
                         isLoggedIn={isLoggedIn} 
                         setIsLoggedIn={setIsLoggedIn}/>}/>
+        <Route path='/logout' element={<Logout setUser ={setUser} setIsLoggedIn ={setIsLoggedIn} setToken ={setToken} setCart={setCart}/>}/>
 
       </Routes>
 

@@ -2,17 +2,20 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 
-const logOut = (setUser, setIsLoggedIn) => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    setUser(null);
-};
+
   
-const Logout = ({ setUser, setIsLoggedIn }) => {
+const Logout = (props) => {
   const navigate = useNavigate();
+ const  { setUser, setIsLoggedIn,setToken,setCart } = props;
 
   const handleClick = () => {
-    logOut(setUser, setIsLoggedIn);
+    localStorage.removeItem("token");
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentCart');
+    setIsLoggedIn(false);
+    setUser(null);
+    setToken("");
+    setCart({});
     navigate("/");
   };
 
