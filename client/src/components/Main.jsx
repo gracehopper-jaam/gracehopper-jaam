@@ -20,24 +20,9 @@ const Main = () => {
         if (fetchedUser) {
           setUser(fetchedUser);
           setIsLoggedIn(true);
-        }
+          localStorage.setItem("currentUser", fetchedUser.username);
 
-        // const [userCart]  = await getCartByUser(token, localStorage.getItem("currentUser"));
-           
-        //     console.log("Entering at Line 38", userCart);
-        //     if(userCart!== null && userCart.items.length > 0)
-        //     {
-        //       const cartObject = {
-        //       username: userCart.buyerName,
-        //       orderdate:userCart.orderdate, 
-        //       totalamount: userCart.totalamount,
-        //       items:[...userCart.items], 
-        //       persistedCart : true,
-        //     }
-        //     localStorage.setItem("currentCart",JSON.stringify(cartObject)); 
-        //     setCart(cartObject);
-        //     }
-            
+        }  
       }
 
     };
