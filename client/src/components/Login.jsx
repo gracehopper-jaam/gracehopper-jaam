@@ -13,7 +13,7 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
       event.preventDefault();
       const userToAuth = { username: username, password: password };
       const data = await loginUser(userToAuth);
-      console.log(data);
+      // console.log(data);
       if (data.token) {
           setIsLoggedIn(true);
           setUsername('');
@@ -24,6 +24,12 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
           localStorage.setItem("token", data.token);
           navigate("/")
       }
+
+      if(!data.token) {
+        window.alert('Please register!')
+        navigate("/register")
+      }
+
   }
 
 
