@@ -1,22 +1,53 @@
+import { createNewOrder,createNewOrderItem } from "../api-client";
 import "./Cart.css";
 import React, { useState } from "react";
 const CartWithAccountView = (props) => {
 
-    const { isLoggedIn, currentUser, cart} = props;
+    const { isLoggedIn, user, cart, token,setCart} = props;
     const [cardnumber, setCardnumber] = useState('');
     const [expdate,setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
-    const [firstname,setFirstname] = useState(''); ///TODO :needs to be currentUser.firstname
-    const [lastname,setLastname] = useState(''); ///TODO :needs to be currentUser.lastname
-    const [phone,setPhone] = useState(''); ///TODO :needs to be currentUser.phone
-    const [email,setEmail] = useState(''); ///TODO :needs to be currentUser.email
-    const [address1, setAddress1] = useState(''); ///TODO :needs to be currentUser.
-    const [address2, setAddress2] = useState('');///TODO :needs to be currentUser.
+    const [firstname,setFirstname] = useState(user.firstname); 
+    const [lastname,setLastname] = useState(user.lastname); 
+    const [phone,setPhone] = useState(user.phone); 
+    const [email,setEmail] = useState(user.email); 
+    const [addressline1, setAddressline1] = useState(user.addressline1); 
+    const [addressline2, setAddressline2] = useState(user.addressline2);
 
-    console.log("CartWithAccountView" ,cart );
+    const  handleSubmit = async(event) => {
+      event.preventDefault();
+     
+      const currDate = new Date().toISOString().split('T')[0];
+      const orderObj ={
+        totalamount:cart.totalamount, 
+        orderdate:currDate, 
+        isProcessed:true
+      }
+
+      const newOrder = await createNewOrder( token ,orderObj);
+      
+      if(newOrder !== null )
+      {
+        cart.items.map(async(item) => {
+          let orderItem = { productId:item.id, priceperunit:item.price, qty:item.qty } ;
+          const newItem = await createNewOrderItem( token ,orderItem,newOrder.id);
+          
+        });
+      }
+          const cartObject = {
+            orderdate: "",
+            totalamount: "",
+            items: [],
+            username: user.username,
+            persistedCart: false,
+          };
+          localStorage.setItem("currentCart", JSON.stringify(cartObject));
+          setCart(cartObject);
+    }
+
     return (
       <>
-        <form id="cart-with-acct-container">
+        <form onSubmit = {handleSubmit} id="cart-with-acct-container">
           <h1>Checkout</h1>
           <div id="shipping">
           <h2>Ship To:</h2>
@@ -24,14 +55,14 @@ const CartWithAccountView = (props) => {
             <input
               type="text"
               name="firstname"
-              value={firstname}
+              value={user.firstname}
               onChange={(event) => setFirstname(event.target.value)}
             />
             <label htmlFor="lastname">Last Name *</label>
             <input
               type="text"
               name="lastname"
-              value={lastname}
+              value={user.lastname}
               onChange={(event) => setLastname(event.target.value)}
             />
 
@@ -39,14 +70,14 @@ const CartWithAccountView = (props) => {
             <input
               type="text"
               name="phone"
-              value={phone}
+              value={user.phone}
               onChange={(event) => setPhone(event.target.value)}
             />
             <label htmlFor="email">Email*</label>
             <input
               type="text"
               name="email"
-              value={email}
+              value={user.email}
               onChange={(event) => setEmail(event.target.value)}
             />
 
@@ -55,19 +86,21 @@ const CartWithAccountView = (props) => {
               <input
                 type="text"
                 name="address1"
-                value={address1}
-                onChange={(event) => setAddress1(event.target.value)}
+                value={user.addressline1}
+                onChange={(event) => setAddressline1(event.target.value)}
               />
-              <label htmlFor="address2">Address Line 2*</label>
+              <label htmlFor="address2">Address Line 2</label>
               <input
                 type="text"
                 name="address2"
-                value={address2}
-                onChange={(event) => setAddress2(event.target.value)}
+                value={user.addressline}
+                onChange={(event) => setAddressline2(event.target.value)}
               />
             </span>
           </div>
+        
           {cart.items != null && cart.items.length > 0 ? (
+            
             cart.items.map((item, index) => {
               return (
                 <div key={index} id="item-container-1">
@@ -88,7 +121,7 @@ const CartWithAccountView = (props) => {
               <button> Continue Shopping</button>
             </div>
           )}
-          
+          {cart.items != null && cart.items.length > 0 ? (<><h3>Total Amount Due : ${cart.totalamount}</h3></>):(<></>)}
           {cart.items != null && cart.items.length > 0 ? (
             <div id='payment'>
               <h2>Payment</h2>

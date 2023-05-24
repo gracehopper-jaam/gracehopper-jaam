@@ -4,6 +4,7 @@ import './Login.css';
 import { loginUser } from '../api-client/auth';
 
 const Login = ({ setIsLoggedIn, setToken, setUser }) => {
+  
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -12,13 +13,15 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
       event.preventDefault();
       const userToAuth = { username: username, password: password };
       const data = await loginUser(userToAuth);
-
+      console.log(data);
       if (data.token) {
           setIsLoggedIn(true);
           setUsername('');
           setPassword('');
           setUser(data.user)
           setToken(data.token)
+          localStorage.setItem("currentUser", data.user.username);
+          localStorage.setItem("token", data.token);
           navigate("/")
       }
   }
