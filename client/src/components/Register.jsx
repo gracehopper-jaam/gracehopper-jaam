@@ -22,14 +22,18 @@ const Register = () => {
         event.preventDefault();
         setIsLoggedIn(true);
         const result = await registerUser({ username, password, firstname, lastname, phone, email, addressline1, addressline2 });
-        // console.log(result);
-        if (result.error) {
-            setError(result.message);
-            window.alert(error);
+
+        if(phone.length !== 10) {
+          window.alert("Please use 10 digits for your phone number!")
+          return;
+        }
+
+        if (password.length < 8) {
+            window.alert("Please use at least 8 characters to register!");
+            return;
         } else {
             window.alert('Congratulations! You are now registered!');
             navigate('/');
-            console.log(isLoggedIn);
         }
     }
 
@@ -97,7 +101,7 @@ const Register = () => {
             />
             <input
               type="text"
-              placeholder="Address Two"
+              placeholder="City, State, Zip"
               id="address2"
               value={addressline2}
               required
