@@ -17,8 +17,33 @@ const {
 } = require("../db/products");
 
 /*
-    Product find by name
+    Product find by id
 */
+productsRouter.post("/getProductById", async (req, res, next) => {
+  try {
+    console.log(req.body, 'req')
+    const { id } = req.body;
+    console.log(id, 'id');
+    const find = await productfindById(id);
+    if (find.length) {
+      res.send({
+        message: "Product has been successfully find.",
+        code: "SUCCESS",
+        products: find,
+      });
+    } else {
+      res.send({
+        message: "Something went wrong.",
+        error: "ERROR",
+      });
+    }
+  } catch (error) {
+    res.send({
+      message: "Something went wrong.",
+      error: "ERROR",
+    });
+  }
+});
 
 /*
     Get All Products
