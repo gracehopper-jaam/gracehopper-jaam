@@ -4,7 +4,7 @@ import { getAllProducts } from '../api-client';
 import SingleProductView from './SingleProductView';
 
 const Products = (props) => {
-  const {setCart} = props;
+  const {setCart,isLoggedIn} = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedProduct,setSelectedProduct] = useState()
@@ -36,7 +36,7 @@ const Products = (props) => {
        {products.map((product, index) => {
                 return (
                   <div key={index}>
-                    <SingleProductView selectedProduct = {product} setCart = {setCart}/>
+                    <SingleProductView selectedProduct = {product} setCart = {setCart} isLoggedIn ={isLoggedIn}/>
                   </div>
                 );
               })}

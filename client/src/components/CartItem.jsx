@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const CartItem = (props) =>
 {
-const {item,cart,isLoggedIn, setCart} = props;
+const {item,cart,isLoggedIn, setCart, } = props;
 const [qty, setQty] = useState(item.qty);
 
 const handleDelete = () => {

@@ -12,7 +12,14 @@ const Cart = (props) => {
  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(isLoggedIn)
+    {
     navigate('/CartWithAccountView');
+    }
+    else
+    {
+      navigate('/Login');
+    }
   };
   return (
     <>
