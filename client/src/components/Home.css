@@ -6,13 +6,14 @@
     margin-right: auto;
     overflow-x: hidden;
     position: relative;
+    height: 450px;
+    overflow: hidden;
 }
 
 .home-banner {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: auto;
 }
 
 .banner-butt {
@@ -32,4 +33,52 @@
   .banner-butt:hover {
    background-color: #627074;
   }
+
+  .category-image {
+    width: 100%;
+    height: 200px;
+  }
+
+.categories-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+.category-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 5px;
+}
+
+caption {
+  position: absolute;
+  font-size: 25px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 750px)  {
+  .category-image {
+    width: 100%;
+    height: 125px;
+  }
+
+  .banner-container {
+    height: auto;
+  }
+
+  caption {
+    font-size: 20px;
+  }
+
+  .category-container {
+    padding: 1px;
+  }
+}
+
+
 

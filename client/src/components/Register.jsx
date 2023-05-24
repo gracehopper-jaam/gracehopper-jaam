@@ -14,12 +14,13 @@ const Register = () => {
     const [addressline1, setAddress1] = useState('');
     const [addressline2, setAddress2] = useState('');
     const [error, setError] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     let navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        setIsLoggedIn(true);
         const result = await registerUser({ username, password, firstname, lastname, phone, email, addressline1, addressline2 });
         // console.log(result);
         if (result.error) {
@@ -27,7 +28,8 @@ const Register = () => {
             window.alert(error);
         } else {
             window.alert('Congratulations! You are now registered!');
-            navigate('/login');
+            navigate('/');
+            console.log(isLoggedIn);
         }
     }
 
@@ -71,7 +73,7 @@ const Register = () => {
             />
             <input
               type="text"
-              placeholder="Phone Number"
+              placeholder="Phone Number (10 Digits)"
               id="phone"
               value={phone}
               required
