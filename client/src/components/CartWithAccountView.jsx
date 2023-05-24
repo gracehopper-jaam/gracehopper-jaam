@@ -1,6 +1,7 @@
 import { createNewOrder,createNewOrderItem } from "../api-client";
 import "./Cart.css";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const CartWithAccountView = (props) => {
 
     const { isLoggedIn, user, cart, token,setCart} = props;
@@ -13,6 +14,7 @@ const CartWithAccountView = (props) => {
     const [email,setEmail] = useState(user.email); 
     const [addressline1, setAddressline1] = useState(user.addressline1); 
     const [addressline2, setAddressline2] = useState(user.addressline2);
+    const navigate =useNavigate();
 
     const  handleSubmit = async(event) => {
       event.preventDefault();
@@ -44,6 +46,8 @@ const CartWithAccountView = (props) => {
           localStorage.setItem("currentCart", JSON.stringify(cartObject));
           setCart(cartObject);
     }
+
+    
 
     return (
       <>
@@ -118,7 +122,9 @@ const CartWithAccountView = (props) => {
           ) : (
             <div>
               <h2> Shopping Cart Empty </h2>
-              <button> Continue Shopping</button>
+              <button onClick={() => {
+              navigate('/');
+            }} > Continue Shopping</button>
             </div>
           )}
           {cart.items != null && cart.items.length > 0 ? (<><h3>Total Amount Due : ${cart.totalamount}</h3></>):(<></>)}
