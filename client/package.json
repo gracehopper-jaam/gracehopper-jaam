@@ -4,13 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed:dev": "nodemon ./db/seed.js",
-    "seed": "node ./db/seed.js",
-    "start:dev": "nodemon server.js",
     "start": "react-scripts start",
-    "start:react": "npm run start --prefix client",
-    "test": "jest --runInBand",
-    "test:watch": "jest --runInBand --watchAll",
     "build": "react-scripts build"
   },
   "author": "",
@@ -19,7 +13,6 @@
     "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.11.2",
     "react-router-dom": "^6.11.2"
   }
 }
