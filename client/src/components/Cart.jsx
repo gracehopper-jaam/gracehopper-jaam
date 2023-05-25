@@ -6,39 +6,39 @@ import {useNavigate} from "react-router-dom";
 const Cart = (props) => {
   const { isLoggedIn, currentUser, cart, setCart } = props;
   const navigate = useNavigate();
-  console.log("INSIDE CART", cart);
-  console.log("ISLOGGED IN", isLoggedIn);
+  // console.log("INSIDE CART", cart);
+  //console.log("ISLOGGED IN", isLoggedIn);
 
- 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if(isLoggedIn)
-    {
-    navigate('/CartWithAccountView');
+  const handleCheckout = () => {
+    if (isLoggedIn) {
+      navigate("/CartWithAccountView");
+    } else {
+      window.alert("Please Login and checkout");
+      navigate("/Login");
     }
-    else
-    {
-      navigate('/Login');
-    }
+  };
+
+  const handleClick = () => {
+    navigate("/");
   };
   return (
     <>
-      <form onSubmit={handleSubmit} id="cart-container">
+      <div  id="cart-container">  
         <h2> Your cart total is $ {cart.totalamount}</h2>
         {cart.items != null && cart.items.length > 0 ? (
           cart.items.map((item, index) => {
-            return <CartItem key ={index} item={item} cart = {cart} isLoggedIn = {isLoggedIn} setCart = {setCart}/>;
+            return <CartItem key ={index} item={item} cart = {cart} isLoggedIn = {isLoggedIn} setCart = {setCart} position = {index}/>;
           })
         ) : (
           <div>
             <h2> Shopping Cart Empty </h2>
-          <button> Continue Shopping</button>
+          <button onClick={handleClick}> Continue Shopping</button>
           </div>
           
         )}
-       { cart.items != null && cart.items.length > 0 ? <button id="checkoutButton"> Checkout </button>: <></>}
+       { cart.items != null && cart.items.length > 0 ? <button onClick ={handleCheckout} id="checkoutButton"> Checkout </button>: <></>}
         
-      </form>
+      </div>
     </>
   );
 };

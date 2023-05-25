@@ -88,7 +88,7 @@ const Main = () => {
 
         <Route path="/CartWithAccountView" element={<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart={cart} token={token} setCart={setCart} />} />
 
-        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart}/>} />
 
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart={cart} setCart={setCart} />} />
         <Route path="/Checkout" element={<Checkout />} />
@@ -112,19 +112,3 @@ const Main = () => {
 export default Main;
 
 
-
-//   else
-        //   {
-        //     console.log("Entering at Line 45");
-        //       //create  a new cart object
-        //    const cartObject = {
-        //     orderdate:'',
-        //     totalamount:'',
-        //     items:[],
-        //     username: "guest",
-        //     persistedCart : false,
-        //   }
-        //   setCart(cartObject);
-        //   localStorage.setItem("currentCart",JSON.stringify(cartObject));
-        //  // console.log("New Cart created",cartObject );
-        //   }
