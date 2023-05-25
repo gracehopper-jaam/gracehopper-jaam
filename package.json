@@ -22,8 +22,9 @@
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
-    "start:dev": "nodemon server.js",
-    "start": "(npm run start --prefix client) & node server.js",
+    "server:dev": "nodemon server.js",
+    "start:dev": "(npm run start --prefix client) & node server.js",
+    "start": "node server.js",
     "start:react": "npm run start --prefix client",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watchAll",
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.7"
   }
 }
