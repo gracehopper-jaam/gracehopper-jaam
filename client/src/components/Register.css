@@ -16,6 +16,7 @@
     width: 400px;
     min-height: 300px;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-y: auto;
 }
 
 .register-container h1 {

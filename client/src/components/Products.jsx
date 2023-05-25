@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Products.css';
 import { getAllProducts } from '../api-client';
 import SingleProductView from './SingleProductView';
+import Images from '../media';
 
 const Products = (props) => {
   const {setCart} = props;

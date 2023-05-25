@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './SingleProductView.css';
+import Images from '../media';
 
 const SingleProductView = (props) => {
 
@@ -34,6 +36,11 @@ return (
     <>
      <div className="product" key={selectedProduct.id}>
           <h3 className="product-name">{selectedProduct.name}</h3>
+          <img
+          src={Images[selectedProduct.id]}
+          alt={selectedProduct.name}
+          className="product-image"
+          />
           <p className="product-description">{selectedProduct.description}</p>
           <p>{selectedProduct.price}</p>
           <input 
@@ -43,8 +50,8 @@ return (
           onChange={(event) => setQty(event.target.value)}
           required/>
           <button onClick ={() =>{handleClick(selectedProduct.id)}}>Add To Cart</button>
-          <hr></hr>
-        </div>
+          
+      </div>
     </>
 );
 

@@ -3,9 +3,9 @@ const Images = {
     CategoryOverEar: require('./Category-OverEar.jpg'),
     CategorySpeaker: require('./Category-Speaker.jpg'),
     CategoryAccessories: require('./Category-Accessories.jpg'),
-    InEarHeadphoneBlack: require('./InEarHeadPhoneBlack.jpg'),
-    OverEarHeadphoneWhite: require('./OverEarHeadphoneWhite.jpg'),
-    SpeakerBlack: require('./SpeakerBlack.jpg'),
+    2: require('./InEarHeadPhoneBlack.jpg'),
+    3: require('./OverEarHeadphoneWhite.jpg'),
+    1: require('./SpeakerBlack.jpg'),
     HeadphoneCase: require('./HeadphoneCase.jpg')
 };
 
