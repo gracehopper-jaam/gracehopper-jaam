@@ -31,7 +31,7 @@ const CartWithAccountView = (props) => {
       if(newOrder !== null )
       {
         cart.items.map(async(item) => {
-          let orderItem = { productId:item.id, priceperunit:item.price, qty:item.qty } ;
+          let orderItem = { productId:item.id, priceperunit:item.priceperunit, qty:item.qty } ;
           const newItem = await createNewOrderItem( token ,orderItem,newOrder.id);
           
         });
