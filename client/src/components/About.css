@@ -9,51 +9,81 @@
     border-radius: 2%;
     margin: 8px;
     width: 600px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color: lightslategray;
+    margin: 20px;
 }
 
-p { 
+#welcome { 
     color: lightslategray;
     text-decoration: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 20px;
 }
-form,input {
+
+#body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 8px;
-    width: 600px;
+    margin: 30px;
+    width: 900px;
+    font-size: 26px;
     align-content: center;
-    border: 1px solid lightslategray;
-    background-color: whitesmoke;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    /* box-shadow: 1px 1px 6px lightslategray; */
+    border: 1px solid whitesmoke;
+    background-color: lavender;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-shadow: 1px 1px 6px lightslategray;
+} 
+
+#footer {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 30px;
+ 
+} 
+
+#contact-form {
+    color: lightslategray;
+    text-decoration: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    margin: 30px;
+    width: 700px;
+    align-content: center;
+    border: 2px solid lightslategray;
 }
 
-input {
+
+.input {
     text-align: center;
     border: 2px solid lightslategray;
-    width: 500px;
+    width: 300px;
     color: rgb(132, 118, 163);
-    font-size: 18px;
+    font-size: 16px;
     font-family:Georgia, 'Times New Roman', Times, serif;
-   
 }
 
-/* #about-button{
+#contact {
+    text-align: center;
+    width: 300px;
+    color: rgb(132, 118, 163);
+    margin: 10px;
+    font-size: 16px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#submit-button{
     height: 40px;
     width: 120px;
     background-color: lavender; 
     border: 2px solid lightslategray;
     color: lightslategray;
-    font-size: 26px;
-    margin: 7px; 
+    font-size: 16px;
+    margin: 30px; 
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-button:hover {
+#submit-button:hover {
     cursor: pointer;
-    font-weight: 400; */
-
-/* } */
+    font-weight: 400; 
+} 
 
