@@ -42,17 +42,52 @@ const Main = () => {
         if (token) {
           const [userCart] = await getCartByUser(token, localStorage.getItem("currentUser"));
 
-          console.log("Entering at Line 38", userCart);
+          console.log("Entering at Line 45", userCart);
+          let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+          //if cart already exits in the locastorage then we need to merge contents 
+          if(tempCart)
+          {
+            let tempItems = [...tempCart.items]; //hold the items already in the cart
+            let userCartItems =  [...userCart.items];
+            let newArr = tempItems.concat(userCartItems); //concat previous items with new items
 
-          const cartObject = {
-            username: userCart.buyerName,
-            orderdate: userCart.orderdate,
-            totalamount: userCart.totalamount,
-            items: [...userCart.items],
-            persistedCart: true,
+            //get the new total amount
+            let newTotalAmt = 0;
+            newArr.map((tempItem) => {
+              return newTotalAmt += tempItem.qty * tempItem.priceperunit;
+            });
+            const cartObject = {
+              orderdate:tempCart.orderdate,
+              totalamount:newTotalAmt ,
+              items:[...newArr],
+              username: userCart.buyerName, //update the name to the logged in username
+              persistedCart : true,
+            }
+            localStorage.setItem("currentCart", JSON.stringify(cartObject));
+            setCart(cartObject);
           }
-          localStorage.setItem("currentCart", JSON.stringify(cartObject));
-          setCart(cartObject);
+          else
+          {
+            console.log("Entering at Line 62", userCart);
+            const cartObject = {
+              username: userCart.buyerName,
+              orderdate: userCart.orderdate,
+              totalamount: userCart.totalamount,
+              items: [...userCart.items],
+              persistedCart: true,
+            }
+            localStorage.setItem("currentCart", JSON.stringify(cartObject));
+            setCart(cartObject);
+          }
+          // const cartObject = {
+          //   username: userCart.buyerName,
+          //   orderdate: userCart.orderdate,
+          //   totalamount: userCart.totalamount,
+          //   items: [...userCart.items],
+          //   persistedCart: true,
+          // }
+          // localStorage.setItem("currentCart", JSON.stringify(cartObject));
+          // setCart(cartObject);
         }
 
 
@@ -79,7 +114,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/Shop" element={<Products setCart ={setCart}/>} />
+        <Route path="/Shop" element={<Products setCart ={setCart} isLoggedIn={isLoggedIn}/>} />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
 
@@ -88,7 +123,7 @@ const Main = () => {
 
         <Route path="/CartWithAccountView" element={<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart={cart} token={token} setCart={setCart} />} />
 
-        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart}/>} />
 
         <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart={cart} setCart={setCart} />} />
         <Route path="/Checkout" element={<Checkout />} />
@@ -112,19 +147,3 @@ const Main = () => {
 export default Main;
 
 
-
-//   else
-        //   {
-        //     console.log("Entering at Line 45");
-        //       //create  a new cart object
-        //    const cartObject = {
-        //     orderdate:'',
-        //     totalamount:'',
-        //     items:[],
-        //     username: "guest",
-        //     persistedCart : false,
-        //   }
-        //   setCart(cartObject);
-        //   localStorage.setItem("currentCart",JSON.stringify(cartObject));
-        //  // console.log("New Cart created",cartObject );
-        //   }
