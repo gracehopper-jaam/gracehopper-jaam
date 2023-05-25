@@ -1,19 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router';
 
-const Checkout = () => {
+const Checkout = ({isLoggedIn}) => {
+  let navigate = useNavigate('');
+
   return (
     <>
     <div style={styles.back}>
-      <i className="fa-solid fa-arrow-left"></i><a href='/' className='backToCart' style={styles.back}>Back to Cart</a>
+      <i className="fa-solid fa-arrow-left"></i><button onClick={() => navigate("/cart")} className='backToCart' style={styles.back}>Back to Cart</button>
     </div>
     <div className='contact-container' style={styles.all}>
       <h2>Contact Information</h2>
       <div className='contactRoutes' style={styles.contactRoutes}>
-        <a style={styles.a} href='/login'>Existing Customer</a>
-        <em style={styles.em}>Go straight to login</em>
-        <a style={styles.a} href='/register'>Create Account</a>
+      {isLoggedIn ? (
+          <>
+            <button style={styles.a} onClick={() => navigate("/cartWithAccountView")}>
+              Existing Customer
+            </button>
+            <em style={styles.em}>Go straight to checkout</em>
+          </>
+        ) : (
+          <>
+            <button style={styles.a} onClick={() => navigate("/login")}>
+              Existing Customer
+            </button>
+            <em style={styles.em}>Go straight to login</em>
+          </>
+        )}
+        <button style={styles.a} onClick={() => navigate("/register")}>Create Account</button>
         <em style={styles.em}>Save your details</em>
-        <a style={styles.a} href='/guestCheckout'>Guest Checkout</a>
+        <button style={styles.a} onClick={() => navigate("/guestCheckout")}>Guest Checkout</button>
         <em style={styles.em}>Proceed without registering</em>
       </div>
       <br></br>
@@ -38,18 +54,21 @@ const styles = {
     width: 'fit-content',
     textDecoration: 'none',
     color: 'black',
-    fontSize: '20px',
+    fontSize: '15px',
     border: '2px solid black',
+    letterSpacing: '1px'
   },
   em: {
     marginLeft: '100px',
   },
 
   back: {
-    padding: '5px',
+    marginTop: '15px',
+    marginLeft: '10px',
+    padding: '3px',
     cursor: 'pointer',
     width: 'fit-content',
-    fontSize: '20px',
+    fontSize: '15px',
     textDecoration: 'none',
     color: 'black',
   },

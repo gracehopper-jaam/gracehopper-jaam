@@ -1,4 +1,9 @@
 /* Home */
+html {
+  width: 100vw;
+  overflow: hidden;
+  overflow-y: auto;
+}
 
 .banner-container {
     display: inline-block;
@@ -8,6 +13,7 @@
     position: relative;
     height: 450px;
     overflow: hidden;
+
 }
 
 .home-banner {

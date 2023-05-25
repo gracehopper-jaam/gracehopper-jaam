@@ -48,6 +48,11 @@ return (
     <>
      <div className="product" key={selectedProduct.id}>
           <h3 className="product-name">{selectedProduct.name}</h3>
+          <img
+          src={Images[selectedProduct.id]}
+          alt={selectedProduct.name}
+          className=“product-image”
+          />
           <p className="product-description">{selectedProduct.description}</p>
           <p>{selectedProduct.price}</p>
           <input 
