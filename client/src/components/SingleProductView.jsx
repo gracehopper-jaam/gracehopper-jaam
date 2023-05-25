@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import Images from '../media';
+import "./SingleProductView.css"
 const SingleProductView = (props) => {
 
 const {selectedProduct, setCart,isLoggedIn} = props;
@@ -51,8 +52,7 @@ return (
           <img
           src={Images[selectedProduct.id]}
           alt={selectedProduct.name}
-          className=“product-image”
-          />
+          className="product-image"/>
           <p className="product-description">{selectedProduct.description}</p>
           <p>{selectedProduct.price}</p>
           <input 
