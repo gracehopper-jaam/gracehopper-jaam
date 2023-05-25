@@ -93,11 +93,11 @@ const CartWithAccountView = (props) => {
                 value={user.addressline1}
                 onChange={(event) => setAddressline1(event.target.value)}
               />
-              <label htmlFor="address2">Address Line 2</label>
+              <label htmlFor="address2">City,State,Zip</label>
               <input
                 type="text"
                 name="address2"
-                value={user.addressline}
+                value={user.addressline2}
                 onChange={(event) => setAddressline2(event.target.value)}
               />
             </span>
