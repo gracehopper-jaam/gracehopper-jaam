@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bcrypt": "^5.1.0",
+    "chalk": "^4.1.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
@@ -22,8 +23,9 @@
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
-    "start:dev": "nodemon server.js",
-    "start": "(npm run start --prefix client) & node server.js",
+    "server:dev": "nodemon server.js",
+    "start:dev": "(npm run start --prefix client) & node server.js",
+    "start": "node server.js",
     "start:react": "npm run start --prefix client",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watchAll",
@@ -46,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.7"
   }
 }
