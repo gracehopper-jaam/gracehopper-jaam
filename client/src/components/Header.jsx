@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import { Logout } from './'
+import { Logout } from './';
+import Images from '../media';
 
 
 const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart }) => {
   return (
     <header style={styles.header}>
-      <h1 style={styles.logo}>JAAM</h1>
+      <img className='logo' src={Images.JAAMLOGO}/>
       <nav style={styles.nav}>
         <NavLink style={styles.link} to='/'>HOME</NavLink>
         <NavLink style={styles.link} to='/Shop'>SHOP</NavLink>
