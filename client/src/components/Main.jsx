@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails } from './index';
 import { Routes, Route } from 'react-router-dom';
-import { getCartByUser } from "../api-client"
+import { getCartByUser} from "../api-client"
 import { getMe } from '../api-client/auth';
 import CartWithAccountView from './CartWithAccountView';
 
@@ -12,6 +12,8 @@ const Main = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState({});
+  const [returnedUserCartId, setReturnedUserCartId] = useState("");
+  const[orderPlaced,setOrderPlaced] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -65,6 +67,7 @@ const Main = () => {
             }
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
+            setReturnedUserCartId(userCart.id);
           }
           else
           {
@@ -78,18 +81,10 @@ const Main = () => {
             }
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
+            setReturnedUserCartId(userCart.id);
           }
-          // const cartObject = {
-          //   username: userCart.buyerName,
-          //   orderdate: userCart.orderdate,
-          //   totalamount: userCart.totalamount,
-          //   items: [...userCart.items],
-          //   persistedCart: true,
-          // }
-          // localStorage.setItem("currentCart", JSON.stringify(cartObject));
-          // setCart(cartObject);
-        }
 
+        }
 
       } catch (error) {
         console.error(error);
@@ -110,7 +105,7 @@ const Main = () => {
       <Header
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
-        setUser={setUser} setToken={setToken} setCart={setCart} />
+        setUser={setUser} setToken={setToken} setCart={setCart}  cart ={cart} user ={user} token ={token} returnedUserCartId = {returnedUserCartId} setReturnedUserCartId = {setReturnedUserCartId}/>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -121,7 +116,7 @@ const Main = () => {
         <Route path="/About" element={<About />} />
 
 
-        <Route path="/CartWithAccountView" element={<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart={cart} token={token} setCart={setCart} />} />
+        <Route path="/CartWithAccountView" element={<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart={cart} token={token} setCart={setCart} returnedUserCartId ={returnedUserCartId} setOrderPlaced ={setOrderPlaced}  setReturnedUserCartId ={ setReturnedUserCartId} />} />
 
         <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart}/>} />
 
