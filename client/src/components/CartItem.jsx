@@ -20,7 +20,7 @@ const handleDelete = () => {
     totalamount: newTotalAmt,
     items: [...filteredItems], 
     username: tempCart.username,
-    persistedCart: tempCart.persistedCart,
+    persistedCart:false,
   };
 
   localStorage.setItem("currentCart", JSON.stringify(cartObject));
@@ -48,7 +48,7 @@ const handleQtyChange =(event) =>
     totalamount: newTotalAmt,
     items: [...updatedCartArr], 
     username: tempCart.username,
-    persistedCart: tempCart.persistedCart,
+    persistedCart: false,
   };
 
   localStorage.setItem("currentCart", JSON.stringify(cartObject));
