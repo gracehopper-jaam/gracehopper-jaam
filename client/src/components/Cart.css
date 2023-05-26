@@ -16,6 +16,7 @@ div #cart-container {
     justify-content: center;
     position: absolute;
     top: 50%;
+    margin-top: 170px;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
@@ -69,9 +70,9 @@ input[type='number']{
     flex-direction: column;
     align-items: left;
     justify-content: center;
-   
+    text-align: center;
     padding: 20px;
-    margin :100px;
+    margin: 10px;
     border: 2px solid black;
     border-radius: 5px;
     width: 90%;
@@ -89,6 +90,7 @@ input[type='number']{
     margin:20px;
     padding-bottom:20px;
     border-bottom:1px solid gray;
+    height: auto;
   }
 
   input[type='text']{

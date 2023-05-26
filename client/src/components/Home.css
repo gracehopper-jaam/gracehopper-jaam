@@ -67,6 +67,11 @@ caption {
   letter-spacing: 2px;
 }
 
+.logo {
+  width: 100px;
+  padding: 10px;
+}
+
 @media screen and (max-width: 750px)  {
   .category-image {
     width: 100%;
