@@ -1,10 +1,10 @@
-import { createNewOrder,createNewOrderItem } from "../api-client";
+import { createNewOrder,createNewOrderItem, deleteOrder } from "../api-client";
 import "./Cart.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const CartWithAccountView = (props) => {
 
-    const { isLoggedIn, user, cart, token,setCart} = props;
+    const { isLoggedIn, user, cart, token,setCart,setOrderPlaced,returnedUserCartId} = props;
     const [cardnumber, setCardnumber] = useState('');
     const [expdate,setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
@@ -18,33 +18,53 @@ const CartWithAccountView = (props) => {
 
     const  handleSubmit = async(event) => {
       event.preventDefault();
-     
-      const currDate = new Date().toISOString().split('T')[0];
-      const orderObj ={
-        totalamount:cart.totalamount, 
-        orderdate:currDate, 
-        isProcessed:true
-      }
 
-      const newOrder = await createNewOrder( token ,orderObj);
-      
-      if(newOrder !== null )
-      {
-        cart.items.map(async(item) => {
-          let orderItem = { productId:item.id, priceperunit:item.priceperunit, qty:item.qty } ;
-          const newItem = await createNewOrderItem( token ,orderItem,newOrder.id);
-          
-        });
+      const currDate = new Date().toISOString().split("T")[0];
+      const orderObj = {
+        totalamount: cart.totalamount,
+        orderdate: currDate,
+        isProcessed: true,
+      };
+      //now delete the usercart that was retreived before creating a new one ?
+      try{
+        console.log("returnedUserCartId", returnedUserCartId);
+        if (returnedUserCartId !== null) {
+          let result = await deleteOrder(token, returnedUserCartId);
+          console.log("DELETE", result);
+        }
       }
-          const cartObject = {
-            orderdate: "",
-            totalamount: "",
-            items: [],
-            username: user.username,
-            persistedCart: false,
+      catch(error)
+      {
+        console.log(error);
+      }
+     
+
+      const newOrder = await createNewOrder(token, orderObj);
+
+      if (newOrder !== null) {
+        cart.items.map(async (item) => {
+          let orderItem = {
+            productId: item.id,
+            priceperunit: item.priceperunit,
+            qty: item.qty,
           };
-          localStorage.setItem("currentCart", JSON.stringify(cartObject));
-          setCart(cartObject);
+          const newItem = await createNewOrderItem(
+            token,
+            orderItem,
+            newOrder.id
+          );
+        });
+        setOrderPlaced(true);
+      }
+      const cartObject = {
+        orderdate: "",
+        totalamount: "",
+        items: [],
+        username: user.username,
+        persistedCart: false,
+      };
+      localStorage.setItem("currentCart", JSON.stringify(cartObject));
+      setCart(cartObject);
     }
 
     

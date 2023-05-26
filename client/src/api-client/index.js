@@ -160,6 +160,25 @@ export const getMe = async (token) => {
       console.error(err);
     }
   }
+
+  // DELETE /api/orders/:orderId
+
+export const deleteOrder = async (token, orderId) => {
+  try {
+    const response = await fetch(`${BASE}/orders/${orderId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
 /***************************jason******************************/
 
 /***************************maisha******************************/

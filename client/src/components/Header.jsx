@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Logout } from './'
 
 
-const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart }) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,user,token,returnedUserCartId, setReturnedUserCartId}) => {
   return (
     <header style={styles.header}>
       <h1 style={styles.logo}>JAAM</h1>
@@ -18,7 +18,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart }) => {
       </nav>
       <div className='loginLogoutButtons'>
                 {isLoggedIn ? (
-                    <Logout setUser ={setUser} setIsLoggedIn ={setIsLoggedIn} setToken ={setToken} setCart={setCart} />
+                    <Logout setUser ={setUser} setIsLoggedIn ={setIsLoggedIn} setToken ={setToken} setCart={setCart} cart ={cart} user ={user} token ={token} setReturnedUserCartId = {setReturnedUserCartId} returnedUserCartId ={returnedUserCartId}/>
                 ) : (
                     <NavLink to="/login" className="authButton">LOGIN</NavLink>
                 )}
