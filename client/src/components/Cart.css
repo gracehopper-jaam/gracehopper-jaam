@@ -16,6 +16,7 @@ div #cart-container {
     justify-content: center;
     position: absolute;
     top: 50%;
+    margin-top: 170px;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
