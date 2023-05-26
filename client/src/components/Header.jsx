@@ -4,28 +4,45 @@ import { Logout } from './';
 import Images from '../media';
 
 
-const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,user,token,returnedUserCartId, setReturnedUserCartId}) => {
+const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,user,token,returnedUserCartId, setReturnedUserCartId,orderPlaced}) => {
   return (
     <header style={styles.header}>
-      <img className='logo' src={Images.JAAMLOGO}/>
+      <img className="logo" src={Images.JAAMLOGO} />
       <nav style={styles.nav}>
-        <NavLink style={styles.link} to='/'>HOME</NavLink>
-        <NavLink style={styles.link} to='/Shop'>SHOP</NavLink>
-        <NavLink style={styles.link} to='/About'>ABOUT</NavLink>
+        <NavLink style={styles.link} to="/">
+          HOME
+        </NavLink>
+        <NavLink style={styles.link} to="/Shop">
+          SHOP
+        </NavLink>
+        <NavLink style={styles.link} to="/About">
+          ABOUT
+        </NavLink>
         <NavLink style={styles.cartLink} to="/Cart">
           <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
-        
       </nav>
-      <div className='loginLogoutButtons'>
-                {isLoggedIn ? (
-                    <Logout setUser ={setUser} setIsLoggedIn ={setIsLoggedIn} setToken ={setToken} setCart={setCart} cart ={cart} user ={user} token ={token} setReturnedUserCartId = {setReturnedUserCartId} returnedUserCartId ={returnedUserCartId}/>
-                ) : (
-                    <NavLink to="/login" className="authButton">LOGIN</NavLink>
-                )}
-            </div>
+      <div className="loginLogoutButtons">
+        {isLoggedIn ? (
+          <Logout
+            setUser={setUser}
+            setIsLoggedIn={setIsLoggedIn}
+            setToken={setToken}
+            setCart={setCart}
+            cart={cart}
+            user={user}
+            token={token}
+            setReturnedUserCartId={setReturnedUserCartId}
+            returnedUserCartId={returnedUserCartId}
+            orderPlaced = {orderPlaced}
+          />
+        ) : (
+          <NavLink to="/login" className="authButton">
+            LOGIN
+          </NavLink>
+        )}
+      </div>
     </header>
-
   );
 };
 
