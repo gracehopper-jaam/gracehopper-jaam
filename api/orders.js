@@ -7,6 +7,7 @@ const {
   createNewOrder,
   updateOrderTotalAmount,
   getOrderById,
+  deleteOrder
 } = require("../db/orders");
 const { createNewOrderItem } = require("../db/order_items");
 
@@ -86,6 +87,30 @@ router.patch("/:orderId", requireUser, async (req, res, next) => {
     }
   } catch (error) {
     console.log("updateorder error", error);
+    next(error);
+  }
+});
+
+// DELETE /api/orders/:orderId
+router.delete("/:orderId", requireUser, async (req, res, next) => {
+  const id = +req.params.orderId;
+  try {
+    const order = await getOrderById(id);
+    console.log("REACHED HERE LINE 99", order)
+    if (order) {
+      if (order.userId === req.user.id) {
+        await deleteOrder(id);
+        res.send(order);
+      } else {
+        res.status(403);
+        next({
+          error: "403",
+          message: "UnauthorizedDeleteError",
+          name: "403",
+        });
+      }
+    }
+  }  catch (error) {
     next(error);
   }
 });

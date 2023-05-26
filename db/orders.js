@@ -145,6 +145,28 @@ async function updateOrderTotalAmount(id, totalamount) {
   }
 }
 
-module.exports = { createNewOrder, getOrderById, getOrdersByUser,getAllOrders, getAllOrdersWithItems,attachItemsToOrder,updateOrderTotalAmount,getCartByUser};
+async function deleteOrder(id) {
+  try{
+
+    await client.query(
+      `
+      DELETE FROM order_items
+      WHERE "ordersId" = $1;
+      `,[id]);
+
+    await client.query(
+      `
+      DELETE FROM orders
+      WHERE id = $1
+      RETURNING *;
+      `,[id]);
+  }
+  catch(error)
+  {
+    console.log(error);
+  }
+}
+
+module.exports = { createNewOrder, getOrderById, getOrdersByUser,getAllOrders, getAllOrdersWithItems,attachItemsToOrder,updateOrderTotalAmount,getCartByUser,deleteOrder};
 
  

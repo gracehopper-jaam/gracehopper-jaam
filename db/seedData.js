@@ -19,7 +19,8 @@ const {
   getAllOrdersWithItems,
   updateItemQty,
   canEditOrderItem,
-  getCartByUser
+  getCartByUser,
+  deleteOrder
 } = require(".");
 
 const prodObj = {
