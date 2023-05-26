@@ -1,8 +1,7 @@
 #about {
-    font-size: 30px;
+    font-size: 28px;
     display: flex;
     justify-content: left;
-    align-items: center;
     height: 250 px;
     margin-left: 50px;
     margin-right: 50px;
@@ -11,14 +10,19 @@
     width: 600px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: lightslategray;
-    margin: 20px;
+    margin: 35px;
+    /* text-align: center; */
+
 }
 
 #welcome { 
     color: lightslategray;
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 20px;
+    margin: 35px;
+    font-size: 28px;
+    /* text-align: center; */
+    
 }
 
 #body {
@@ -30,18 +34,33 @@
     font-size: 26px;
     align-content: center;
     border: 1px solid whitesmoke;
+    padding: 25px;
+    border-radius: 20px;
     background-color: lavender;
     font-family: Georgia, 'Times New Roman', Times, serif;
     box-shadow: 1px 1px 6px lightslategray;
+    box-align: center;
+    /* text-align: center; */
+
 } 
 
 #footer {
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin: 30px;
- 
-} 
+ } 
 
 #contact-form {
+    /* color: lightslategray;
+    text-decoration: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px; */
+    margin: 30px;
+    width: 700px;
+    align-content: center;
+    border: 1px solid lightslategray;
+}
+
+#form-inputs {
     color: lightslategray;
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -49,9 +68,10 @@
     margin: 30px;
     width: 700px;
     align-content: center;
-    border: 1px solid lightslategray;
+    border-radius: 25px;
+    padding: 20px;
+    /* border: 1px solid lightslategray; */
 }
-
 
 .input {
     text-align: center;
@@ -60,34 +80,60 @@
     color: rgb(132, 118, 163);
     font-size: 16px;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    border-radius: 25px;
+    padding: 20px;
 }
 
 #contact {
-    text-align: center;
+    text-align: left;
     width: 300px;
     color: rgb(132, 118, 163);
+    font-size: 24px;
     margin: 10px;
-    font-size: 16px;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 6%;
+    margin: 8px;
+    border:rgb(132, 118, 163);
+}
+
+#message-box {
+    text-align: left;
+    width: 300px;
+    height: 60px;
+    color: rgb(132, 118, 163);
+    font-size: 24px;
+    margin: 10px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 6%;
+    margin: 8px;
+    border:rgb(132, 118, 163);
+
 }
 
 #submit-button{
-    height: 40px;
-    width: 120px;
+    height: 60px;
+    width: 150px;
     background-color: lavender; 
     border: 2px solid lightslategray;
     color: lightslategray;
     font-size: 16px;
     margin: 30px; 
     font-family:Georgia, 'Times New Roman', Times, serif;
-}
+    border-radius: 25px;
+    padding: 15px;
+   }
 
 #submit-button:hover {
     cursor: pointer;
     font-weight: 400; 
+    box-shadow: 1px 1px 6px lightslategray;
 } 
 
-div #item-container-1{
+/* div #item-container-1{
     width:90%;
     display: flex;
     flex-direction: row;
@@ -96,4 +142,4 @@ div #item-container-1{
     align-items:first center;
     margin-bottom: 30px;
     justify-content: space-between;
-}
+} */

@@ -32,7 +32,6 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
 
   }
 
-
   return (
     <>
       <div className="login-container">
