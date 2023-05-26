@@ -6,7 +6,8 @@ const Images = {
     2: require('./InEarHeadPhoneBlack.jpg'),
     3: require('./OverEarHeadphoneWhite.jpg'),
     1: require('./SpeakerBlack.jpg'),
-    HeadphoneCase: require('./HeadphoneCase.jpg')
+    HeadphoneCase: require('./HeadphoneCase.jpg'),
+    JAAMLOGO: require('./JAAMLogo.png')
 };
 
 export default Images;
