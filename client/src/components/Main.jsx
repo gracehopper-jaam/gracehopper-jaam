@@ -105,37 +105,91 @@ const Main = () => {
       <Header
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
-        setUser={setUser} setToken={setToken} setCart={setCart}  cart ={cart} user ={user} token ={token} returnedUserCartId = {returnedUserCartId} setReturnedUserCartId = {setReturnedUserCartId}/>
+        setUser={setUser}
+        setToken={setToken}
+        setCart={setCart}
+        cart={cart}
+        user={user}
+        token={token}
+        returnedUserCartId={returnedUserCartId}
+        setReturnedUserCartId={setReturnedUserCartId}
+        orderPlaced = {setOrderPlaced}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/Shop" element={<Products setCart ={setCart} isLoggedIn={isLoggedIn}/>} />
+        <Route
+          path="/Shop"
+          element={<Products setCart={setCart} isLoggedIn={isLoggedIn} />}
+        />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
 
         <Route path="/About" element={<About />} />
 
+        <Route
+          path="/CartWithAccountView"
+          element={
+            <CartWithAccountView
+              isLoggedIn={isLoggedIn}
+              user={user}
+              cart={cart}
+              token={token}
+              setCart={setCart}
+              returnedUserCartId={returnedUserCartId}
+              setOrderPlaced={setOrderPlaced}
+              setReturnedUserCartId={setReturnedUserCartId}
+            />
+          }
+        />
 
-        <Route path="/CartWithAccountView" element={<CartWithAccountView isLoggedIn={isLoggedIn} user={user} cart={cart} token={token} setCart={setCart} returnedUserCartId ={returnedUserCartId} setOrderPlaced ={setOrderPlaced}  setReturnedUserCartId ={ setReturnedUserCartId} />} />
+        <Route
+          path="/Register"
+          element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart} />}
+        />
 
-        <Route path="/Register" element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart}/>} />
-
-        <Route path="/Cart" element={<Cart isLoggedIn={isLoggedIn} user={user} cart={cart} setCart={setCart} />} />
-        <Route path="/Checkout" element={<Checkout isLoggedIn={isLoggedIn}/> } />
-        <Route path='/login' element={
-          <Login
-            token={token}
-            setToken={setToken}
-            user={user}
-            setUser={setUser}
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path='/logout' element={<Logout setUser={setUser} setIsLoggedIn={setIsLoggedIn} setToken={setToken} setCart={setCart} />} />
-
+        <Route
+          path="/Cart"
+          element={
+            <Cart
+              isLoggedIn={isLoggedIn}
+              user={user}
+              cart={cart}
+              setCart={setCart}
+            />
+          }
+        />
+        <Route
+          path="/Checkout"
+          element={<Checkout isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/login"
+          element={
+            <Login
+              token={token}
+              setToken={setToken}
+              user={user}
+              setUser={setUser}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
+        <Route
+          path="/logout"
+          element={
+            <Logout
+              setUser={setUser}
+              setIsLoggedIn={setIsLoggedIn}
+              setToken={setToken}
+              setCart={setCart}
+            />
+          }
+        />
       </Routes>
-
     </div>
-  )
+  );
 };
 
 
