@@ -14,6 +14,20 @@ const Logout = (props) => {
 
       let tempCart = JSON.parse(localStorage.getItem("currentCart"));
       if (tempCart && tempCart.persistedCart === false) {
+        if(returnedUserCartId !== null && returnedUserCartId >-1)
+        {
+          //now delete the usercart that was retreived before creating a new one ?
+        try{
+          console.log("returnedUserCartId", returnedUserCartId);
+          let result = await deleteOrder(token, returnedUserCartId);
+          console.log("DELETE", result);
+        
+      }
+      catch(error)
+      {
+        console.log(error);
+      }
+        }
         console.log("Need to save this cart to the database", cart);
         const currDate = new Date().toISOString().split("T")[0];
         const orderObj = {
@@ -52,7 +66,7 @@ const Logout = (props) => {
     setIsLoggedIn(false);
     setUser(null);
     setToken("");
-    setReturnedUserCartId("");
+    setReturnedUserCartId(-1);
     setCart({});
     navigate("/");
   };

@@ -12,7 +12,7 @@ const Main = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState({});
-  const [returnedUserCartId, setReturnedUserCartId] = useState("");
+  const [returnedUserCartId, setReturnedUserCartId] = useState(-1);
   const[orderPlaced,setOrderPlaced] = useState(false);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Main = () => {
               totalamount:newTotalAmt ,
               items:[...newArr],
               username: userCart.buyerName, //update the name to the logged in username
-              persistedCart : true,
+              persistedCart : false,
             }
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);

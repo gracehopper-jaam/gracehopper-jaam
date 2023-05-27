@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const CartWithAccountView = (props) => {
 
-    const { isLoggedIn, user, cart, token,setCart,setOrderPlaced,returnedUserCartId} = props;
+    const { isLoggedIn, user, cart, token,setCart,setOrderPlaced,returnedUserCartId,setReturnedUserCartId} = props;
     const [cardnumber, setCardnumber] = useState('');
     const [expdate,setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
@@ -28,9 +28,11 @@ const CartWithAccountView = (props) => {
       //now delete the usercart that was retreived before creating a new one ?
       try{
         console.log("returnedUserCartId", returnedUserCartId);
-        if (returnedUserCartId !== null) {
+        if (returnedUserCartId >-1) {
           let result = await deleteOrder(token, returnedUserCartId);
           console.log("DELETE", result);
+          setReturnedUserCartId(-1);
+          
         }
       }
       catch(error)
@@ -56,15 +58,15 @@ const CartWithAccountView = (props) => {
         });
         setOrderPlaced(true);
       }
-      const cartObject = {
-        orderdate: "",
-        totalamount: "",
-        items: [],
-        username: user.username,
-        persistedCart: false,
-      };
-      localStorage.setItem("currentCart", JSON.stringify(cartObject));
-      setCart(cartObject);
+      // const cartObject = {
+      //   orderdate: "",
+      //   totalamount: "",
+      //   items: [],
+      //   username: user.username,
+      //   persistedCart: false,
+      // };
+      localStorage.removeItem("currentCart");
+      setCart({});
     }
 
     
