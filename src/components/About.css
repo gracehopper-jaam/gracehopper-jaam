@@ -1,0 +1,107 @@
+#about {
+    font-size: 30px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    border-radius: 2%;
+    margin: 8px;
+    width: 90vw;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f79795;
+    margin: 20px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px black;
+}
+
+#welcome { 
+    color: #889aa0;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#body {
+    width: 700px;
+    font-size: 26px;
+    border: 1px solid whitesmoke;
+    background-color: #889aa0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 1px 1px 6px lightslategray;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    line-height: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+#footer {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 30px;
+ 
+} 
+
+#contact-form {
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin: 30px;
+    align-content: center;
+    border: 2px solid black;
+    text-align: center;
+    color: black;
+    box-shadow: 2px 2px 2px #889aa0;
+}
+
+
+input {
+    padding: 5px;
+    color: black;
+}
+
+#contact {
+    margin-top: 50px;
+    text-align: center;
+    color: black;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#submit-button{
+    height: 40px;
+    background-color: #f79795; 
+    border: 2px solid black;
+    color: white;
+    font-size: 16px;
+    margin: 30px; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#submit-button:hover {
+    cursor: pointer;
+    background-color: #dc8685;
+} 
+
+div #item-container-1{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    align-items: center;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 700px)  {
+    #body {
+        font-size: 20px;
+        width: 400px;
+    }
+}
+

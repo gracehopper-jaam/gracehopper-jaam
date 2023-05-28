@@ -166,17 +166,13 @@ const fakeOrderItemsOld = [
           ordersId: 3
         },
         {
-          id: 1,
-          name: 'HeadPhone NOT By Beats',
-          price: '30.00',
-          description: 'different types of headphones',
+          name: "Sony WH-1000XM4: ",
+          price: 30,
+          description: "These wireless noise-canceling headphones offer exceptional sound quality, adaptive noise cancellation, long battery life, and touch controls. They are known for their comfortable fit and excellent noise isolation.",
           categoryId: 1,
-          qtyAvailable: 218,
-          qtyOnOrder: 42,
-          rating: 5,
-          qty: 1,
-          priceperunit: '30.00',
-          ordersId: 3
+          qtyAvailable: 200,
+          qtyOnOrder: 56,
+          rating: 0,
         }
       ]
     },

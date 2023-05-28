@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer } from './index';
 import { Routes, Route } from 'react-router-dom';
 import { getCartByUser} from "../api-client"
 import { getMe } from '../api-client/auth';
@@ -93,12 +93,6 @@ const Main = () => {
     getInitialData();
   }, [token]);
 
-  /**************************/
-
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
-
 
   return (
     <div>
@@ -187,7 +181,16 @@ const Main = () => {
             />
           }
         />
+        <Route
+          path="/ContactUs"
+          element={<ContactUs />}
+        />
+        <Route
+          path="/profilePage"
+          element={<ProfilePage />}
+        />
       </Routes>
+      <Footer />
     </div>
   );
 };
