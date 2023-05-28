@@ -31,7 +31,6 @@
 =======
     "start:react": "react-scripts start",
     "build": "react-scripts build"
->>>>>>> main
   },
   "browserslist": {
     "production": [
