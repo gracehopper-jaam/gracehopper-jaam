@@ -1,13 +1,11 @@
 #about {
     font-size: 28px;
     display: flex;
-    justify-content: left;
-    height: 250 px;
-    margin-left: 50px;
-    margin-right: 50px;
+    justify-items: center;
+    align-items: center;
     border-radius: 2%;
     margin: 8px;
-    width: 600px;
+    width: 90vw;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: lightslategray;
     margin: 35px;
@@ -18,11 +16,8 @@
 #welcome { 
     color: lightslategray;
     text-decoration: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 35px;
-    font-size: 28px;
-    /* text-align: center; */
-    
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
 }
 
 #body {
@@ -37,15 +32,14 @@
     padding: 25px;
     border-radius: 20px;
     background-color: lavender;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     box-shadow: 1px 1px 6px lightslategray;
-    box-align: center;
-    /* text-align: center; */
-
+    padding: 15px;
+    text-align: center;
 } 
 
 #footer {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 30px;
  } 
 
@@ -63,7 +57,7 @@
 #form-inputs {
     color: lightslategray;
     text-decoration: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     margin: 30px;
     width: 700px;
@@ -79,9 +73,7 @@
     width: 300px;
     color: rgb(132, 118, 163);
     font-size: 16px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    border-radius: 25px;
-    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #contact {
@@ -90,27 +82,8 @@
     color: rgb(132, 118, 163);
     font-size: 24px;
     margin: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    margin-left: 50px;
-    margin-right: 50px;
-    border-radius: 6%;
-    margin: 8px;
-    border:rgb(132, 118, 163);
-}
-
-#message-box {
-    text-align: left;
-    width: 300px;
-    height: 60px;
-    color: rgb(132, 118, 163);
-    font-size: 24px;
-    margin: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    margin-left: 50px;
-    margin-right: 50px;
-    border-radius: 6%;
-    margin: 8px;
-    border:rgb(132, 118, 163);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #submit-button{
@@ -121,10 +94,8 @@
     color: lightslategray;
     font-size: 16px;
     margin: 30px; 
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    border-radius: 25px;
-    padding: 15px;
-   }
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 #submit-button:hover {
     cursor: pointer;

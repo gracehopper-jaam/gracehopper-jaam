@@ -43,6 +43,7 @@ html {
   .category-image {
     width: 100%;
     height: 200px;
+    border-radius: 10%;
   }
 
 .categories-container {
@@ -72,6 +73,12 @@ caption {
   padding: 10px;
 }
 
+@media screen and (max-width: 900px)  {
+  .category-image {
+    height: 150px;
+  }
+}
+
 @media screen and (max-width: 750px)  {
   .category-image {
     width: 100%;
@@ -88,6 +95,18 @@ caption {
 
   .category-container {
     padding: 1px;
+  }
+
+  @media screen and (max-width: 550px)  {
+    .category-image {
+      width: 100%;
+      height: 100px;
+    }
+
+    caption {
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
 }
 
