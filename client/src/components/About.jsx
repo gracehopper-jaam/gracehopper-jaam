@@ -20,8 +20,8 @@ The brand’s commitment to success brings liveliness, passion, and vibrancy to 
         <input placeholder="Phone" type="tel" name="customerPhone" patter
         n="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
       </div>
-  
-        <input placeholder="Message" ></input>
+
+        <input placeholder="Message"></input>
       
     <button id="submit-button">Submit</button>
     </form> 
