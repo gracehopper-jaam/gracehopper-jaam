@@ -139,25 +139,6 @@ async function createTables() {
 }
 
 
-// async function createInitialUsers() {
-//   console.log("Creating New USers");
-//   try {
-//     await client.query(
-//       `
-//             INSERT INTO "public"."users"("id","username","password","firstname","lastname","phone","email","addressline1","addressline2","isRegistered")
-//             VALUES
-//             (1,'user1@gmail.com','12345678','Albert','Bertie',1234567891,'user1@gmail.com','123 walker road va',NULL,FALSE),
-//             (2,'user20@gmail.com','12345678','Snadra','Bullocks',987654321,'user20@gmail.com','123 king street road va',NULL,FALSE);
-//     `
-//     );
-
-//     console.log("Done creating new users");
-//   } catch (error) {
-//     throw error;
-//   }
-//   console.log(" Finished Creating New Users");
-// }
-
 async function createInitialUsers() {
   console.log("Creating New USers");
   try{
@@ -170,7 +151,7 @@ async function createInitialUsers() {
         phone: 1234567891,
         email:"user1@gmail.com",
         addressline1:'123 walker road va',
-        addressline2:null,
+        addressline2:'Fairfax, VA',
         isRegistered:false
       },
       {
@@ -181,7 +162,7 @@ async function createInitialUsers() {
         phone:987654321,
         email:'user20@gmail.com',
         addressline1:'123 king street road va',
-        addressline2:null,
+        addressline2:"Alexandri, CA",
         isRegistered:false,
       },
       {
@@ -232,36 +213,155 @@ async function createInitialProducts() {
   try {
     const productsToCreate = [
       {
-        name: "HeadPhone By Beats",
+        name: "Sony WH-1000XM4",
         price: 30,
-        description: "different types of headphones",
+        description: "These wireless noise-canceling headphones offer exceptional sound quality, adaptive noise cancellation, long battery life, and touch controls. They are known for their comfortable fit and excellent noise isolation.",
         categoryId: 1,
         qtyAvailable: 200,
         qtyOnOrder: 56,
         rating: 0,
       },
       {
-        name: "HeadPhone By Sony",
+        name: "Bose QuietComfort 35 II",
         price: 40,
-        description: "different types of headphones",
+        description: "These wireless headphones are renowned for their world-class noise cancellation technology. They provide a balanced sound profile, comfortable fit, and built-in voice assistants for easy control and access to information.",
         categoryId: 1,
         qtyAvailable: 80,
         qtyOnOrder: 20,
         rating: 3,
       },
       {
-        name: "HeadPhone By Apple'",
+        name: "Sennheiser Momentum 3",
         price: 90,
-        description: "headphone that has xyz",
+        description: "These headphones combine premium materials and exceptional sound quality. They offer active noise cancellation, intuitive controls, and a stylish design. The Momentum 3 Wireless is known for its detailed and balanced audio performance.",
         categoryId: 2,
         qtyAvailable: 100,
         qtyOnOrder: 50,
         rating: 4,
       },
       {
-        name: "HeadPhone By Random'",
+        name: "Audio-Technica ATH-M50x",
         price: 60,
-        description: "headphone that has xyz",
+        description: "These professional studio headphones are highly regarded for their accurate audio reproduction and robust build quality. They deliver clear, detailed sound and have a foldable design for convenient storage and portability.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Audio-Technica ATH-M49x",
+        price: 60,
+        description: "These professional studio headphones are highly regarded for their accurate audio reproduction and robust build quality. They deliver clear, detailed sound and have a foldable design for convenient storage and portability.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Beyerdynamic DT 990 Pro",
+        price: 60,
+        description: "  These open-back studio headphones provide a spacious soundstage and excellent audio reproduction. They feature a comfortable fit, durable construction, and are favored by audio professionals for critical listening and mixing.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "JBL Everest Elite 750NC",
+        price: 189.99,
+        description: "These professional studio headphones are highly regarded for their accurate audio reproduction and robust build quality. They deliver clear, detailed sound and have a foldable design for convenient storage and portability.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Audio-Technica ATH-K48x",
+        price: 99.99,
+        description: " These wireless headphones offer active noise cancellation, customizable sound settings, and a comfortable fit. They are equipped with JBL's signature sound and provide a long battery life for extended listening sessions.",
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 3,
+      },
+
+      //speakers
+      {
+        name: "Logitech Z623",
+        price: 60,
+        description: "These speakers offer powerful, THX-certified audio with a total peak power of 200 watts. They feature a subwoofer for deep bass and multiple inputs for versatile connectivity.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Bose Companion 2 Series III",
+        price: 60,
+        description: "These speakers provide balanced audio performance and a space-saving design. They feature dual inputs for easy connection to multiple devices and are ideal for desktop setups.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Klipsch ProMedia 2.1 ",
+        price: 60,
+        description: "This speaker system includes two satellite speakers and a subwoofer, delivering powerful and immersive sound. They feature a control pod for convenient volume adjustment and headphone connectivity.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Creative Pebble Plus",
+        price: 60,
+        description: " These compact speakers provide a budget-friendly option with good sound quality. They feature a built-in subwoofer for enhanced bass and a sleek, modern design.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+
+      //Accesories 
+      {
+        name: "Apple Lightning to 3.5mm Headphone Jack Adapter",
+        price: 60,
+        description: "This adapter is made by Apple and is designed to connect devices with a Lightning connector to audio devices with a 3.5mm headphone jack. It allows you to use your existing 3.5mm headphones or audio cables with Lightning devices",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Belkin Lightning Audio + Charge RockStar ",
+        price: 60,
+        description: "This adapter from Belkin allows you to simultaneously charge your iPhone or iPad while listening to music or making calls through a 3.5mm audio device. It has a Lightning port for charging and a 3.5mm audio port for connecting headphones or speakers.",
+        qtyAvailable: 320,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Audioengine A2+",
+        price: 60,
+        description: "These compact speakers deliver impressive sound quality with a built-in amplifier. They have a sleek design, convenient volume controls, and offer multiple connectivity options.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "Geekria UltraShell Headphone Case",
+        price: 60,
+        description: "his durable headphone case is designed to protect your headphones from dust, scratches, and impacts. It features a hard shell exterior, a soft interior lining, and a zipper closure for secure storage and easy access.",
+        categoryId: 2,
+        qtyAvailable: 300,
+        qtyOnOrder: 60,
+        rating: 1,
+      },
+      {
+        name: "LTGEM Headphone Case",
+        price: 60,
+        description: "These compact speakers deliver impressive sound quality with a built-in amplifier. They have a sleek design, convenient volume controls, and offer multiple connectivity options.",
         categoryId: 2,
         qtyAvailable: 300,
         qtyOnOrder: 60,
@@ -275,7 +375,6 @@ async function createInitialProducts() {
   }
   console.log(" Finished Creating New Products");
 }
-
 
 async function createInitialOrderData() {
   try {
@@ -363,62 +462,8 @@ async function rebuildDB() {
     await createTables();
     await createInitialUsers();
     await createInitialCategories();
-    //to test createNewProduct() function
-    // await createInitialProducts();
-    await createProductsForTestingGetAllOrdersWithItems();
-    await getProductsByCategory(1);
-    await getProductsBySubCategory("Over the ear");
-    await updateProduct({
-      id: 1,
-      name: "HeadPhone NOT By Beats",
-      price: 30,
-      description: "different types of headphones",
-      categoryId: 1,
-      qtyAvailable: 220,
-      qtyOnOrder: 40,
-      rating: 5,
-    });
-    await updateProductQty(1, 2);
-    await deleteProduct(4);
-    await createInitialOrderData();
-    await createInitialOrderItemsData();
-    console.log("All Orders", await getAllOrders());
-    console.log("Orders by ID 1", await getOrderById(1));
-    console.log("Order Items for Order 1", await getOrderItemsByOrder(1));
-    console.log("Get A single order item by ID", await getOrderItemById(2));
-    console.log(
-      "Get Orders By Username : ",
-      await getOrdersByUser('user1@gmail.com')
-    );
-    const allorders = await getAllOrdersWithItems();
-    console.log(" Get all orders with items attcahed 0", allorders[0]);
-    console.log(" Get all orders with items attcahed 1", allorders[1]);
-    console.log(" Get all orders with items attcahed 2", allorders[2]);
-    console.log("orderitem qty updated",await  updateItemQty(1,3));
-    console.log(await canEditOrderItem(1,1)); //should return true
-    console.log(await canEditOrderItem(1,2)); //should return false
- 
-
-    console.log("Getting user by Id...");
-    console.log(await getUserById(1));
-
-    console.log("Getting user by username & password...");
-    console.log(await getUser({ username: "albert@gmail.com", password: "hello" }));
-
-    console.log("Updating users...");
-    console.log(
-      await updateUser(3, { username: "newUserName", isRegistered: true })
-    );
-
-    console.log("Getting user by first & last name...");
-    console.log(
-      await getUserByFirstAndLastName({ firstname: "Albert", lastname: "Sons" })
-    );
-
-    // console.log("Creating guest user...");
-    // console.log(await createGuest(guestData));
-
-    console.log( "getCartByUser", await getCartByUser('user20@gmail.com'))
+    await createInitialProducts();
+    
   } catch (error) {
     console.log("Error during rebuildDB");
     throw error;
