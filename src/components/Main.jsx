@@ -138,7 +138,7 @@ const Main = () => {
         />
 
         <Route
-          path="/Register"
+          path="/register"
           element={<Register setIsLoggedIn={setIsLoggedIn} setCart={setCart} setToken={setToken}/>}
         />
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 import { loginUser } from '../api-client/auth';
 
@@ -60,8 +60,11 @@ const Login = ({ setIsLoggedIn, setToken, setUser }) => {
           </div>
           <button type="submit" id="loginButt">LOGIN</button>
         </form>
-        <p>
-          Don't have an account? <a href="/register">Register</a>
+        <p>Don't have an account?
+        <Link to="/register">
+        Register
+      </Link>
+      
         </p>
       </div>
     </>
