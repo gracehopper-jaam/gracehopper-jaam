@@ -23,12 +23,10 @@
     "server:dev": "nodemon server.js",
     "start:dev": "(npm run start:react) & (npm run server:dev)",
     "start": "node server.js",
-<<<<<<< HEAD
     "start:react": "npm run start --prefix client",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watchAll",
     "build": "(npm run build --prefix client)"
-=======
     "start:react": "react-scripts start",
     "build": "react-scripts build"
   },
