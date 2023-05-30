@@ -139,25 +139,6 @@ async function createTables() {
 }
 
 
-// async function createInitialUsers() {
-//   console.log("Creating New USers");
-//   try {
-//     await client.query(
-//       `
-//             INSERT INTO "public"."users"("id","username","password","firstname","lastname","phone","email","addressline1","addressline2","isRegistered")
-//             VALUES
-//             (1,'user1@gmail.com','12345678','Albert','Bertie',1234567891,'user1@gmail.com','123 walker road va',NULL,FALSE),
-//             (2,'user20@gmail.com','12345678','Snadra','Bullocks',987654321,'user20@gmail.com','123 king street road va',NULL,FALSE);
-//     `
-//     );
-
-//     console.log("Done creating new users");
-//   } catch (error) {
-//     throw error;
-//   }
-//   console.log(" Finished Creating New Users");
-// }
-
 async function createInitialUsers() {
   console.log("Creating New USers");
   try{
@@ -170,7 +151,7 @@ async function createInitialUsers() {
         phone: 1234567891,
         email:"user1@gmail.com",
         addressline1:'123 walker road va',
-        addressline2:null,
+        addressline2:'Fairfax, VA',
         isRegistered:false
       },
       {
@@ -181,7 +162,7 @@ async function createInitialUsers() {
         phone:987654321,
         email:'user20@gmail.com',
         addressline1:'123 king street road va',
-        addressline2:null,
+        addressline2:"Alexandri, CA",
         isRegistered:false,
       },
       {
@@ -235,6 +216,7 @@ async function createInitialProducts() {
         name: "Sony WH-1000XM4: ",
         price: 30,
         description: "These wireless noise-canceling headphones offer exceptional sound quality, adaptive noise cancellation, long battery life, and touch controls. They are known for their comfortable fit and excellent noise isolation.",
+        description: "These wireless noise-canceling headphones offer exceptional sound quality, adaptive noise cancellation, long battery life, and touch controls. They are known for their comfortable fit and excellent noise isolation.",
         categoryId: 1,
         qtyAvailable: 200,
         qtyOnOrder: 56,
@@ -244,6 +226,7 @@ async function createInitialProducts() {
         name: "Bose QuietComfort 35 II:        ",
         price: 40,
         description: "These wireless headphones are renowned for their world-class noise cancellation technology. They provide a balanced sound profile, comfortable fit, and built-in voice assistants for easy control and access to information.",
+        description: "These wireless headphones are renowned for their world-class noise cancellation technology. They provide a balanced sound profile, comfortable fit, and built-in voice assistants for easy control and access to information.",
         categoryId: 1,
         qtyAvailable: 80,
         qtyOnOrder: 20,
@@ -251,7 +234,9 @@ async function createInitialProducts() {
       },
       {
         name: "Sennheiser Momentum 3",
+        name: "Sennheiser Momentum 3",
         price: 90,
+        description: "These headphones combine premium materials and exceptional sound quality. They offer active noise cancellation, intuitive controls, and a stylish design. The Momentum 3 Wireless is known for its detailed and balanced audio performance.",
         description: "These headphones combine premium materials and exceptional sound quality. They offer active noise cancellation, intuitive controls, and a stylish design. The Momentum 3 Wireless is known for its detailed and balanced audio performance.",
         categoryId: 2,
         qtyAvailable: 100,
@@ -380,6 +365,7 @@ async function createInitialProducts() {
         name: "LTGEM Headphone Case:",
         price: 60,
         description: "These compact speakers deliver impressive sound quality with a built-in amplifier. They have a sleek design, convenient volume controls, and offer multiple connectivity options.",
+        description: "These compact speakers deliver impressive sound quality with a built-in amplifier. They have a sleek design, convenient volume controls, and offer multiple connectivity options.",
         categoryId: 2,
         qtyAvailable: 300,
         qtyOnOrder: 60,
@@ -393,7 +379,6 @@ async function createInitialProducts() {
   }
   console.log(" Finished Creating New Products");
 }
-
 
 async function createInitialOrderData() {
   try {

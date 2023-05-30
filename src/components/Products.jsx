@@ -8,7 +8,7 @@ const Products = (props) => {
   const {setCart,isLoggedIn} = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedProduct,setSelectedProduct] = useState()
+  // const [selectedProduct,setSelectedProduct] = useState()
 
   useEffect(() => {
     fetchProducts();

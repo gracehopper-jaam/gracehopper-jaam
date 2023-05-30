@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, Footer, ContactUs, ProfilePage } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer } from './index';
 import { Routes, Route } from 'react-router-dom';
-import { getCartByUser } from "../api-client"
+import { getCartByUser } from "../api-client";
 import { getMe } from '../api-client/auth';
 import CartWithAccountView from './CartWithAccountView';
 
@@ -10,7 +10,7 @@ const Main = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cart, setCart] = useState({});
-  const [returnedUserCartId, setReturnedUserCartId] = useState("");
+  const [returnedUserCartId, setReturnedUserCartId] = useState(-1);
   const [orderPlaced, setOrderPlaced] = useState(false);
 
   useEffect(() => {
@@ -33,33 +33,30 @@ const Main = () => {
         if (token) {
           setIsLoggedIn(true);
         }
-
         if (token) {
           const [userCart] = await getCartByUser(token, localStorage.getItem("currentUser"));
+          console.log("Entering at Line 45", userCart);
           let tempCart = JSON.parse(localStorage.getItem("currentCart"));
-
           if (tempCart) {
             let tempItems = [...tempCart.items];
             let userCartItems = [...userCart.items];
             let newArr = tempItems.concat(userCartItems);
             let newTotalAmt = 0;
-
             newArr.forEach((tempItem) => {
               newTotalAmt += tempItem.qty * tempItem.priceperunit;
             });
-
             const cartObject = {
               orderdate: tempCart.orderdate,
               totalamount: newTotalAmt,
-              items: newArr,
+              items: [...newArr],
               username: userCart.buyerName,
-              persistedCart: true,
+              persistedCart: false,
             };
-
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
             setReturnedUserCartId(userCart.id);
           } else {
+            console.log("Entering at Line 62", userCart);
             const cartObject = {
               username: userCart.buyerName,
               orderdate: userCart.orderdate,
@@ -67,7 +64,6 @@ const Main = () => {
               items: [...userCart.items],
               persistedCart: true,
             };
-
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
             setReturnedUserCartId(userCart.id);
@@ -97,16 +93,10 @@ const Main = () => {
       />
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route
-          path="/Shop"
-          element={<Products setCart={setCart} isLoggedIn={isLoggedIn} />}
-        />
+        <Route path="/Shop" element={<Products setCart={setCart} isLoggedIn={isLoggedIn} />} />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
-
         <Route path="/About" element={<About />} />
-
         <Route
           path="/CartWithAccountView"
           element={
@@ -122,12 +112,10 @@ const Main = () => {
             />
           }
         />
-
         <Route
           path="/Register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} cart={cart} />}
+          element={<Register setIsLoggedIn={setIsLoggedIn} setCart={setCart} setToken={setToken} />}
         />
-
         <Route
           path="/Cart"
           element={
@@ -168,7 +156,7 @@ const Main = () => {
           }
         />
         <Route
-          path="/contactUs"
+          path="/ContactUs"
           element={<ContactUs />}
         />
         <Route

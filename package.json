@@ -1,11 +1,9 @@
 {
   "name": "ecommerce-frontend",
   "version": "0.1.0",
-  "private": true,
+  "main": "server.js",
+  "private": false,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "bcrypt": "^5.1.0",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
@@ -18,25 +16,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
-    "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
     "server:dev": "nodemon server.js",
-    "start:dev": "(npm run start --prefix client) & node server.js",
+    "start:dev": "(npm run start:react) & (npm run server:dev)",
     "start": "node server.js",
-    "start:react": "npm run start --prefix client",
-    "test": "jest --runInBand",
-    "test:watch": "jest --runInBand --watchAll",
+    "start:react": "react-scripts start",
     "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
