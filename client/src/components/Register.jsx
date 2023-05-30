@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { registerUser } from '../api-client/auth';
 import './Register.css';
 
 
-const Register = () => {
+const Register = ({setCart,setIsLoggedIn,setToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [firstname, setFirstName] = useState('');
@@ -14,27 +14,45 @@ const Register = () => {
     const [addressline1, setAddress1] = useState('');
     const [addressline2, setAddress2] = useState('');
     const [error, setError] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     let navigate = useNavigate();
+  
+      useEffect(() => {
+        const fetchCart = async () => {
+          //setCart to localstorage cart if one already exists - fix for now as register does not have a shared immediate parent component with shop
+          let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+          if (tempCart) {
+            setCart(tempCart);
+          }
+        };
+        fetchCart();
+      }, []);
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsLoggedIn(true);
-        const result = await registerUser({ username, password, firstname, lastname, phone, email, addressline1, addressline2 });
-
-        if(phone.length !== 10) {
+      
+         if(phone.length !== 10) {
           window.alert("Please use 10 digits for your phone number!")
-          return;
+          
         }
+        else if (password.length < 8) {
+          window.alert("Please use at least 8 characters to register!");
+          
+       }
+       else {
+               const result = await registerUser({ username, password, firstname, lastname, phone, email, addressline1, addressline2 });
+               if(result.token) { //note not setting user because its taken care of by fetcUser UseEffect on token change
+                setToken(result.token);
+                setIsLoggedIn(true);
+                localStorage.setItem("currentUser", username);
+                localStorage.setItem("token", result.token);
+                window.alert('Congratulations! You are now registered!');
+                navigate('/');
+              }
+             
+       }
 
-        if (password.length < 8) {
-            window.alert("Please use at least 8 characters to register!");
-            return;
-        } else {
-            window.alert('Congratulations! You are now registered!');
-            navigate('/');
-        }
     }
 
 

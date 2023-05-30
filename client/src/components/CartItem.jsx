@@ -34,12 +34,8 @@ const handleQtyChange =(event) =>
   let newTotalAmt = 0;
   setQty(newQty);
   let tempCart = JSON.parse(localStorage.getItem("currentCart"));
-  let updatedCartArr = tempCart.items.map((tempItem) => {
-    if (tempItem.id === item.id) {
-      tempItem.qty = newQty;
-    }
-    return tempItem;
-  });
+  let updatedCartArr = [...tempCart.items];
+  updatedCartArr[position].qty = newQty;
 
   updatedCartArr.map((tempItem) => {
     newTotalAmt += tempItem.qty * tempItem.priceperunit;
@@ -55,6 +51,34 @@ const handleQtyChange =(event) =>
   localStorage.setItem("currentCart", JSON.stringify(cartObject));
   setCart(cartObject);
 }
+
+// const handleQtyChange =(event) =>
+// {
+//   const newQty = event.target.value;
+//   let newTotalAmt = 0;
+//   setQty(newQty);
+//   let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+//   let updatedCartArr = tempCart.items.map((tempItem) => {
+//     if (tempItem.id === item.id) {
+//       tempItem.qty = newQty;
+//     }
+//     return tempItem;
+//   });
+
+//   updatedCartArr.map((tempItem) => {
+//     newTotalAmt += tempItem.qty * tempItem.priceperunit;
+//   });
+
+//   const cartObject = {
+//     totalamount: newTotalAmt,
+//     items: [...updatedCartArr], 
+//     username: tempCart.username,
+//     persistedCart: false,
+//   };
+
+//   localStorage.setItem("currentCart", JSON.stringify(cartObject));
+//   setCart(cartObject);
+// }
 
 return (
 <>
