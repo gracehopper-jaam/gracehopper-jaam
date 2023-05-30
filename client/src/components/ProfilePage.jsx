@@ -18,18 +18,20 @@ const ProfilePage = () => {
       github: 'https://github.com/aparnas12',
     },
     {
+      name: 'Aubrey Little',    
+      about: 'I.T. Project Manager / Full Stack Developer',
+      // about: 'I.T. Workflow and Process Improvement Project Manager / Full Stack Developer',
+      // image: require('../images/profile4.jpg').default,
+      linkedin: 'https://www.linkedin.com/in/aubrey-little/',
+      github: 'https://github.com/Aubrey042',
+    },
+    {
       name: 'Maisha Khan',
       about: 'Full Stack Developer',
       // image: require('../images/profile3.jpg').default,
       linkedin: 'http://www.linkedin.com/in/',
       github: 'https://github.com/maishasaiyara',
-    },
-    {
-      name: 'Aubrey Little',
-      about: 'I.T. Workflow and Process Improvement Project Manager / Consultant',
-      // image: require('../images/profile4.jpg').default,
-      linkedin: 'https://www.linkedin.com/in/aubrey-little/',
-      github: 'https://github.com/Aubrey042',
+      
     },
   ];
 
@@ -58,3 +60,5 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
+
