@@ -35,7 +35,9 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <h1>Meet The Creators Of JAAM!</h1>
+       <div className="title-container">
+        <h1>Meet The Creators Of JAAM!</h1>
+      </div>
       {profiles.map((profile, index) => (
         <div className="profile-card" key={index}>
           {/* <img className="profile-image" src={profile.image} alt={profile.name} /> */}
