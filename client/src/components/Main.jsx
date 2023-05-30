@@ -167,7 +167,10 @@ const Main = () => {
             />
           }
         />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route
+          path="/contact"
+          element={<ContactUs />}
+        />
       </Routes>
       <Footer />
     </div>

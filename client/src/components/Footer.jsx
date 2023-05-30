@@ -7,19 +7,18 @@ const Footer = () => {
   let navigate = useNavigate('');
 
   return (
-    <footer className='footer-container' style={{ backgroundColor: 'rgb(242, 242, 242)' }}>
+    <footer className='footer-container'>
       <div className='footer-column'>
-        <img className='logo' src={Images.JAAMLogo} alt='logo' />
+        <img className="logo" src={Images.JAAMLOGO} alt='Logo' />
       </div>
       <div className='footer-column'>
         <p className='text-placeholder'>JAAM - The First Online Store to Let You Try Your Headphones Before You Buy</p>
       </div>
-      <div className='footer-column'>
+      <div className='footer-column footer-right'>
         <button onClick={() => { navigate("/ContactUs") }} className='contact-button'>Contact Us</button>
+        <p className='small-text'>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
       </div>
-      <div className='footer-bottom'>
-        <p className='copyright'>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
-      </div>
+     
     </footer>
   );
 };
