@@ -9,8 +9,7 @@ const ContactUs = () => {
       </div>
       <div className="contact-us-content">
         <p className="content-text">
-          For any inquiries or support, please feel free to reach out to us using the contact information below:
-        </p>
+        At JAAM, we take pride in being the first online store that allows you to try your headphones before making a purchase. We are committed to providing exceptional customer service and ensuring your complete satisfaction. If you have any questions, concerns, or feedback, we are here to assist you. Please feel free to reach out to us using any of the methods below.        </p>
         <div className="contact-info">
           <div className="contact-item">
             <h3>Email</h3>

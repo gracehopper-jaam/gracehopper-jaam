@@ -168,11 +168,11 @@ const Main = () => {
           }
         />
         <Route
-          path="/contact"
+          path="/contactUs"
           element={<ContactUs />}
         />
         <Route
-          path="/profile"
+          path="/profilePage"
           element={<ProfilePage />}
         />
       </Routes>

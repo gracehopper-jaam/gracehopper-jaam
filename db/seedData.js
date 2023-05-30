@@ -482,7 +482,7 @@ async function rebuildDB() {
     await createInitialUsers();
     await createInitialCategories();
     //to test createNewProduct() function
-    // await createInitialProducts();
+    await createInitialProducts();
     await createProductsForTestingGetAllOrdersWithItems();
     await getProductsByCategory(1);
     await getProductsBySubCategory("Over the ear");

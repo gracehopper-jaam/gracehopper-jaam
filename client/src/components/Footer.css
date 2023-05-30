@@ -29,32 +29,22 @@
   align-items: center;
 }
 
-.contact-button {
+.contact-button, .checkout-button {
+  display: inline-block;
+  margin: 0 10px;
   padding: 10px 20px;
-  background-color: #889aa0;
-  color: #ffffff;
-  font-size: 16px;
-  border: none;
   border-radius: 4px;
-  cursor: pointer;
-}
-
-.contact-button:hover {
-  background-color: #627074;
-}
-
-.checkout-button {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: #666666;
+  text-decoration: none;
   font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  transition: background-color 0.3s ease;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  cursor: pointer; /* Added cursor style */
 }
 
-.checkout-button:hover {
-  text-decoration: underline;
+.contact-button:hover, .checkout-button:hover {
+  background-color: #555;
 }
 
 .small-text {
