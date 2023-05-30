@@ -93,12 +93,6 @@ const Main = () => {
     getInitialData();
   }, [token]);
 
-  /**************************/
-
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
-
 
   return (
     <div>
