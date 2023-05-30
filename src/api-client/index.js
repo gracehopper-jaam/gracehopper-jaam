@@ -1,4 +1,7 @@
-const BASE = "api";
+const BASE = "http://localhost:8080/api";
+//for deployment
+// const BASE = "api";
+
 
 /**************************aparna***********************/
 export async function getAllOrders() {
