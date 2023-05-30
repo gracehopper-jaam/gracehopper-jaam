@@ -11,13 +11,12 @@ html {
 
 .product {
     margin-bottom: 20px;
-    padding: 25px 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     display: flex;
     justify-items: space-between;
     align-items: center;
-    width: 100vw;
+    width: 75vw;
     margin-left: auto;
     margin-right: auto;
     height: 150px;
@@ -27,6 +26,7 @@ html {
   .product-name {
     font-size: 20px;
     font-weight: bold;
+    margin-left: 25px;
   }
   
   .product-description {
@@ -60,12 +60,13 @@ html {
   
   .product button {
     margin-top: 10px;
-    padding: 5px 10px;
+    padding: 5px;
     background-color: #889aa0;
     color: #fff;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    margin-left: 25px;
   }
   
   .product button:hover {
