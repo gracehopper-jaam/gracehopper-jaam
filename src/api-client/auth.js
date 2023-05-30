@@ -1,6 +1,6 @@
 export const getMe = async (token) => {
     try {
-      const response = await fetch('http://localhost:8080/api/users/me', {
+      const response = await fetch('api/users/me', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -19,7 +19,7 @@ export const getMe = async (token) => {
     export const loginUser = async (userObject) => {
       try {
         const response = await fetch(
-          `http://localhost:8080/api/users/login`,
+          `api/users/login`,
           {
             method: 'POST',
             headers: {
@@ -56,7 +56,7 @@ export const getMe = async (token) => {
   export const registerUser = async (userObject) => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/users/register",
+          "api/users/register",
           {
             method: "POST",
             headers: {
