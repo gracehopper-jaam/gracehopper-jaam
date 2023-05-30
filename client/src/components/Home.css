@@ -6,62 +6,73 @@ html {
 }
 
 .banner-container {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: hidden;
-    position: relative;
-    height: 450px;
-    overflow: hidden;
-
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  position: relative;
+  height: 450px;
+  overflow: hidden;
 }
 
 .home-banner {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .banner-butt {
-    position: absolute;
-    bottom: 20px; /* Adjust this value to change the distance from the bottom */
-    left: 15%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #889aa0 ;
-    color: #ffffff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  position: absolute;
+  bottom: 20px;
+  left: 15%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #889aa0;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .banner-butt:hover {
-   background-color: #627074;
-  }
+.banner-butt:hover {
+  background-color: #627074;
+}
 
-  .category-image {
-    width: 100%;
-    height: 200px;
-  }
+.category-image {
+  width: 100%;
+  height: 200px;
+}
 
 .categories-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 .category-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   padding: 5px;
 }
 
-caption {
+.category-text {
   position: absolute;
-  font-size: 25px;
-  color: white;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.category-text p {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0;
   text-shadow: 2px 2px 2px black;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 2px;
@@ -72,7 +83,7 @@ caption {
   padding: 10px;
 }
 
-@media screen and (max-width: 750px)  {
+@media screen and (max-width: 750px) {
   .category-image {
     width: 100%;
     height: 125px;
@@ -82,14 +93,11 @@ caption {
     height: auto;
   }
 
-  caption {
-    font-size: 20px;
+  .category-text p {
+    font-size: 14px;
   }
 
   .category-container {
     padding: 1px;
   }
 }
-
-
-

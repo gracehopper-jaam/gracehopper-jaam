@@ -9,27 +9,34 @@ const Home = () => {
   return (
     <>
       <div className='banner-container'>
-          <img className='home-banner' src={Images.HomeBanner} alt='home'/>
-          <button onClick={() => {navigate("/shop")}}className='banner-butt'>SHOP</button>
+        <img className='home-banner' src={Images.HomeBanner} alt='home' />
+        <button onClick={() => { navigate("/shop") }} className='banner-butt'>SHOP</button>
       </div>
       <div className='categories-container'>
         <div className='category-container'>
-          <caption>Headphones</caption>
-          <img className='category-image' src={Images.CategoryOverEar} alt='category'/>
+          <img className='category-image' src={Images.CategoryOverEar} alt='category' />
+          <div className='category-text'>
+            <p>Headphones</p>
+            <p>Experience immersive audio with our high-quality headphones.</p>
+          </div>
         </div>
         <div className='category-container'>
-          <caption>Speakers</caption>
-          <img className='category-image' src={Images.CategorySpeaker} alt='category'/>
+          <img className='category-image' src={Images.CategorySpeaker} alt='category' />
+          <div className='category-text'>
+            <p>Speakers</p>
+            <p>Elevate your sound system with our powerful speakers.</p>
+          </div>
         </div>
         <div className='category-container'>
-          <caption>Accessories</caption>
-          <img className='category-image' src={Images.CategoryAccessories} alt='category'/>
+          <img className='category-image' src={Images.CategoryAccessories} alt='category' />
+          <div className='category-text'>
+            <p>Accessories</p>
+            <p>Enhance your audio setup with our range of accessories.</p>
+          </div>
         </div>
       </div>
-        
     </>
-    
-  )
+  );
 };
 
-export default Home
+export default Home;

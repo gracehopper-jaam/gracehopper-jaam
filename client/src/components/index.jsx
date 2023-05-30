@@ -10,3 +10,5 @@ export { default as Logout } from './Logout';
 export { default as CategoryDetails } from './CategoryDetails';
 export { default as ProductDetails } from './ProductDetails';
 export {default as SingleProductView} from './SingleProductView';
+export {default as ContactUs } from './ContactUs';
+export {default as Footer } from './Footer';
