@@ -1,14 +1,11 @@
 #about {
     font-size: 30px;
     display: flex;
-    justify-content: left;
+    justify-items: center;
     align-items: center;
-    height: 250 px;
-    margin-left: 50px;
-    margin-right: 50px;
     border-radius: 2%;
     margin: 8px;
-    width: 600px;
+    width: 90vw;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: lightslategray;
     margin: 20px;
@@ -17,7 +14,7 @@
 #welcome { 
     color: lightslategray;
     text-decoration: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 20px;
 }
 
@@ -31,12 +28,14 @@
     align-content: center;
     border: 1px solid whitesmoke;
     background-color: lavender;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     box-shadow: 1px 1px 6px lightslategray;
+    padding: 15px;
+    text-align: center;
 } 
 
 #footer {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 30px;
  
 } 
@@ -44,7 +43,7 @@
 #contact-form {
     color: lightslategray;
     text-decoration: none;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     margin: 30px;
     width: 700px;
@@ -59,7 +58,7 @@
     width: 300px;
     color: rgb(132, 118, 163);
     font-size: 16px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #contact {
@@ -68,7 +67,7 @@
     color: rgb(132, 118, 163);
     margin: 10px;
     font-size: 16px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #submit-button{
@@ -79,7 +78,7 @@
     color: lightslategray;
     font-size: 16px;
     margin: 30px; 
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #submit-button:hover {
