@@ -29,7 +29,7 @@
     "start:react": "npm run start --prefix client",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watchAll",
-    "build": "react-scripts build"
+    "build": "(npm run build --prefix client)"
   },
   "eslintConfig": {
     "extends": [
