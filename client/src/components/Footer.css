@@ -25,9 +25,8 @@
 
 .footer-right {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .contact-button {
@@ -38,14 +37,29 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 10px;
 }
 
 .contact-button:hover {
   background-color: #627074;
 }
 
+.checkout-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #666666;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  text-decoration: underline;
+}
+
 .small-text {
   font-size: 12px;
   color: #666666;
+  margin-top: 5px;
+  text-align: right;
 }

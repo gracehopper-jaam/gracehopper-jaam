@@ -16,9 +16,9 @@ const Footer = () => {
       </div>
       <div className='footer-column footer-right'>
         <button onClick={() => { navigate("/ContactUs") }} className='contact-button'>Contact Us</button>
+        <button onClick={() => { navigate("/Creators") }} className='checkout-button'>Checkout the Creators</button>
         <p className='small-text'>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
       </div>
-     
     </footer>
   );
 };
