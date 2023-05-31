@@ -1,114 +1,67 @@
-/* Home */
-html {
-  width: 100vw;
-  overflow: hidden;
-  overflow-y: auto;
-}
-
 .banner-container {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: hidden;
-    position: relative;
-    height: 450px;
-    overflow: hidden;
-
+  position: relative;
 }
 
 .home-banner {
-    width: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100vh; 
+  object-fit: cover;
+  object-position: top;
 }
+
 
 .banner-butt {
-    position: absolute;
-    bottom: 20px; /* Adjust this value to change the distance from the bottom */
-    left: 15%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #889aa0 ;
-    color: #ffffff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 24px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .banner-butt:hover {
-   background-color: #627074;
-  }
-
-  .category-image {
-    width: 100%;
-    height: 200px;
-    border-radius: 10%;
-  }
+.banner-butt:hover {
+  background-color: #555;
+}
 
 .categories-container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
 
 .category-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 5px;
+  flex: 1;
+  margin: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-caption {
-  position: absolute;
-  font-size: 25px;
-  color: white;
-  text-shadow: 2px 2px 2px black;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 2px;
+.category-image {
+  width: 100%;
+  height: 50%;
 }
 
-.logo {
-  width: 100px;
-  padding: 10px;
+.category-text {
+  padding: 20px;
+  text-align: center;
+  
 }
 
-@media screen and (max-width: 900px)  {
-  .category-image {
-    height: 150px;
-  }
+.category-text p:first-child {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
-@media screen and (max-width: 750px)  {
-  .category-image {
-    width: 100%;
-    height: 125px;
-  }
-
-  .banner-container {
-    height: auto;
-  }
-
-  caption {
-    font-size: 20px;
-  }
-
-  .category-container {
-    padding: 1px;
-  }
-
-  @media screen and (max-width: 550px)  {
-    .category-image {
-      width: 100%;
-      height: 100px;
-    }
-
-    caption {
-      font-size: 18px;
-      font-weight: bold;
-    }
-  }
+.category-text p:last-child {
+  color: #777;
 }
-
-
-

@@ -8,8 +8,7 @@ const Products = (props) => {
   const {setCart,isLoggedIn} = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedProduct,setSelectedProduct] = useState()
-
+  // const [selectedProduct,setSelectedProduct] = useState()
 
   useEffect(() => {
     fetchProducts();
@@ -32,7 +31,8 @@ const Products = (props) => {
   }
 
   return (
-    <div>
+    <div className="products-container">
+      <img className="hero-image" src={Images.HomeBanner} alt="Hero" />
       <h2>All Products</h2>
        {products.map((product, index) => {
                 return (

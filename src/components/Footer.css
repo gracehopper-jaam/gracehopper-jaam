@@ -1,0 +1,55 @@
+.footer-container {
+  background-color: rgb(242, 242, 242);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-column {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.footer-column:last-child {
+  margin-right: 0;
+}
+
+.logo {
+  width: 100px;
+}
+
+.text-placeholder {
+  text-align: center;
+}
+
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contact-button, .checkout-button {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer; /* Added cursor style */
+}
+
+.contact-button:hover, .checkout-button:hover {
+  background-color: #555;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #666666;
+  margin-top: 5px;
+  text-align: right;
+}
