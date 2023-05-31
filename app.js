@@ -21,7 +21,7 @@ const apiRouter = require("./api");
 
 app.use("/api", apiRouter);
 
-app.use("/", (req, res) => {res.sendFile(path.join(__dirname, 'build'))});
+app.use((req, res) => {res.sendFile(path.join(__dirname, 'build', 'index.html'))});
 
 module.exports = app;
 
