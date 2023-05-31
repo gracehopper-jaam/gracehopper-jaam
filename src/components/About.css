@@ -6,32 +6,36 @@
     border-radius: 2%;
     margin: 8px;
     width: 90vw;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: lightslategray;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f79795;
     margin: 20px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px black;
 }
 
 #welcome { 
-    color: lightslategray;
+    color: #889aa0;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
     margin: 20px;
+    text-shadow: 1px 1px 1px black;
 }
 
 #body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 30px;
     width: 700px;
     font-size: 26px;
-    align-content: center;
     border: 1px solid whitesmoke;
-    background-color: lavender;
+    background-color: #889aa0;
     font-family: Arial, Helvetica, sans-serif;
     box-shadow: 1px 1px 6px lightslategray;
-    padding: 15px;
+    color: white;
+    padding: 30px;
     text-align: center;
+    line-height: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 } 
 
 #footer {
@@ -41,41 +45,38 @@
 } 
 
 #contact-form {
-    color: lightslategray;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     margin: 30px;
-    width: 700px;
     align-content: center;
-    border: 1px solid lightslategray;
+    border: 2px solid black;
+    text-align: center;
+    color: black;
+    box-shadow: 2px 2px 2px #889aa0;
 }
 
 
-.input {
-    text-align: center;
-    border: 2px solid lightslategray;
-    width: 300px;
-    color: rgb(132, 118, 163);
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+input {
+    padding: 5px;
+    color: black;
 }
 
 #contact {
+    margin-top: 50px;
     text-align: center;
-    width: 300px;
-    color: rgb(132, 118, 163);
-    margin: 10px;
-    font-size: 16px;
+    color: black;
+    font-size: 25px;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 #submit-button{
     height: 40px;
-    width: 120px;
-    background-color: lavender; 
-    border: 2px solid lightslategray;
-    color: lightslategray;
+    background-color: #f79795; 
+    border: 2px solid black;
+    color: white;
     font-size: 16px;
     margin: 30px; 
     font-family: Arial, Helvetica, sans-serif;
@@ -83,16 +84,24 @@
 
 #submit-button:hover {
     cursor: pointer;
-    font-weight: 400; 
+    background-color: #dc8685;
 } 
 
 div #item-container-1{
-    width:90%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     font-family: Arial, Helvetica, sans-serif;
     font-size: medium;
-    align-items:first center;
+    align-items: center;
     margin-bottom: 30px;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 700px)  {
+    #body {
+        font-size: 20px;
+        width: 400px;
+    }
+}
+

@@ -16,22 +16,24 @@ html {
     display: flex;
     justify-items: space-between;
     align-items: center;
-    width: 75vw;
+    width: 90vw;
     margin-left: auto;
     margin-right: auto;
-    height: 150px;
+    height: 175px;
     overflow: hidden;
   }
   
   .product-name {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     margin-left: 25px;
+    width: 200px;
+    text-align: center;
   }
   
   .product-description {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: #888;
     padding: 15px;
   }
@@ -39,6 +41,7 @@ html {
   .product-price {
     margin-top: 5px;
     font-size: 16px;
+    margin-left: 10px;
   }
   
   .product-image {
@@ -54,7 +57,7 @@ html {
     width: 30px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    margin: 10px;
+    margin: 5px;
     
   }
   
@@ -66,7 +69,9 @@ html {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    margin-left: 25px;
+    margin-left: 5px;
+    padding: 15px;
+    margin-right: 15px;
   }
   
   .product button:hover {
@@ -77,5 +82,33 @@ html {
     margin-top: 10px;
     border: none;
     border-top: 1px solid #ccc;
+  }
+
+  @media screen and (max-width: 700px)  {
+    .product-name {
+      font-size: 15px;
+      font-weight: bold;
+      margin-left: 5px;
+      text-align: center;
+      width: 100px;
+    }
+    
+    .product-description {
+      display: none;
+    }
+
+    .product
+    button {
+      margin-left: 10px;
+      padding: 10px;
+    }
+
+    .product-image {
+      width: 50px;
+      padding: 5px;
+      height: 50px;
+    }
+
+   
   }
   

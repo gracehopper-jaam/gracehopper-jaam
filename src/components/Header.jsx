@@ -18,8 +18,8 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,use
         <NavLink style={styles.link} to="/About">
           ABOUT
         </NavLink>
-        <NavLink style={styles.link} to="/Cart">
-         CART
+        <NavLink style={styles.cartLink} to="/Cart">
+        <i className="fa-solid fa-cart-shopping fa-lg"></i>
         </NavLink>
       </nav>
       <div className="loginLogoutButtons">
