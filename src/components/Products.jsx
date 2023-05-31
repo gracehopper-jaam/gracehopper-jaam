@@ -32,7 +32,7 @@ const Products = (props) => {
 
   return (
     <div className="products-container">
-      <img className="hero-image" src={Images.HomeBanner} alt="Hero" />
+   
       <h2>All Products</h2>
        {products.map((product, index) => {
                 return (

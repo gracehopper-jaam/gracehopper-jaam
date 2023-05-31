@@ -14,7 +14,7 @@ div #cart-container {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: absolute;
+
     margin-top: 30px;
     padding: 20px;
     border: 2px solid black;
