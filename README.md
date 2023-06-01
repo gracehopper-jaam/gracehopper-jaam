@@ -50,18 +50,13 @@ const handleQtyChange =(event) =>
     username: tempCart.username,
     persistedCart: tempCart.persistedCart,
   };
-  console.log(
-    "HANDLE QUANTITY CHANGE",
-    cartObject,
-    "TOTAL AMT : ",
-    newTotalAmt
-  );
+
   localStorage.setItem("currentCart", JSON.stringify(cartObject));
   setCart(cartObject);
 }
 
 ```
-#### The code above shows that the user is able to add products to the shopping cart.
+#### The code above shows that the user is able to increase or decreas the quantity of an item inside the cart which in turn will update the total amount of the cart.
 
 # Installation
 ### To get a local copy up and running follow these steps:
