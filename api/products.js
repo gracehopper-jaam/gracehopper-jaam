@@ -14,6 +14,7 @@ const {
   updateProduct,
   deleteProduct,
   productfindById,
+  getProductsByCategoryName
 } = require("../db/products");
 
 /*
@@ -236,5 +237,28 @@ productsRouter.delete("/deleteProduct", async (req, res, next) => {
     });
   }
 });
+
+
+productsRouter.get("/:category", async (req, res, next) => {
+  try {
+    const category = req.params.category;
+ 
+    const products = await getProductsByCategoryName(category);
+    if (products.length) {
+      res.send(products);
+    } else {
+      next({
+        message: `Products not found against this ${category}.`,
+        name: "Category not found",
+        error: "Category not found",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
 
 module.exports = productsRouter;

@@ -182,6 +182,24 @@ export const deleteOrder = async (token, orderId) => {
     console.error(err);
   }
 };
+
+//GET api/products/:category
+
+export async function getProductsByCategoryName(categoryName) {
+
+  try {
+    const response = await fetch(`${BASE}/products/${categoryName}`);
+    const products = await response.json();
+
+    return products;
+    
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
 /***************************jason******************************/
 
 /***************************maisha******************************/

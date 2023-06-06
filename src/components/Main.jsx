@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer, CategoryView } from './index';
 import { Routes, Route } from 'react-router-dom';
 import { getCartByUser} from "../api-client"
 import { getMe } from '../api-client/auth';
@@ -14,6 +14,7 @@ const Main = () => {
   const [cart, setCart] = useState({});
   const [returnedUserCartId, setReturnedUserCartId] = useState(-1);
   const[orderPlaced,setOrderPlaced] = useState(false);
+  const[selectedCategory,setSelectedCategory] = useState('');
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -107,10 +108,19 @@ const Main = () => {
         token={token}
         returnedUserCartId={returnedUserCartId}
         setReturnedUserCartId={setReturnedUserCartId}
-        orderPlaced = {setOrderPlaced}
+        orderPlaced={setOrderPlaced}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              setSelectedCategory={setSelectedCategory}
+              setCart={setCart}
+              isLoggedIn={isLoggedIn}
+            />
+          }
+        />
 
         <Route
           path="/Shop"
@@ -139,7 +149,13 @@ const Main = () => {
 
         <Route
           path="/register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} setCart={setCart} setToken={setToken}/>}
+          element={
+            <Register
+              setIsLoggedIn={setIsLoggedIn}
+              setCart={setCart}
+              setToken={setToken}
+            />
+          }
         />
 
         <Route
@@ -181,13 +197,19 @@ const Main = () => {
             />
           }
         />
+        <Route path="/ContactUs" element={<ContactUs />} />
+        <Route path="/profilePage" element={<ProfilePage />} />
+
         <Route
-          path="/ContactUs"
-          element={<ContactUs />}
-        />
-        <Route
-          path="/profilePage"
-          element={<ProfilePage />}
+          path="/category"
+          element={
+            <CategoryView
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+              setCart={setCart}
+              isLoggedIn={isLoggedIn}
+            />
+          }
         />
       </Routes>
       <Footer />

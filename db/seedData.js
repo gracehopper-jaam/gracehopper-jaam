@@ -20,7 +20,8 @@ const {
   updateItemQty,
   canEditOrderItem,
   getCartByUser,
-  deleteOrder
+  deleteOrder,
+  getProductsByCategoryName
 } = require(".");
 
 const prodObj = {
@@ -152,7 +153,7 @@ async function createInitialUsers() {
         email:"user1@gmail.com",
         addressline1:'123 walker road va',
         addressline2:'Fairfax, VA',
-        isRegistered:false
+        isRegistered:true
       },
       {
         username: 'user20@gmail.com',
@@ -163,7 +164,7 @@ async function createInitialUsers() {
         email:'user20@gmail.com',
         addressline1:'123 king street road va',
         addressline2:"Alexandri, CA",
-        isRegistered:false,
+        isRegistered:true,
       },
       {
         username: "albert@gmail.com",
@@ -174,7 +175,18 @@ async function createInitialUsers() {
         email:"albert@gmail.com",
         addressline1:"123 Main St",
         addressline2:"New Orleans, LA",
-        isRegistered:false
+        isRegistered:true
+      },
+      {
+        username: "admin@jaam.com",
+        password: 'JaamAdmin2023',
+        firstname:'Admin',
+        lastname:'Admin',
+        phone:1234567891,
+        email:"admin@jaam.com",
+        addressline1:"123 Main St",
+        addressline2:"New Orleans, LA",
+        isRegistered:true
       }
     ];
 
@@ -197,9 +209,10 @@ async function createInitialCategories() {
         VALUES
         (1,'Headphones','Headphones','Over the ear'),
         (2,'Headphones','Headphones','in the ear'),
-        (3,'Speakers','speakers','desktop'),
-        (4,'Speakers','speakers','outdoor'),
-        (5,'Headphones','Headphones','wireless');
+        (3,'Speakers','Speakers','desktop'),
+        (4,'Speakers','Speakers','outdoor'),
+        (5,'Headphones','Headphones','wireless'),
+        (6,'Accessories','Accessories','adapter');
       `
     );
   } catch (error) {
@@ -289,7 +302,7 @@ async function createInitialProducts() {
         name: "Logitech Z623",
         price: 60,
         description: "These speakers offer powerful, THX-certified audio with a total peak power of 200 watts. They feature a subwoofer for deep bass and multiple inputs for versatile connectivity.",
-        categoryId: 2,
+        categoryId: 3,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -298,7 +311,7 @@ async function createInitialProducts() {
         name: "Bose Companion 2 Series III",
         price: 60,
         description: "These speakers provide balanced audio performance and a space-saving design. They feature dual inputs for easy connection to multiple devices and are ideal for desktop setups.",
-        categoryId: 2,
+        categoryId: 3,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -307,7 +320,7 @@ async function createInitialProducts() {
         name: "Klipsch ProMedia 2.1 ",
         price: 60,
         description: "This speaker system includes two satellite speakers and a subwoofer, delivering powerful and immersive sound. They feature a control pod for convenient volume adjustment and headphone connectivity.",
-        categoryId: 2,
+        categoryId: 3,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -316,7 +329,7 @@ async function createInitialProducts() {
         name: "Creative Pebble Plus",
         price: 60,
         description: " These compact speakers provide a budget-friendly option with good sound quality. They feature a built-in subwoofer for enhanced bass and a sleek, modern design.",
-        categoryId: 2,
+        categoryId: 4,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -327,7 +340,7 @@ async function createInitialProducts() {
         name: "Apple Lightning to 3.5mm Headphone Jack Adapter",
         price: 60,
         description: "This adapter is made by Apple and is designed to connect devices with a Lightning connector to audio devices with a 3.5mm headphone jack. It allows you to use your existing 3.5mm headphones or audio cables with Lightning devices",
-        categoryId: 2,
+        categoryId: 6,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -336,6 +349,7 @@ async function createInitialProducts() {
         name: "Belkin Lightning Audio + Charge RockStar ",
         price: 60,
         description: "This adapter from Belkin allows you to simultaneously charge your iPhone or iPad while listening to music or making calls through a 3.5mm audio device. It has a Lightning port for charging and a 3.5mm audio port for connecting headphones or speakers.",
+        categoryId: 6,
         qtyAvailable: 320,
         qtyOnOrder: 60,
         rating: 1,
@@ -352,8 +366,8 @@ async function createInitialProducts() {
       {
         name: "Geekria UltraShell Headphone Case",
         price: 60,
-        description: "his durable headphone case is designed to protect your headphones from dust, scratches, and impacts. It features a hard shell exterior, a soft interior lining, and a zipper closure for secure storage and easy access.",
-        categoryId: 2,
+        description: "This durable headphone case is designed to protect your headphones from dust, scratches, and impacts. It features a hard shell exterior, a soft interior lining, and a zipper closure for secure storage and easy access.",
+        categoryId: 6,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -361,8 +375,8 @@ async function createInitialProducts() {
       {
         name: "LTGEM Headphone Case",
         price: 60,
-        description: "These compact speakers deliver impressive sound quality with a built-in amplifier. They have a sleek design, convenient volume controls, and offer multiple connectivity options.",
-        categoryId: 2,
+        description: "Designed for JBL foldable headphone this case has a hard EVA exterior and soft lining interior offering double protection against drops, spills and scratches",
+        categoryId: 6,
         qtyAvailable: 300,
         qtyOnOrder: 60,
         rating: 1,
@@ -376,69 +390,7 @@ async function createInitialProducts() {
   console.log(" Finished Creating New Products");
 }
 
-async function createInitialOrderData() {
-  try {
-    await client.query(
-      `INSERT INTO "public"."orders"("userId","totalamount","orderdate","isProcessed")
-      VALUES
-      (1,70,'2023-05-17',FALSE),
-      (2,220,'2023-05-17',FALSE),
-      (1,120,'2023-05-19',TRUE);
-      `
-    );
-  } catch (error) {
-    throw error;
-  }
-}
 
-async function createInitialOrderItemsData() {
-  const orderItemsToCreate = [
-    {
-      productId: 1,
-      priceperunit: 30,
-      qty: 1,
-      ordersId: 1,
-    },
-    {
-      productId: 2,
-      priceperunit: 90,
-      qty: 1,
-      ordersId: 1,
-    },
-    {
-      productId: 2,
-      priceperunit: 90,
-      qty: 2,
-      ordersId: 2,
-    },
-    {
-      productId: 3,
-      priceperunit: 40,
-      qty: 1,
-      ordersId: 2,
-    },
-    {
-      productId: 1,
-      priceperunit: 30,
-      qty: 1,
-      ordersId: 3,
-    },
-    {
-      productId: 2,
-      priceperunit: 90,
-      qty: 1,
-      ordersId: 3,
-    }
-  ];
-  try {
-    const orderItems = await Promise.all(
-      orderItemsToCreate.map(createNewOrderItem)
-    );
-    console.log("Done creating new order items", orderItems);
-  } catch (error) {
-    throw error;
-  }
-}
 
 async function createProductsForTestingGetAllOrdersWithItems() {
   try {

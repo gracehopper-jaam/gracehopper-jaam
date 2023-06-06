@@ -134,6 +134,24 @@ async function deleteProduct(id) {
   }
 }
 
+async function getProductsByCategoryName(categoryName) {
+  try {
+    const { rows } = await client.query(
+      `SELECT products.*
+       FROM products
+       JOIN categories ON products."categoryId" = categories.id
+       WHERE categories.name = $1;
+      `,
+      [categoryName]
+    );
+
+    console.log(rows);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   createNewProduct,
   getAllProducts,
@@ -141,5 +159,6 @@ module.exports = {
   getProductsBySubCategory,
   updateProductQty,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getProductsByCategoryName
 };
