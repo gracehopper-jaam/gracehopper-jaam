@@ -124,7 +124,7 @@ const Main = () => {
 
         <Route
           path="/Shop"
-          element={<Products setCart={setCart} isLoggedIn={isLoggedIn} />}
+          element={<Products setCart={setCart} isLoggedIn={isLoggedIn} setSelectedCategory ={setSelectedCategory}/>}
         />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />

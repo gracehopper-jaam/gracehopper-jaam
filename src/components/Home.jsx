@@ -28,6 +28,7 @@ const Home = ({setSelectedCategory  }) => {
           />
           <div className="category-text">
             <button
+            className='categories-button'
               onClick={() => {
                 setSelectedCategory("Headphones")
                 console.log("Headphones");
@@ -54,6 +55,7 @@ const Home = ({setSelectedCategory  }) => {
           />
           <div className="category-text">
             <button
+            className='categories-button'
               onClick={() => {
                 setSelectedCategory("Speakers");
                 console.log("Speakers");
@@ -80,6 +82,7 @@ const Home = ({setSelectedCategory  }) => {
           />
           <div className="category-text">
           <button
+          className='categories-button'
               onClick={() => {
                 setSelectedCategory("Accessories");
                 console.log("Accessories");
