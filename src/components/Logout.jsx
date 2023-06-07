@@ -7,28 +7,35 @@ import { createNewOrder, createNewOrderItem, deleteOrder } from '../api-client';
   
 const Logout = (props) => {
   const navigate = useNavigate();
- const  { setUser, setIsLoggedIn,setToken,setCart,cart,user,token,returnedUserCartId, setReturnedUserCartId, orderPlaced} = props;
+  const {
+    setUser,
+    setIsLoggedIn,
+    setToken,
+    setCart,
+    cart,
+    user,
+    token,
+    returnedUserCartId,
+    setReturnedUserCartId,
+    orderPlaced,
+  } = props;
 
   const handleClick = async () => {
-
-
-      let tempCart = JSON.parse(localStorage.getItem("currentCart"));
-      if (tempCart && tempCart.persistedCart === false) {
-        if(returnedUserCartId !== null && returnedUserCartId >-1)
-        {
-          //now delete the usercart that was retreived before creating a new one ?
-        try{
+    let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+    if (tempCart && tempCart.persistedCart === false) {
+      if (returnedUserCartId !== null && returnedUserCartId > -1) {
+        //now delete the usercart that was retreived before creating a new one ?
+        try {
           console.log("returnedUserCartId", returnedUserCartId);
           let result = await deleteOrder(token, returnedUserCartId);
           console.log("DELETE", result);
-        
-      }
-      catch(error)
-      {
-        console.log(error);
-      }
+        } catch (error) {
+          console.log(error);
         }
-        console.log("Need to save this cart to the database", cart);
+      }
+      console.log("Need to save this cart to the database if there are items in the shopping cart", cart);
+      if(tempCart.items.length > 0)
+      {
         const currDate = new Date().toISOString().split("T")[0];
         const orderObj = {
           orderdate: currDate,
@@ -55,14 +62,15 @@ const Logout = (props) => {
         } catch (error) {
           console.log(error);
         }
-      } else {
-        console.log(" Dont Need to save this cart to the database", cart);
       }
-    
+
+    } else {
+      console.log(" Dont Need to save this cart to the database", cart);
+    }
 
     localStorage.removeItem("token");
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('currentCart');
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentCart");
     setIsLoggedIn(false);
     setUser(null);
     setToken("");

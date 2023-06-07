@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import CartItem from "./CartItem";
 import "./Cart.css";
 import {useNavigate} from "react-router-dom";
@@ -6,8 +6,8 @@ import {useNavigate} from "react-router-dom";
 const Cart = (props) => {
   const { isLoggedIn, currentUser, cart, setCart } = props;
   const navigate = useNavigate();
-  // console.log("INSIDE CART", cart);
-  //console.log("ISLOGGED IN", isLoggedIn);
+
+
 
   const handleCheckout = () => {
     if (isLoggedIn) {
@@ -23,8 +23,8 @@ const Cart = (props) => {
   };
   return (
     <>
-      <div  id="cart-container">  
-        <h2> Your cart total is $ {cart.totalamount}</h2>
+      <div  id="cart-container">          
+        <h2> Your cart total is $ {cart.totalamount}</h2> 
         {cart.items != null && cart.items.length > 0 ? (
           cart.items.map((item, index) => {
             return <CartItem key ={index} item={item} cart = {cart} isLoggedIn = {isLoggedIn} setCart = {setCart} position = {index}/>;
