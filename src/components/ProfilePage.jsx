@@ -12,7 +12,7 @@ const ProfilePage = () => {
     },
     {
       name: 'Aparna Priyavadan',
-      about: 'Full Stack Developer',
+      about: 'Software Engineer',
       // image: require('../images/profile2.jpg').default,
       linkedin: 'https://www.linkedin.com/in/aparna-priyavadan-33989a211/',
       github: 'https://github.com/aparnas12',
