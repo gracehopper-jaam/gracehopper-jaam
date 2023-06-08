@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer, CategoryView } from './index';
 import { Routes, Route } from 'react-router-dom';
-import { getCartByUser} from "../api-client"
+import { getCartByUser,deleteOrder} from "../api-client"
 import { getMe } from '../api-client/auth';
 import CartWithAccountView from './CartWithAccountView';
 
@@ -15,6 +15,23 @@ const Main = () => {
   const [returnedUserCartId, setReturnedUserCartId] = useState(-1);
   const[orderPlaced,setOrderPlaced] = useState(false);
   const[selectedCategory,setSelectedCategory] = useState('');
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const calCount = () => {
+      let newTotalCount = 0;
+      let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+      if (tempCart && tempCart.items && tempCart.items.length > 0) {
+        let items = [...tempCart.items];
+        items.map((tempItem) => {
+          newTotalCount += +tempItem.qty;
+        });
+        setCount(newTotalCount);
+      }
+    };
+    calCount();
+  }, []);
+   
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,11 +61,16 @@ const Main = () => {
 
         if (token) {
           const [userCart] = await getCartByUser(token, localStorage.getItem("currentUser"));
-
+          //once you retreive the user cart at initial login then delete from database 
+          if(userCart.id)
+          {
+            let result = await deleteOrder(token, userCart.id);
+            console.log("DELETE", result);
+          }
           console.log("Entering at Line 45", userCart);
           let tempCart = JSON.parse(localStorage.getItem("currentCart"));
           //if cart already exits in the locastorage then we need to merge contents 
-          if(tempCart)
+          if(tempCart && userCart.id)
           {
             let tempItems = [...tempCart.items]; //hold the items already in the cart
             let userCartItems =  [...userCart.items];
@@ -109,6 +131,8 @@ const Main = () => {
         returnedUserCartId={returnedUserCartId}
         setReturnedUserCartId={setReturnedUserCartId}
         orderPlaced={setOrderPlaced}
+        count={count}
+        setCount = {setCount}
       />
       <Routes>
         <Route
@@ -124,7 +148,15 @@ const Main = () => {
 
         <Route
           path="/Shop"
-          element={<Products setCart={setCart} isLoggedIn={isLoggedIn} setSelectedCategory ={setSelectedCategory}/>}
+          element={
+            <Products
+              setCart={setCart}
+              isLoggedIn={isLoggedIn}
+              setSelectedCategory={setSelectedCategory}
+              setCount = {setCount}
+              count ={count}
+            />
+          }
         />
         <Route path="/category-details/:id" element={<CategoryDetails />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
@@ -143,6 +175,8 @@ const Main = () => {
               returnedUserCartId={returnedUserCartId}
               setOrderPlaced={setOrderPlaced}
               setReturnedUserCartId={setReturnedUserCartId}
+              count={count}
+              setCount={setCount}
             />
           }
         />
@@ -166,6 +200,7 @@ const Main = () => {
               user={user}
               cart={cart}
               setCart={setCart}
+              setCount={setCount}
             />
           }
         />
@@ -194,6 +229,7 @@ const Main = () => {
               setIsLoggedIn={setIsLoggedIn}
               setToken={setToken}
               setCart={setCart}
+              setCount={setCount}
             />
           }
         />
@@ -208,6 +244,8 @@ const Main = () => {
               selectedCategory={selectedCategory}
               setCart={setCart}
               isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
             />
           }
         />

@@ -4,7 +4,7 @@ import SingleProductView from './SingleProductView';
 import './Products.css';
 
 const CategoryView = (props) => {
-  const {selectedCategory, setCart, isLoggedIn} = props;
+  const {selectedCategory, setCart, isLoggedIn,count,setCount} = props;
 const [productsByCategory, setProductsByCategory] = useState([]);
 
   useEffect(() => { 
@@ -35,6 +35,8 @@ const [productsByCategory, setProductsByCategory] = useState([]);
               selectedProduct={product}
               setCart={setCart}
               isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
             />
           </div>
         );

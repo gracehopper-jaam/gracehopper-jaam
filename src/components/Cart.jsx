@@ -4,8 +4,19 @@ import "./Cart.css";
 import {useNavigate} from "react-router-dom";
 
 const Cart = (props) => {
-  const { isLoggedIn, currentUser, cart, setCart } = props;
+  const { isLoggedIn, currentUser, cart, setCart,setCount } = props;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      //setCart to localstorage cart if one already exists x`
+      let tempCart = JSON.parse(localStorage.getItem("currentCart"));
+      if (tempCart) {
+        setCart(tempCart);
+      }
+    };
+    fetchCart();
+  }, []);
 
 
 
@@ -19,20 +30,20 @@ const Cart = (props) => {
   };
 
   const handleClick = () => {
-    navigate("/");
+    navigate("/Shop");
   };
   return (
     <>
       <div  id="cart-container">          
-        <h2> Your cart total is $ {cart.totalamount}</h2> 
+        <h2 id='cart-message'> Your cart total is $ {cart.totalamount? cart.totalamount:0}</h2> 
         {cart.items != null && cart.items.length > 0 ? (
           cart.items.map((item, index) => {
-            return <CartItem key ={index} item={item} cart = {cart} isLoggedIn = {isLoggedIn} setCart = {setCart} position = {index}/>;
+            return <CartItem key ={index} item={item} cart = {cart} isLoggedIn = {isLoggedIn} setCart = {setCart} position = {index} setCount ={setCount}/>;
           })
         ) : (
           <div>
-            <h2> Shopping Cart Empty </h2>
-          <button onClick={handleClick}> Continue Shopping</button>
+            <h2 id='cart-message'> Your Shopping Cart is Empty </h2>
+          <button id='continue-shop-button' onClick={handleClick}> Continue Shopping</button>
           </div>
           
         )}

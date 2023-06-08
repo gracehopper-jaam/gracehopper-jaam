@@ -18,22 +18,24 @@ const Logout = (props) => {
     returnedUserCartId,
     setReturnedUserCartId,
     orderPlaced,
+    setCount
   } = props;
 
   const handleClick = async () => {
     let tempCart = JSON.parse(localStorage.getItem("currentCart"));
-    if (tempCart && tempCart.persistedCart === false) {
-      if (returnedUserCartId !== null && returnedUserCartId > -1) {
-        //now delete the usercart that was retreived before creating a new one ?
-        try {
-          console.log("returnedUserCartId", returnedUserCartId);
-          let result = await deleteOrder(token, returnedUserCartId);
-          console.log("DELETE", result);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-      console.log("Need to save this cart to the database if there are items in the shopping cart", cart);
+    if (tempCart) {
+    // if (tempCart && tempCart.persistedCart === false) {
+      // if (returnedUserCartId !== null && returnedUserCartId > -1) {
+      //   //now delete the usercart that was retreived before creating a new one ?
+      //   try {
+      //     console.log("returnedUserCartId", returnedUserCartId);
+      //     let result = await deleteOrder(token, returnedUserCartId);
+      //     console.log("DELETE", result);
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // }
+      console.log("Need to save this cart to the database if there are items in the shopping cart");
       if(tempCart.items.length > 0)
       {
         const currDate = new Date().toISOString().split("T")[0];
@@ -65,7 +67,7 @@ const Logout = (props) => {
       }
 
     } else {
-      console.log(" Dont Need to save this cart to the database", cart);
+      console.log(" Dont Need to save this cart to the database");
     }
 
     localStorage.removeItem("token");
@@ -76,6 +78,7 @@ const Logout = (props) => {
     setToken("");
     setReturnedUserCartId(-1);
     setCart({});
+    setCount(0);
     navigate("/");
   };
 

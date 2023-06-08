@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const CartWithAccountView = (props) => {
 
-    const { isLoggedIn, user, cart, token,setCart,setOrderPlaced,returnedUserCartId,setReturnedUserCartId} = props;
+    const { isLoggedIn, user, cart, token,setCart,setOrderPlaced,returnedUserCartId,setReturnedUserCartId,setCount} = props;
     const [cardnumber, setCardnumber] = useState('');
     const [expdate,setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
@@ -26,19 +26,19 @@ const CartWithAccountView = (props) => {
         isProcessed: true,
       };
       //now delete the usercart that was retreived before creating a new one ?
-      try{
-        console.log("returnedUserCartId", returnedUserCartId);
-        if (returnedUserCartId >-1) {
-          let result = await deleteOrder(token, returnedUserCartId);
-          console.log("DELETE", result);
-          setReturnedUserCartId(-1);
+      // try{
+      //   console.log("returnedUserCartId", returnedUserCartId);
+      //   if (returnedUserCartId >-1) {
+      //     let result = await deleteOrder(token, returnedUserCartId);
+      //     console.log("DELETE", result);
+      //     setReturnedUserCartId(-1);
           
-        }
-      }
-      catch(error)
-      {
-        console.log(error);
-      }
+      //   }
+      // }
+      // catch(error)
+      // {
+      //   console.log(error);
+      // }
      
 
       const newOrder = await createNewOrder(token, orderObj);
@@ -58,25 +58,17 @@ const CartWithAccountView = (props) => {
         });
         setOrderPlaced(true);
       }
-      // const cartObject = {
-      //   orderdate: "",
-      //   totalamount: "",
-      //   items: [],
-      //   username: user.username,
-      //   persistedCart: false,
-      // };
       localStorage.removeItem("currentCart");
       setCart({});
+      setCount(0);
     }
-
-    
 
     return (
       <>
         <form onSubmit = {handleSubmit} id="cart-with-acct-container">
-          <h1>Checkout</h1>
+          <h1 id='cart-message'>Checkout</h1>
           <div id="shipping">
-          <h2>Ship To:</h2>
+          <h2 id='cart-message'>Ship To:</h2>
             <label htmlFor="firstname">First Name *</label>
             <input
               type="text"
@@ -143,16 +135,16 @@ const CartWithAccountView = (props) => {
             })
           ) : (
             <div>
-              <h2> Shopping Cart Empty </h2>
-              <button onClick={() => {
+              <h2 id='cart-message'> Shopping Cart Empty </h2>
+              <button  id='continue-shop-button-checkout' onClick={() => {
               navigate('/');
             }} > Continue Shopping</button>
             </div>
           )}
-          {cart.items != null && cart.items.length > 0 ? (<><h3>Total Amount Due : ${cart.totalamount}</h3></>):(<></>)}
+          {cart.items != null && cart.items.length > 0 ? (<><h3 id='cart-message'>Total Amount Due : ${cart.totalamount}</h3></>):(<></>)}
           {cart.items != null && cart.items.length > 0 ? (
             <div id='payment'>
-              <h2>Payment</h2>
+              <h2 id='cart-message'>Payment</h2>
 
               <label htmlFor="cardnumber">Card Number *</label>
               <input

@@ -16,18 +16,6 @@ const Register = ({setCart,setIsLoggedIn,setToken}) => {
     const [error, setError] = useState(null);
 
     let navigate = useNavigate();
-  
-      useEffect(() => {
-        const fetchCart = async () => {
-          //setCart to localstorage cart if one already exists - fix for now as register does not have a shared immediate parent component with shop
-          let tempCart = JSON.parse(localStorage.getItem("currentCart"));
-          if (tempCart) {
-            setCart(tempCart);
-          }
-        };
-        fetchCart();
-      }, []);
-    
 
     const handleSubmit = async (event) => {
         event.preventDefault();

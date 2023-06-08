@@ -6,7 +6,7 @@ import Images from '../media';
 import { useNavigate } from 'react-router';
 
 const Products = (props) => {
-  const {setCart,isLoggedIn,setSelectedCategory} = props;
+  const {setCart,isLoggedIn,setSelectedCategory,setCount,count} = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [selectedProduct,setSelectedProduct] = useState()
@@ -77,6 +77,8 @@ const Products = (props) => {
               selectedProduct={product}
               setCart={setCart}
               isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
             />
           </div>
         );

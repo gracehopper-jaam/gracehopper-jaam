@@ -111,3 +111,36 @@ input[type='number']{
     margin:20px;
     padding:20px;
   }
+
+  #continue-shop-button{
+    margin-left:25%;
+    padding: 10px 20px;
+    font-size:15px;
+    background-color: #889aa0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+
+  #cart-message { 
+    color: #889aa0;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#continue-shop-button-checkout{
+  padding: 10px 20px;
+  font-size:15px;
+  background-color: #889aa0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
