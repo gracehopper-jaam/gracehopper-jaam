@@ -78,8 +78,10 @@ const Main = () => {
 
             //get the new total amount
             let newTotalAmt = 0;
+            let newCount = 0;
             newArr.map((tempItem) => {
-              return newTotalAmt += tempItem.qty * tempItem.priceperunit;
+              newTotalAmt += tempItem.qty * tempItem.priceperunit;
+              newCount += tempItem.qty;
             });
             const cartObject = {
               orderdate:tempCart.orderdate,
@@ -91,6 +93,7 @@ const Main = () => {
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
             setReturnedUserCartId(userCart.id);
+            setCount(newCount);
           }
           else
           {
@@ -105,6 +108,12 @@ const Main = () => {
             localStorage.setItem("currentCart", JSON.stringify(cartObject));
             setCart(cartObject);
             setReturnedUserCartId(userCart.id);
+            let userCartItems =  [...userCart.items];
+            let newCount = 0;
+            userCartItems.map((tempItem) => {
+              newCount += tempItem.qty;
+            });
+            setCount(newCount);
           }
 
         }
