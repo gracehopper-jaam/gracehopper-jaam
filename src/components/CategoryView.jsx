@@ -13,21 +13,25 @@ const CategoryView = (props) => {
   useEffect(() => {
     const fetchProductsByCategory = async () => {
       try {
+        //if link is clicked
         if (selectedCategory.length > 0) {
           const products = await getProductsByCategoryName(selectedCategory);
           setProductsByCategory(products);
         } else {
+          //if user entered the url 
           let parts = uri.pathname.split("/");
           const categoryName = parts[2];
-          console.log(parts, categoryName);
+
           // fetch products by category view
           if (
-            categoryName === "Headphones" ||
-            categoryName === "Speakers" ||
-            categoryName === "Accessories"
+            categoryName.toLowerCase === "Headphones".toLowerCase ||
+            categoryName.toLowerCase  === "Speakers".toLowerCase ||
+            categoryName.toLowerCase  === "Accessories".toLowerCase 
           ) {
-            setSelectedCategory(categoryName);
-            const products = await getProductsByCategoryName(categoryName);
+           
+            const dbCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1); //the category name has uppercase first letter
+            setSelectedCategory(dbCategoryName);
+            const products = await getProductsByCategoryName(dbCategoryName);
             setProductsByCategory(products);
           }
         }

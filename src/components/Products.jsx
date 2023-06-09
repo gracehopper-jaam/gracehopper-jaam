@@ -69,7 +69,7 @@ const Products = (props) => {
           }}
         />
       </div>
-      <h2>All Products</h2>
+      <h2 id= "product-title">All Products</h2>
       {products.map((product, index) => {
         return (
           <div key={index}>
