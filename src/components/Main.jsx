@@ -246,7 +246,33 @@ const Main = () => {
         <Route path="/profilePage" element={<ProfilePage />} />
 
         <Route
-          path="/category"
+          path="/category/Headphones"
+          element={
+            <CategoryView
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+              setCart={setCart}
+              isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
+            />
+          }
+        />
+         <Route
+          path="/category/Speakers"
+          element={
+            <CategoryView
+              setSelectedCategory={setSelectedCategory}
+              selectedCategory={selectedCategory}
+              setCart={setCart}
+              isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
+            />
+          }
+        />
+         <Route
+          path="/category/Accessories"
           element={
             <CategoryView
               setSelectedCategory={setSelectedCategory}

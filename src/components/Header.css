@@ -56,6 +56,7 @@ nav {
     height: 28px;
     height: auto;
     overflow: hidden;
+
     .count {
       position: absolute;
       top: 0;
