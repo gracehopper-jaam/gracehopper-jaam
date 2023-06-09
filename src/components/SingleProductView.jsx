@@ -3,7 +3,7 @@ import Images from '../media';
 import "./SingleProductView.css"
 const SingleProductView = (props) => {
 
-const {selectedProduct, setCart,isLoggedIn} = props;
+const {selectedProduct, setCart,isLoggedIn,setCount,count} = props;
 const [qty, setQty] = useState(1);
 const handleClick = () => {
     const tempUserName = isLoggedIn? localStorage.getItem("currentUser") : "guest";
@@ -23,7 +23,8 @@ const handleClick = () => {
           }
           console.log("reached here new cart",cartObject, "compared to old cart",tempCart);
           localStorage.setItem("currentCart",JSON.stringify(cartObject));
-          setCart(cartObject);
+          setCart(cartObject);  
+          setCount(+qty+count);
     }
     else
     {
@@ -42,7 +43,9 @@ const handleClick = () => {
           }
           localStorage.setItem("currentCart",JSON.stringify(cartObject));
           setCart(cartObject);
+          setCount(+qty+count);
     }
+    
 };
 return (
 

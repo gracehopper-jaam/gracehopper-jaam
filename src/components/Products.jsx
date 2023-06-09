@@ -6,7 +6,7 @@ import Images from '../media';
 import { useNavigate } from 'react-router';
 
 const Products = (props) => {
-  const {setCart,isLoggedIn,setSelectedCategory} = props;
+  const {setCart,isLoggedIn,setSelectedCategory,setCount,count} = props;
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [selectedProduct,setSelectedProduct] = useState()
@@ -43,7 +43,7 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Headphones");
             console.log("Headphones");
-            navigate("/category");
+            navigate("/category/Headphones");
           }}
         />
         <img
@@ -54,7 +54,7 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Speakers");
             console.log("Speakers");
-            navigate("/category");
+            navigate("/category/Speakers");
           }}
         />
         <img
@@ -65,11 +65,11 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Accessories");
             console.log("Accessories");
-            navigate("/category");
+            navigate("/category/Accessories");
           }}
         />
       </div>
-      <h2>All Products</h2>
+      <h2 id= "product-title">All Products</h2>
       {products.map((product, index) => {
         return (
           <div key={index}>
@@ -77,6 +77,8 @@ const Products = (props) => {
               selectedProduct={product}
               setCart={setCart}
               isLoggedIn={isLoggedIn}
+              setCount = {setCount}
+              count ={count}
             />
           </div>
         );
