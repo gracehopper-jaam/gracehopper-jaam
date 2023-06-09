@@ -65,60 +65,62 @@ const CartWithAccountView = (props) => {
 
     return (
       <>
-        <form onSubmit = {handleSubmit} id="cart-with-acct-container">
-          <h1 id='cart-message'>Checkout</h1>
-          <div id="shipping">
-          <h2 id='cart-message'>Ship To:</h2>
-            <label htmlFor="firstname">First Name *</label>
-            <input
-              type="text"
-              name="firstname"
-              value={user.firstname}
-              onChange={(event) => setFirstname(event.target.value)}
-            />
-            <label htmlFor="lastname">Last Name *</label>
-            <input
-              type="text"
-              name="lastname"
-              value={user.lastname}
-              onChange={(event) => setLastname(event.target.value)}
-            />
-
-            <label htmlFor="phone">Phone*</label>
-            <input
-              type="text"
-              name="phone"
-              value={user.phone}
-              onChange={(event) => setPhone(event.target.value)}
-            />
-            <label htmlFor="email">Email*</label>
-            <input
-              type="text"
-              name="email"
-              value={user.email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-
-            <span>
-              <label htmlFor="address1">Address Line 1*</label>
-              <input
-                type="text"
-                name="address1"
-                value={user.addressline1}
-                onChange={(event) => setAddressline1(event.target.value)}
-              />
-              <label htmlFor="address2">City,State,Zip</label>
-              <input
-                type="text"
-                name="address2"
-                value={user.addressline2}
-                onChange={(event) => setAddressline2(event.target.value)}
-              />
-            </span>
-          </div>
-        
+        <form onSubmit={handleSubmit} id="cart-with-acct-container">
+          <h1 id="cart-message">Checkout</h1>
           {cart.items != null && cart.items.length > 0 ? (
-            
+            <div id="shipping">
+              <h2 id="cart-message">Ship To:</h2>
+              <label htmlFor="firstname">First Name *</label>
+              <input
+                type="text"
+                name="firstname"
+                value={user.firstname}
+                onChange={(event) => setFirstname(event.target.value)}
+              />
+              <label htmlFor="lastname">Last Name *</label>
+              <input
+                type="text"
+                name="lastname"
+                value={user.lastname}
+                onChange={(event) => setLastname(event.target.value)}
+              />
+
+              <label htmlFor="phone">Phone*</label>
+              <input
+                type="text"
+                name="phone"
+                value={user.phone}
+                onChange={(event) => setPhone(event.target.value)}
+              />
+              <label htmlFor="email">Email*</label>
+              <input
+                type="text"
+                name="email"
+                value={user.email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+
+              <span>
+                <label htmlFor="address1">Address Line 1*</label>
+                <input
+                  type="text"
+                  name="address1"
+                  value={user.addressline1}
+                  onChange={(event) => setAddressline1(event.target.value)}
+                />
+                <label htmlFor="address2">City,State,Zip</label>
+                <input
+                  type="text"
+                  name="address2"
+                  value={user.addressline2}
+                  onChange={(event) => setAddressline2(event.target.value)}
+                />
+              </span>
+            </div>
+          ) : (
+            <></>
+          )}
+          {cart.items != null && cart.items.length > 0 ? (
             cart.items.map((item, index) => {
               return (
                 <div key={index} id="item-container-1">
@@ -135,16 +137,28 @@ const CartWithAccountView = (props) => {
             })
           ) : (
             <div>
-              <h2 id='cart-message'> Shopping Cart Empty </h2>
-              <button  id='continue-shop-button-checkout' onClick={() => {
-              navigate('/');
-            }} > Continue Shopping</button>
+              <h2 id="cart-message"> Shopping Cart Empty </h2>
+              <button
+                id="continue-shop-button-checkout"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                {" "}
+                Continue Shopping
+              </button>
             </div>
           )}
-          {cart.items != null && cart.items.length > 0 ? (<><h3 id='cart-message'>Total Amount Due : ${cart.totalamount}</h3></>):(<></>)}
           {cart.items != null && cart.items.length > 0 ? (
-            <div id='payment'>
-              <h2 id='cart-message'>Payment</h2>
+            <>
+              <h3 id="cart-message">Total Amount Due : ${cart.totalamount}</h3>
+            </>
+          ) : (
+            <></>
+          )}
+          {cart.items != null && cart.items.length > 0 ? (
+            <div id="payment">
+              <h2 id="cart-message">Payment</h2>
 
               <label htmlFor="cardnumber">Card Number *</label>
               <input
@@ -168,21 +182,17 @@ const CartWithAccountView = (props) => {
                 value={cvv}
                 onChange={(event) => setCvv(event.target.value)}
               />
-
             </div>
-          ) 
-          : 
-          (
+          ) : (
             <></>
           )}
-           {cart.items != null && cart.items.length > 0 ? 
-           (
-           <div id='placeorder'>
-           <button id='placeOrderButton'>Place Order</button>
-           </div>
-           )
-           :
-           (<></>)}
+          {cart.items != null && cart.items.length > 0 ? (
+            <div id="placeorder">
+              <button id="placeOrderButton">Place Order</button>
+            </div>
+          ) : (
+            <></>
+          )}
         </form>
       </>
     );
