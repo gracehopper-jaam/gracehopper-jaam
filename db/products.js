@@ -135,6 +135,7 @@ async function deleteProduct(id) {
 }
 
 async function getProductsByCategoryName(categoryName) {
+  console.log("DATABASE SIDE ");
   try {
     const { rows } = await client.query(
       `SELECT products.*

@@ -15,10 +15,12 @@ const CategoryView = (props) => {
       try {
         //if link is clicked
         if (selectedCategory.length > 0) {
+          console.log("REACHED USE EFFECT 1");
           const products = await getProductsByCategoryName(selectedCategory);
           setProductsByCategory(products);
         } else {
           //if user entered the url 
+          console.log("REACHED USE EFFECT 2");
           let parts = uri.pathname.split("/");
           const categoryName = parts[2];
 

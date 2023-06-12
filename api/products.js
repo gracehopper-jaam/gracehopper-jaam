@@ -241,6 +241,7 @@ productsRouter.delete("/deleteProduct", async (req, res, next) => {
 
 productsRouter.get("/:category", async (req, res, next) => {
   try {
+    console.log("API GET HERE");
     const category = req.params.category;
  
     const products = await getProductsByCategoryName(category);
