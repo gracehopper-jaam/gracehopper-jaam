@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer, CategoryView } from './index';
+import { Header, Home, Products, About, Cart, Checkout, Login, Register, Logout, CategoryDetails, ProductDetails, ContactUs, ProfilePage, Footer, CategoryView,UserProfile } from './index';
 import { Routes, Route } from 'react-router-dom';
 import { getCartByUser,deleteOrder} from "../api-client"
 import { getMe } from '../api-client/auth';
@@ -284,6 +284,7 @@ const Main = () => {
             />
           }
         />
+        <Route path = "/Me" element = {<UserProfile isLoggedIn ={isLoggedIn} user = {user}/>} />
       </Routes>
       <Footer />
     </div>
