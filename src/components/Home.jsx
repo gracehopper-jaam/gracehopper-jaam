@@ -32,7 +32,7 @@ const Home = ({setSelectedCategory  }) => {
               onClick={() => {
                 setSelectedCategory("Headphones")
                 console.log("Headphones");
-                navigate("/category/Headphones");
+                navigate("/Headphones");
               }}
             >
               Headphones
@@ -59,7 +59,7 @@ const Home = ({setSelectedCategory  }) => {
               onClick={() => {
                 setSelectedCategory("Speakers");
                 console.log("Speakers");
-                navigate("/category/Speakers");
+                navigate("/Speakers");
               }}
             >
               Speakers
@@ -86,7 +86,7 @@ const Home = ({setSelectedCategory  }) => {
               onClick={() => {
                 setSelectedCategory("Accessories");
                 console.log("Accessories");
-                navigate("/category/Accessories");
+                navigate("/Accessories");
               }}
             >
               Accessories

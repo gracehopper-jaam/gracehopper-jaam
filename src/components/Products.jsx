@@ -43,7 +43,7 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Headphones");
             console.log("Headphones");
-            navigate("/category/Headphones");
+            navigate("/Headphones");
           }}
         />
         <img
@@ -54,7 +54,7 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Speakers");
             console.log("Speakers");
-            navigate("/category/Speakers");
+            navigate("/Speakers");
           }}
         />
         <img
@@ -65,7 +65,7 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Accessories");
             console.log("Accessories");
-            navigate("/category/Accessories");
+            navigate("/Accessories");
           }}
         />
       </div>

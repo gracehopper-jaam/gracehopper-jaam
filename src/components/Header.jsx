@@ -26,7 +26,9 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,use
             <i className="fa-solid fa-cart-shopping fa-lg"></i>
           </div>
         </NavLink>
+        {isLoggedIn? ( <NavLink className="link" to="/Me">Hi, {user.firstname} </NavLink>):(<></>)} 
       </nav>
+    
       <div className="loginLogoutButtons">
         {isLoggedIn ? (
           <Logout
@@ -47,6 +49,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,use
             LOGIN
           </NavLink>
         )}
+        
       </div>
     </header>
   );
