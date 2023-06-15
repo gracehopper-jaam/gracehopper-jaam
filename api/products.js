@@ -241,9 +241,11 @@ productsRouter.delete("/deleteProduct", async (req, res, next) => {
 
 productsRouter.get("/:category", async (req, res, next) => {
   try {
+
     const category = req.params.category;
  
     const products = await getProductsByCategoryName(category);
+    
     if (products.length) {
       res.send(products);
     } else {

@@ -8,12 +8,12 @@ const CartWithAccountView = (props) => {
     const [cardnumber, setCardnumber] = useState('');
     const [expdate,setExpdate] = useState('');
     const [cvv, setCvv] = useState('');
-    const [firstname,setFirstname] = useState(user.firstname); 
-    const [lastname,setLastname] = useState(user.lastname); 
-    const [phone,setPhone] = useState(user.phone); 
-    const [email,setEmail] = useState(user.email); 
-    const [addressline1, setAddressline1] = useState(user.addressline1); 
-    const [addressline2, setAddressline2] = useState(user.addressline2);
+    const [firstname, setFirstname] = useState(isLoggedIn? user.firstname:"");
+    const [lastname, setLastname] = useState(isLoggedIn? user.lastname:"");
+    const [phone, setPhone] = useState(isLoggedIn?user.phone:"");
+    const [email, setEmail] = useState(isLoggedIn?user.email:"");
+    const [addressline1, setAddressline1] = useState(isLoggedIn?user.addressline1:"");
+    const [addressline2, setAddressline2] = useState(isLoggedIn?user.addressline2:"");;
     const navigate =useNavigate();
 
     const  handleSubmit = async(event) => {
@@ -65,9 +65,10 @@ const CartWithAccountView = (props) => {
 
     return (
       <>
+    
         <form onSubmit={handleSubmit} id="cart-with-acct-container">
           <h1 id="cart-message">Checkout</h1>
-          {cart.items != null && cart.items.length > 0 ? (
+          {isLoggedIn && cart.items != null && cart.items.length > 0 ? (
             <div id="shipping">
               <h2 id="cart-message">Ship To:</h2>
               <label htmlFor="firstname">First Name *</label>
@@ -120,7 +121,7 @@ const CartWithAccountView = (props) => {
           ) : (
             <></>
           )}
-          {cart.items != null && cart.items.length > 0 ? (
+          {isLoggedIn && cart.items != null && cart.items.length > 0 ? (
             cart.items.map((item, index) => {
               return (
                 <div key={index} id="item-container-1">
@@ -141,7 +142,7 @@ const CartWithAccountView = (props) => {
               <button
                 id="continue-shop-button-checkout"
                 onClick={() => {
-                  navigate("/");
+                  navigate("/Shop");
                 }}
               >
                 {" "}
@@ -186,7 +187,7 @@ const CartWithAccountView = (props) => {
           ) : (
             <></>
           )}
-          {cart.items != null && cart.items.length > 0 ? (
+          {isLoggedIn && cart.items != null && cart.items.length > 0 ? (
             <div id="placeorder">
               <button id="placeOrderButton">Place Order</button>
             </div>

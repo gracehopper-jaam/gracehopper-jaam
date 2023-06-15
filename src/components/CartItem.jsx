@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Images from "../media";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = (props) =>
 {
 const {item,cart,isLoggedIn, setCart,position,setCount } = props;
 const [qty, setQty] = useState(item.qty);
-
+const navigate = useNavigate();
 const handleDelete = () => {
     let newTotalAmt = 0;
     let newCount = 0;
@@ -29,6 +30,8 @@ const handleDelete = () => {
   localStorage.setItem("currentCart", JSON.stringify(cartObject));
   setCart(cartObject);
   setCount(+newCount);
+  navigate("/Cart ");
+ 
 };
 
 const handleQtyChange =(event) =>
@@ -67,7 +70,7 @@ return (
           alt={item.name}
           className="product-image"/>
         <p><b></b>{item.name}</p>
-        <input value = {qty} type ="number" min="1" max="5"
+        <input value = {item.qty} type ="number" min="1" max="5"
         onChange={(event) => {handleQtyChange(event)}}
         required/>
         <p>${item.priceperunit}</p>

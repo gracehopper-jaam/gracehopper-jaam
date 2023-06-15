@@ -44,12 +44,10 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Headphones");
             console.log("Headphones");
-            navigate("/category/Headphones");
-          }}/>
-          <h3 className='banner-caption'>HEADPHONES</h3>
-        </div>
-        <div className='icon-container'>
-          <img
+            navigate("/Headphones");
+          }}
+        />
+        <img
           className="icons-image"
           src={Images.CategorySpeaker}
           alt="speaker"
@@ -57,12 +55,10 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Speakers");
             console.log("Speakers");
-            navigate("/category/Speakers");
-            }} />
-            <h3 className='banner-caption'>SPEAKERS</h3>
-        </div>
-        <div className='icon-container'>
-          <img
+            navigate("/Speakers");
+          }}
+        />
+        <img
           className="icons-image"
           src={Images.CategoryAccessories}
           alt="accessories"
@@ -70,11 +66,9 @@ const Products = (props) => {
           onClick={() => {
             setSelectedCategory("Accessories");
             console.log("Accessories");
-            navigate("/category/Accessories");
-          }} />
-          <h3 className='banner-caption'>ACCESSORIES</h3>
-        </div>
-        
+            navigate("/Accessories");
+          }}
+        />
       </div>
       <h2 id= "product-title">All Products</h2>
       {products.map((product, index) => {

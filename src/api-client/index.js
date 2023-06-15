@@ -185,12 +185,12 @@ export const deleteOrder = async (token, orderId) => {
 
 //GET api/products/:category
 
-export async function getProductsByCategoryName(categoryName) {
+export const  getProductsByCategoryName = async (categoryName) => {
 
   try {
     const response = await fetch(`${BASE}/products/${categoryName}`);
     const products = await response.json();
-    console.log(products);
+    console.log("API in index.js after response json", products);
     return products;
  
     
