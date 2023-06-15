@@ -22,7 +22,7 @@ const CategoryView = (props) => {
           //if user entered the url 
           console.log("REACHED USE EFFECT 2");
           let parts = uri.pathname.split("/");
-          const categoryName = parts[2];
+          const categoryName = parts[1];
 
           // fetch products by category view
           if (
@@ -57,7 +57,7 @@ const CategoryView = (props) => {
           onClick={() => {
             setSelectedCategory("Headphones");
             console.log("Headphones");
-            navigate("/category/Headphones");
+            navigate("/Headphones");
           }}
         />
         <img
@@ -68,7 +68,7 @@ const CategoryView = (props) => {
           onClick={() => {
             setSelectedCategory("Speakers");
             console.log("Speakers");
-            navigate("/category/Speakers");
+            navigate("/Speakers");
           }}
         />
         <img
@@ -79,7 +79,7 @@ const CategoryView = (props) => {
           onClick={() => {
             setSelectedCategory("Accessories");
             console.log("Accessories");
-            navigate("/category/Accessories");
+            navigate("/Accessories");
           }}
         />
       </div>

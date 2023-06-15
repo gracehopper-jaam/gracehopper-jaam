@@ -246,7 +246,7 @@ const Main = () => {
         <Route path="/profilePage" element={<ProfilePage />} />
 
         <Route
-          path="/category/Headphones"
+          path="/Headphones"
           element={
             <CategoryView
               setSelectedCategory={setSelectedCategory}
@@ -259,7 +259,7 @@ const Main = () => {
           }
         />
          <Route
-          path="/category/Speakers"
+          path="/Speakers"
           element={
             <CategoryView
               setSelectedCategory={setSelectedCategory}
@@ -272,7 +272,7 @@ const Main = () => {
           }
         />
          <Route
-          path="/category/Accessories"
+          path="Accessories"
           element={
             <CategoryView
               setSelectedCategory={setSelectedCategory}
