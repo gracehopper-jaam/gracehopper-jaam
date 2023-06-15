@@ -74,7 +74,7 @@ input {
 
 #submit-button{
     height: 40px;
-    background-color: #f79795; 
+    background-color: #889aa0; 
     border: 2px solid black;
     color: white;
     font-size: 16px;
@@ -84,7 +84,7 @@ input {
 
 #submit-button:hover {
     cursor: pointer;
-    background-color: #dc8685;
+    background-color: #677579;
 } 
 
 div #item-container-1{

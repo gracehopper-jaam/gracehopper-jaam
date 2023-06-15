@@ -1,0 +1,5 @@
+.popup-container {
+    width: 50%;
+    position: fixed;
+    z-index: 1000;
+}

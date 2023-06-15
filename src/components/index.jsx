@@ -15,3 +15,4 @@ export { default as Footer } from './Footer';
 export { default as ProfilePage } from './ProfilePage';
 export { default as CartWithAccountView } from './CartWithAccountView';
 export {default as CategoryView } from './CategoryView';
+export { default as Popup } from './Popup';

@@ -36,7 +36,7 @@ nav {
 }
 
 .cartLink {
-    color: #889aa0;
+    color: #5f6b6f;
 }
 
 @media screen and (max-width: 700px) {
@@ -62,9 +62,9 @@ nav {
       top: 0;
       right: 0;
       z-index: 2;
-      font-size: 11px;
+      font-size: 14px;
       border-radius: 50%;
-      background:red;
+      background:rgba(255, 0, 0, 0.72);
       width: 16px;
       height: 16px;
       line-height:16px;

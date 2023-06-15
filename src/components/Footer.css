@@ -87,4 +87,23 @@ html, body {
   .text-placeholder {
     display: none;
   }
+
+  .logo {
+    width: 85px
+  }
+
+  .contact-button,
+  .checkout-button {
+    margin: 1px;
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (max-width: 1275px) {
+  .small-text {
+    display: none;
+  }
+
+  
 }

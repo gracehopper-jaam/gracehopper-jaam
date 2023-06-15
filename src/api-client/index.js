@@ -3,7 +3,7 @@ const BASE = "http://localhost:8080/api";
 // const BASE = "api";
 
 
-/**************************aparna***********************/
+
 export async function getAllOrders() {
   try {
     const response = await fetch(`${BASE}/orders`);
@@ -190,18 +190,11 @@ export async function getProductsByCategoryName(categoryName) {
   try {
     const response = await fetch(`${BASE}/products/${categoryName}`);
     const products = await response.json();
-
+    console.log(products);
     return products;
+ 
     
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
-
-
-/***************************jason******************************/
-
-/***************************maisha******************************/
-
-/**************************aubrey********************************/

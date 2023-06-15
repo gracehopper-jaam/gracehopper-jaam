@@ -1,14 +1,14 @@
-# fly.toml app configuration file generated for jaam on 2023-05-30T14:17:05-04:00
+# fly.toml app configuration file generated for jaam on 2023-06-09T11:15:38-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "jaam"
-primary_region = "atl"
+primary_region = "dfw"
 
 [deploy]
   release_command = "npm run seed"
-  
+
 [http_service]
   internal_port = 3000
   force_https = true
