@@ -34,40 +34,49 @@ const Products = (props) => {
 
   return (
     <div className="products-container">
-      <div className="icons-container">
-        <img
-          className="icons-image"
-          src={Images.CategoryOverEar}
-          alt="headphone"
-          title="Headphones"
-          onClick={() => {
-            setSelectedCategory("Headphones");
-            console.log("Headphones");
-            navigate("/Headphones");
-          }}
-        />
-        <img
-          className="icons-image"
-          src={Images.CategorySpeaker}
-          alt="speaker"
-          title="Speakers"
-          onClick={() => {
-            setSelectedCategory("Speakers");
-            console.log("Speakers");
-            navigate("/Speakers");
-          }}
-        />
-        <img
-          className="icons-image"
-          src={Images.CategoryAccessories}
-          alt="accessories"
-          title="Accessories"
-          onClick={() => {
-            setSelectedCategory("Accessories");
-            console.log("Accessories");
-            navigate("/Accessories");
-          }}
-        />
+       <div className="icons-container">
+        <div className="icon-container">
+          <img
+            className="icons-image"
+            src={Images.CategoryOverEar}
+            alt="headphone"
+            title="Headphones"
+            onClick={() => {
+              setSelectedCategory("Headphones");
+              console.log("Headphones");
+              navigate("/Headphones");
+            }}
+          />
+          <h3 className="banner-caption">HEADPHONES</h3>
+        </div>
+        <div className="icon-container">
+          <img
+            className="icons-image"
+            src={Images.CategorySpeaker}
+            alt="speaker"
+            title="Speakers"
+            onClick={() => {
+              setSelectedCategory("Speakers");
+              console.log("Speakers");
+              navigate("/Speakers");
+            }}
+          />
+          <h3 className="banner-caption">SPEAKERS</h3>
+        </div>
+        <div className="icon-container">
+          <img
+            className="icons-image"
+            src={Images.CategoryAccessories}
+            alt="accessories"
+            title="Accessories"
+            onClick={() => {
+              setSelectedCategory("Accessories");
+              console.log("Accessories");
+              navigate("/Accessories");
+            }}
+          />
+          <h3 className="banner-caption">ACCESSORIES</h3>
+        </div>
       </div>
       <h2 id= "product-title">All Products</h2>
       {products.map((product, index) => {

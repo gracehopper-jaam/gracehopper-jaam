@@ -17,6 +17,7 @@ img.logo {
     text-shadow: 1px 1px 5px #889aa0;
     padding: 10px;
     height: 60px;
+    width: 90px;
 }
 
 nav {
@@ -28,6 +29,11 @@ nav {
     list-style: none;
 }
 
+a:hover {
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
 .link {
     color: #555;
     text-decoration: none;
@@ -36,17 +42,7 @@ nav {
 }
 
 .cartLink {
-    color: #889aa0;
-}
-
-@media screen and (max-width: 700px) {
-    .link {
-        font-size: 15px;
-    }
-    a.authButton {
-        font-size: 15px;
-    }
-
+    color: #5f6b6f;
 }
 
 .cart {
@@ -62,10 +58,10 @@ nav {
       top: 0;
       right: 0;
       z-index: 2;
-      font-size: 11px;
+      font-size: 14px;
       border-radius: 50%;
-      background:red;
-      width: 16px;
+      background:rgba(255, 0, 0, 0.72);
+      width: 18px;
       height: 16px;
       line-height:16px;
       display: block;
@@ -75,3 +71,33 @@ nav {
       font-weight: bold;
     }
 }
+
+a.authButton:hover {
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.3s ease;
+}
+
+@media screen and (max-width: 700px) {
+    .link {
+        font-size: 15px;
+    }
+    a.authButton {
+        font-size: 15px;
+    }
+
+    a.authButton:hover {
+        font-size: 15px;
+    }
+
+    nav {
+        padding: 0;
+    }
+
+    img.logo {
+        height: 40px;
+        width: 60px;
+    }
+
+}
+

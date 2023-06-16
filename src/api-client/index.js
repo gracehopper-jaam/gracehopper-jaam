@@ -3,7 +3,7 @@ const BASE = "http://localhost:8080/api";
 // const BASE = "api";
 
 
-/**************************aparna***********************/
+
 export async function getAllOrders() {
   try {
     const response = await fetch(`${BASE}/orders`);
@@ -188,22 +188,13 @@ export const deleteOrder = async (token, orderId) => {
 export const  getProductsByCategoryName = async (categoryName) => {
 
   try {
-
-    console.log("API in index.js before fetch ", `${BASE}/products/${categoryName}`);
     const response = await fetch(`${BASE}/products/${categoryName}`);
     const products = await response.json();
     console.log("API in index.js after response json", products);
     return products;
+ 
     
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
-
-
-/***************************jason******************************/
-
-/***************************maisha******************************/
-
-/**************************aubrey********************************/

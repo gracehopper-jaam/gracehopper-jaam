@@ -9,7 +9,9 @@ const Header = ({ isLoggedIn, setIsLoggedIn, setUser,setToken, setCart, cart,use
 
   return (
     <header>
-      <img className="logo" src={Images.JAAMLOGO} />
+      <NavLink to="/">
+         <img className="logo" src={Images.JAAMLOGO} />
+      </NavLink>
       <nav>
         <NavLink className="link" to="/">
           HOME
