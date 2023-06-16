@@ -78,3 +78,9 @@
     text-decoration: none;
     font-size: 22px;
 }
+
+@media screen and (max-width: 700px) {
+    .login-container {
+        width: 300px;
+    }
+}

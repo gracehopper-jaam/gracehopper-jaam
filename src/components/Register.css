@@ -47,3 +47,9 @@
 .register-container #registerButt:hover {
     background-color: #657277 ;
 }
+
+@media screen and (max-width: 700px) {
+    .register-container {
+        width: 300px;
+    }
+}
