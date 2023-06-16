@@ -5,6 +5,9 @@ const SingleProductView = (props) => {
 
 const {selectedProduct, setCart,isLoggedIn,setCount,count} = props;
 const [qty, setQty] = useState(1);
+const [buttonText, setButtonText] = useState('Add to Cart');
+const [buttonColor, setButtonColor] = useState('#889aa0')
+
 const handleClick = () => {
     const tempUserName = isLoggedIn? localStorage.getItem("currentUser") : "guest";
     let tempCart = JSON.parse(localStorage.getItem("currentCart"));
@@ -25,6 +28,14 @@ const handleClick = () => {
           localStorage.setItem("currentCart",JSON.stringify(cartObject));
           setCart(cartObject);  
           setCount(+qty+count);
+          //Button Text Change
+          setButtonText('Added to Cart!');
+          setButtonColor('#f79795');
+          setTimeout(() => {
+            setButtonText('Add to Cart');
+            setButtonColor('#889aa0');
+          }, 2000);
+
     }
     else
     {
@@ -44,6 +55,13 @@ const handleClick = () => {
           localStorage.setItem("currentCart",JSON.stringify(cartObject));
           setCart(cartObject);
           setCount(+qty+count);
+          //Button Text Change
+          setButtonText('Added to Cart!');
+          setButtonColor('#f79795');
+          setTimeout(() => {
+            setButtonText('Add to Cart');
+            setButtonColor('#889aa0');
+          }, 2000);
     }
     
 };
@@ -64,8 +82,12 @@ return (
           min="1" 
           onChange={(event) => setQty(event.target.value)}
           required/>
-          <button onClick ={() =>{handleClick(selectedProduct.id)}}>Add To Cart</button>
-          <hr></hr>
+          <button
+            onClick={() => handleClick(selectedProduct.id)}
+            style={{ backgroundColor: buttonColor }}>
+            {buttonText}
+            </button>
+            <hr></hr>
         </div>
     </>
 );
